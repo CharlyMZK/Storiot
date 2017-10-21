@@ -1,28 +1,9 @@
-<!DOCTYPE html>
-<html>
-{include file='header.tpl'}
-
-<body>
-  {include file='navbar.tpl'}
-
-  <section id="splash-blue">
-
-
-    <div class="container">
-
-      <div class="col s12">
-        <div class="page-header">
-          <h4 id="header">Connexion</h4>
-        </div>
-      </div>
-
-      <div>
-        
+{extends file="Layouts/layout.tpl"}
+{block "body"}
+      <!-- Tablet and desktop -->
+      <div class="row hide-on-small-only hero-home">
+        <h2>Sign In page</h2>
       </div>
     </div>
-    <!--Import jQuery before materialize.js-->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="js/materialize.min.js"></script>
-</body>
+{/block}
 
-</html>

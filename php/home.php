@@ -1,5 +1,6 @@
 <?php
-    $name = "Home page";
+    $name = "Nouveautés";
+    $smarty->assign('page', "home");
     $smarty->assign('name', $name);
 	$smarty->display("home.tpl");
 ?>

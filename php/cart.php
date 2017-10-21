@@ -1,5 +1,6 @@
 <?php
 	session_start();
-	// Gestion du contact
+	$name = "Cart";
+    $smarty->assign('name', $name);
 	$smarty->display("cart.tpl");
 ?>
