@@ -10,7 +10,7 @@
 	$smarty->assign ("trans",$buffer);
 //	$smarty->display("$page.tpl"); 
 
-$name = "Pay";
+$name = "Payer";
 $smarty->assign('name', $name);
 $smarty->display("pay.tpl");
 ?>

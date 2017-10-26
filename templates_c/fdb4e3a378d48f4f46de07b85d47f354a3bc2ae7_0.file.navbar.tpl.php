@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-10-11 09:58:44
+/* Smarty version 3.1.31, created on 2017-10-26 14:03:01
   from "/home/ubuntu/workspace/templates/Layouts/navbar.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_59ddeb54a26c59_73596110',
+  'unifunc' => 'content_59f1eb15dab033_45357889',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'fdb4e3a378d48f4f46de07b85d47f354a3bc2ae7' => 
     array (
       0 => '/home/ubuntu/workspace/templates/Layouts/navbar.tpl',
-      1 => 1507715920,
+      1 => 1509026572,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_59ddeb54a26c59_73596110 (Smarty_Internal_Template $_smarty_tpl) {
+function content_59f1eb15dab033_45357889 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <ul id="dropdown1" class="dropdown-content">
   <li><a href="#!">IT</a></li>
@@ -29,7 +29,7 @@ function content_59ddeb54a26c59_73596110 (Smarty_Internal_Template $_smarty_tpl)
   <li><a href="#!">Drones</a></li>
 </ul>
 <ul id="dropdown1" class="dropdown-content">
-  <li><a href="?page=account">Account</a></li>
+  <li><a href="?page=AdditionnalInformations">AdditionnalInformations</a></li>
   <li><a href="?page=cart">Cart</a></li>
   <li><a href="?page=confirmation">Confirmation</a></li>
   <li><a href="?page=contact">Contact</a></li>
@@ -42,7 +42,7 @@ function content_59ddeb54a26c59_73596110 (Smarty_Internal_Template $_smarty_tpl)
   <li><a href="?page=order">Order</a></li>
   <li><a href="?page=pay">Pay</a></li>
   <li><a href="?page=paymentInformations">PaymentInformations</a></li>
-  <li><a href="?page=reviewItem">ReviewItem</a></li>
+  <li><a href="?page=recoverPassword">RecoverPassword</a></li>
   <li><a href="?page=signIn">SignIn</a></li>
   <li><a href="?page=signUp">SignUp</a></li>
 </ul>

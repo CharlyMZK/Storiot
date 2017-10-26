@@ -1,11 +1,11 @@
 <?php
 $serviceContainer = \Propel\Runtime\Propel::getServiceContainer();
 $serviceContainer->checkVersion('2.0.0-dev');
-$serviceContainer->setAdapterClass('librairie', 'mysql');
+$serviceContainer->setAdapterClass('store', 'mysql');
 $manager = new \Propel\Runtime\Connection\ConnectionManagerSingle();
 $manager->setConfiguration(array (
   'classname' => 'Propel\\Runtime\\Connection\\ConnectionWrapper',
-  'dsn' => 'mysql:host=localhost;dbname=librairie',
+  'dsn' => 'mysql:host=localhost;dbname=store',
   'user' => 'root',
   'password' => '',
   'attributes' =>
@@ -19,6 +19,6 @@ $manager->setConfiguration(array (
     1 => 'vendor',
   ),
 ));
-$manager->setName('librairie');
-$serviceContainer->setConnectionManager('librairie', $manager);
-$serviceContainer->setDefaultDatasource('librairie');
+$manager->setName('store');
+$serviceContainer->setConnectionManager('store', $manager);
+$serviceContainer->setDefaultDatasource('store');

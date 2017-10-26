@@ -14,4 +14,5 @@
       {block "body"}{/block}
     </div>
 </body>
+{include file='Layouts/footer.tpl'}
 </html>

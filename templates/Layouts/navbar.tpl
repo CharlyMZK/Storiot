@@ -5,7 +5,7 @@
   <li><a href="#!">Drones</a></li>
 </ul>
 <ul id="dropdown1" class="dropdown-content">
-  <li><a href="?page=account">Account</a></li>
+  <li><a href="?page=AdditionnalInformations">AdditionnalInformations</a></li>
   <li><a href="?page=cart">Cart</a></li>
   <li><a href="?page=confirmation">Confirmation</a></li>
   <li><a href="?page=contact">Contact</a></li>
@@ -18,7 +18,7 @@
   <li><a href="?page=order">Order</a></li>
   <li><a href="?page=pay">Pay</a></li>
   <li><a href="?page=paymentInformations">PaymentInformations</a></li>
-  <li><a href="?page=reviewItem">ReviewItem</a></li>
+  <li><a href="?page=recoverPassword">RecoverPassword</a></li>
   <li><a href="?page=signIn">SignIn</a></li>
   <li><a href="?page=signUp">SignUp</a></li>
 </ul>

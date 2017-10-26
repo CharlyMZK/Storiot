@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	$name = "Cart";
+	$name = "Panier";
     $smarty->assign('name', $name);
 	$smarty->display("cart.tpl");
 ?>

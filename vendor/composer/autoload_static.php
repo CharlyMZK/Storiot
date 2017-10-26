@@ -119,12 +119,51 @@ class ComposerStaticInit9ab96b506ba39f30232be5392a2b7732
         ),
     );
 
+    public static $classMap = array (
+        'Base\\Cart' => __DIR__ . '/../..' . '/generated-classes/Base/Cart.php',
+        'Base\\CartQuery' => __DIR__ . '/../..' . '/generated-classes/Base/CartQuery.php',
+        'Base\\Contact' => __DIR__ . '/../..' . '/generated-classes/Base/Contact.php',
+        'Base\\ContactQuery' => __DIR__ . '/../..' . '/generated-classes/Base/ContactQuery.php',
+        'Base\\CreditCard' => __DIR__ . '/../..' . '/generated-classes/Base/CreditCard.php',
+        'Base\\CreditCardQuery' => __DIR__ . '/../..' . '/generated-classes/Base/CreditCardQuery.php',
+        'Base\\Item' => __DIR__ . '/../..' . '/generated-classes/Base/Item.php',
+        'Base\\ItemQuery' => __DIR__ . '/../..' . '/generated-classes/Base/ItemQuery.php',
+        'Base\\Order' => __DIR__ . '/../..' . '/generated-classes/Base/Order.php',
+        'Base\\OrderQuery' => __DIR__ . '/../..' . '/generated-classes/Base/OrderQuery.php',
+        'Base\\Review' => __DIR__ . '/../..' . '/generated-classes/Base/Review.php',
+        'Base\\ReviewQuery' => __DIR__ . '/../..' . '/generated-classes/Base/ReviewQuery.php',
+        'Base\\User' => __DIR__ . '/../..' . '/generated-classes/Base/User.php',
+        'Base\\UserQuery' => __DIR__ . '/../..' . '/generated-classes/Base/UserQuery.php',
+        'Cart' => __DIR__ . '/../..' . '/generated-classes/Cart.php',
+        'CartQuery' => __DIR__ . '/../..' . '/generated-classes/CartQuery.php',
+        'Contact' => __DIR__ . '/../..' . '/generated-classes/Contact.php',
+        'ContactQuery' => __DIR__ . '/../..' . '/generated-classes/ContactQuery.php',
+        'CreditCard' => __DIR__ . '/../..' . '/generated-classes/CreditCard.php',
+        'CreditCardQuery' => __DIR__ . '/../..' . '/generated-classes/CreditCardQuery.php',
+        'Item' => __DIR__ . '/../..' . '/generated-classes/Item.php',
+        'ItemQuery' => __DIR__ . '/../..' . '/generated-classes/ItemQuery.php',
+        'Map\\CartTableMap' => __DIR__ . '/../..' . '/generated-classes/Map/CartTableMap.php',
+        'Map\\ContactTableMap' => __DIR__ . '/../..' . '/generated-classes/Map/ContactTableMap.php',
+        'Map\\CreditCardTableMap' => __DIR__ . '/../..' . '/generated-classes/Map/CreditCardTableMap.php',
+        'Map\\ItemTableMap' => __DIR__ . '/../..' . '/generated-classes/Map/ItemTableMap.php',
+        'Map\\OrderTableMap' => __DIR__ . '/../..' . '/generated-classes/Map/OrderTableMap.php',
+        'Map\\ReviewTableMap' => __DIR__ . '/../..' . '/generated-classes/Map/ReviewTableMap.php',
+        'Map\\UserTableMap' => __DIR__ . '/../..' . '/generated-classes/Map/UserTableMap.php',
+        'Order' => __DIR__ . '/../..' . '/generated-classes/Order.php',
+        'OrderQuery' => __DIR__ . '/../..' . '/generated-classes/OrderQuery.php',
+        'Review' => __DIR__ . '/../..' . '/generated-classes/Review.php',
+        'ReviewQuery' => __DIR__ . '/../..' . '/generated-classes/ReviewQuery.php',
+        'User' => __DIR__ . '/../..' . '/generated-classes/User.php',
+        'UserQuery' => __DIR__ . '/../..' . '/generated-classes/UserQuery.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit9ab96b506ba39f30232be5392a2b7732::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit9ab96b506ba39f30232be5392a2b7732::$prefixDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInit9ab96b506ba39f30232be5392a2b7732::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit9ab96b506ba39f30232be5392a2b7732::$classMap;
 
         }, null, ClassLoader::class);
     }
