@@ -5,20 +5,20 @@
       <div class="col s11 m11">
         <div class="card blue-grey darken-1">
           <div class="card-content black-text">
-            <form id="signUpForm">
+            <form id="signInForm" action="/index.php?page=signIn" method="post">
               <div class="row">
                 <div class="col offset-s1 s10">
                   <img class="profile-img" src="https://colerisetemp2.files.wordpress.com/2009/11/dock-icon-flat.png" alt="">
                 </div>
                 <div class="col offset-s1 s10">
                   <div class="input-field col s12">
-                    <input class="validate" id="email" type="email">
+                    <input class="validate" id="email" name="email" type="email">
                     <label for="email" data-error="erreur" data-success="ok">Email</label>
                   </div>
                 </div>
                 <div class="col offset-s1 s10">
                   <div class="input-field col s12">
-                    <input class="validate" id="password" type="password">
+                    <input class="validate" id="password" name="password" type="password">
                     <label for="password" data-error="erreur" data-success="ok">Mot de passe</label>
                   </div>
                 </div>

@@ -5,22 +5,22 @@
   <li><a href="#!">Drones</a></li>
 </ul>
 <ul id="dropdown1" class="dropdown-content">
-  <li><a href="?page=AdditionnalInformations">AdditionnalInformations</a></li>
-  <li><a href="?page=cart">Cart</a></li>
-  <li><a href="?page=confirmation">Confirmation</a></li>
-  <li><a href="?page=contact">Contact</a></li>
-  <li><a href="?page=help">Help</a></li>
-  <li><a href="?page=item">Item</a></li>
-  <li><a href="?page=mainItem">MainItem</a></li>
-  <li><a href="?page=manageAccount">ManageAccount</a></li>
-  <li><a href="?page=manageOrders">ManageOrders</a></li>
-  <li><a href="?page=managePaymentInformations">ManagePayementInformations</a></li>
-  <li><a href="?page=order">Order</a></li>
-  <li><a href="?page=pay">Pay</a></li>
-  <li><a href="?page=paymentInformations">PaymentInformations</a></li>
-  <li><a href="?page=recoverPassword">RecoverPassword</a></li>
-  <li><a href="?page=signIn">SignIn</a></li>
-  <li><a href="?page=signUp">SignUp</a></li>
+  <li><a href="?module=additionnalInformation">AdditionnalInformation</a></li>
+  <li><a href="?module=cart">Cart</a></li>
+  <li><a href="?module=confirmation">Confirmation</a></li>
+  <li><a href="?module=contact">Contact</a></li>
+  <li><a href="?module=help">Help</a></li>
+  <li><a href="?module=item">Item</a></li>
+  <li><a href="?module=mainItem">MainItem</a></li>
+  <li><a href="?module=manageAccount">ManageAccount</a></li>
+  <li><a href="?module=manageOrders">ManageOrders</a></li>
+  <li><a href="?module=paymentInformation">ManagePayementInformation</a></li>
+  <li><a href="?module=order">Order</a></li>
+  <li><a href="?module=pay">Pay</a></li>
+  <li><a href="?module=paymentInformation">PaymentInformation</a></li>
+  <li><a href="?module=recoverPassword">RecoverPassword</a></li>
+  <li><a href="?module=signIn">SignIn</a></li>
+  <li><a href="?module=signUp">SignUp</a></li>
 </ul>
 <nav>
   <div class="nav-wrapper">
@@ -28,11 +28,11 @@
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <li><a href="index.php">Accueil</a></li>
       <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Categories<i class="material-icons right">arrow_drop_down</i></a></li>
-      <li><a href="?page=mainItem">Voir articles</a></li>
-      <li><a href="?page=cart">Panier</a></li>
-      <li><a href="?page=contact">Contact</a></li>
-      <li><a href="?page=signUp">Inscription</a></li>
-      <li><a href="?page=signIn">Connexion</a></li>
+      <li><a href="?module=mainItem">Voir articles</a></li>
+      <li><a href="?module=cart">Panier</a></li>
+      <li><a href="?module=contact">Contact</a></li>
+      <li><a href="?module=signUp">Inscription</a></li>
+      <li><a href="?module=signIn">Connexion</a></li>
       <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Dummies<i class="material-icons right">arrow_drop_down</i></a></li>
     </ul>
   </div>

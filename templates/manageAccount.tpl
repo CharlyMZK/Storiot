@@ -29,14 +29,14 @@
         </div>
       </div>
       <div class="col offset-s1 s10" style="color:grey;">
-        &nbsp; Sexe :
+        &nbsp; Gendere :
         <p>
-          <input id="sex_man" name="sex_group" type="radio" />
-          <label for="sex_man">Homme</label>
+          <input id="gender_man" name="gender_group" type="radio" />
+          <label for="gender_man">Homme</label>
         </p>
         <p>
-          <input id="sex_female" name="sex_group" type="radio" />
-          <label for="sex_female">Femme</label>
+          <input id="gender_female" name="gender_group" type="radio" />
+          <label for="gender_female">Femme</label>
         </p>
         <div class="center">
           <button class="btn waves-effect waves-light" type="submit">Changer</button>
@@ -77,8 +77,8 @@
       </div>
       <div class="col offset-s1 s10">
         <div class="input-field col s12">
-          <input class="validate" id="zip" type="text">
-          <label for="zip" data-error="erreur" data-success="ok">Code postal</label>
+          <input class="validate" id="zipCode" type="text">
+          <label for="zipCode" data-error="erreur" data-success="ok">Code postal</label>
         </div>
       </div>
       <div class="col offset-s1 s10">

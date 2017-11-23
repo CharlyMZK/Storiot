@@ -1,17 +1,22 @@
 <?php
-	$idClient = $_GET ["idClient"];
-	$mt = $_GET ["mt"];
-
-	// Client Restful
-	// ...
-	
-	$smarty->assign ("client",$idClient);
-	$smarty->assign ("montant",$mt);
-	$smarty->assign ("trans",$buffer);
-//	$smarty->display("$page.tpl"); 
-
-$name = "Payer";
-$smarty->assign('name', $name);
-$smarty->display("pay.tpl");
+    class payController{
+        
+        public $publisher;
+        public $request;
+        public $response;
+        
+        function __construct($request,$response) {
+            $this->request = $request;
+            $this->response = $response;
+        }
+        
+        function launch(){
+            $name = "Payer";
+            $this->response->getContent()->assign('name', $name);
+            $this->response->setTemplate("pay.tpl");
+            return $this->response;
+        }
+     
+      
+    }
 ?>
-

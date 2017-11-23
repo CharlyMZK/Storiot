@@ -1,46 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <database name="store" defaultIdMethod="native">
-  <table name="user" phpName="User">
-    <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
-    <column name="firstname" type="varchar" size="255" required="true" />
-    <column name="surname" type="varchar" size="255" required="true"/>
-    <column name="password" type="varchar" size="255" required="true"/>
-    <column name="address" type="varchar" size="255"/>
-    <column name="city" type="varchar" size="255"/>
-    <column name="postal" type="integer" size="10"/>
-    <column name="confirmed" type="boolean" defaultValue="false"/>
-  </table>
-  <table name="creditcard" phpName="CreditCard">
-    <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
-    <column name="reference" type="varchar" size="255" />
-    <column name="csv" type="varchar" size="3"/>
-    <column name="expireDate" type="timestamp" />
-  </table>
-  <table name="contact" phpName="Contact">
-   <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
-   <column name="message" type="varchar" size="255" required="true" />
-   <column name="sendDate" type="timestamp" />
-  </table>
-  <table name="order" phpName="Order">
-   <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
-   <column name="reference" type="varchar" size="255" required="true" />
-   <column name="sendDate" type="timestamp" />
-  </table>
-  <table name="review" phpName="Review">
-   <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
-   <column name="stars" type="float" size="10"/>
-   <column name="comment" type="varchar" size="255" required="true" />
-  </table>
-  <table name="cart" phpName="Cart">
-   <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
-  </table>
+    <table name="user" phpName="User">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+        <column name="firstName" type="varchar" size="255" required="true" />
+        <column name="lastName" type="varchar" size="255" required="true" />
+        <column name="gender" type="integer" size="1" required="true" />
+        <column name="email" type="varchar" size="255" required="true" />
+        <column name="password" type="varchar" size="255" required="true" />
+        <column name="address" type="varchar" size="255" />
+        <column name="city" type="varchar" size="255" />
+        <column name="zipCode" type="integer" size="5" />
+        <column name="phone" type="integer" size="10" />
+        <column name="confirmed" type="boolean" defaultValue="false" />
+    </table>
+    <table name="creditcard" phpName="CreditCard">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+        <column name="reference" type="varchar" size="255" />
+        <column name="csv" type="varchar" size="3" />
+        <column name="expireDate" type="timestamp" />
+        <column name="userId" type="integer" required="true" />
+        <foreign-key foreignTable="user" onDelete="CASCADE" skipSql="true">
+            <reference local="userId" foreign="id" />
+        </foreign-key>
+    </table>
+    <table name="contact" phpName="Contact">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+        <column name="email" type="varchar" size="255" required="true" />
+        <column name="category" type="varchar" size="255" required="true" />
+        <column name="subject" type="varchar" size="255" required="true" />
+        <column name="message" type="varchar" size="10000" required="true" />
+        <column name="sendDate" type="timestamp" />
+    </table>
+    <table name="order" phpName="Order">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+        <column name="reference" type="varchar" size="255" required="true" />
+        <column name="sendDate" type="timestamp" />
+        <column name="userId" type="integer" required="true" />
+        <foreign-key foreignTable="user" onDelete="CASCADE" skipSql="true">
+            <reference local="userId" foreign="id" />
+        </foreign-key>
+    </table>
+    <table name="review" phpName="Review">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+        <column name="stars" type="float" size="10" />
+        <column name="comment" type="varchar" size="255" required="true" />
+        <column name="userId" type="integer" required="true" />
+        <foreign-key foreignTable="user" onDelete="CASCADE" skipSql="true">
+            <reference local="userId" foreign="id" />
+        </foreign-key>
+    </table>
+    <table name="cart" phpName="Cart">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+        <column name="userId" type="integer" required="true" />
+        <foreign-key foreignTable="user" onDelete="CASCADE" skipSql="true">
+            <reference local="userId" foreign="id" />
+        </foreign-key>
+    </table>
     <table name="item" phpName="Item">
-    <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
-    <column name="name" type="varchar" size="255" required="true" />
-    <column name="description" type="varchar" size="255" required="true"/>
-    <column name="image" type="varchar" size="255" required="true"/>
-    <column name="price" type="float" size="10"/>
-    <column name="size" type="float" size="10"/>
-    <column name="weight" type="float" size="10"/>
-  </table>
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+        <column name="name" type="varchar" size="255" required="true" />
+        <column name="description" type="varchar" size="255" required="true" />
+        <column name="image" type="varchar" size="255" required="true" />
+        <column name="price" type="float" size="10" />
+        <column name="size" type="float" size="10" />
+        <column name="weight" type="float" size="10" />
+    </table>
 </database>

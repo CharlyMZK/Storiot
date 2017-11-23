@@ -6,73 +6,73 @@
       <div class="col s11 m11">
         <div class="card blue-grey darken-1">
           <div class="card-content black-text">
-            <form id="signUpForm">
+            <form id="signUpForm" action="/index.php?page=signUp" method="post">
               <div class="row">
                 <div class="col offset-s1 s10">
                   <img class="profile-img" src="https://colerisetemp2.files.wordpress.com/2009/11/dock-icon-flat.png" alt="">
                 </div>
                 <div class="col offset-s1 s10">
                   <div class="input-field col s12">
-                    <input class="validate" id="email" type="email">
+                    <input class="validate" id="email" name="email" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2}$">
                     <label for="email" data-error="erreur" data-success="ok">Email</label>
                   </div>
                 </div>
                 <div class="col offset-s1 s10">
                   <div class="input-field col s12">
-                    <input class="validate" id="password" type="password">
-                    <label for="password" data-error="erreur" data-success="ok">Mot de passe</label>
+                    <input class="validate" id="password" name="password" type="password" pattern=".{6}">
+                    <label for="password" data-error="Le mot de passe doit faire 6 caractère minimum" data-success="ok">Mot de passe</label>
                   </div>
                 </div>
                 <div class="col offset-s1 s10">
                   <div class="input-field col s12">
-                    <input class="validate" id="confirmPassword" type="password">
+                    <input class="validate" id="confirmPassword" name="confirmPassword" type="password">
                     <label for="confirmPassword" data-error="erreur" data-success="ok">Confirmation du mot de passe</label>
                   </div>
                 </div>
                 <div class="col offset-s1 s10">
                   <div class="input-field col s12">
-                    <input class="validate" id="lastName" type="text">
+                    <input class="validate" id="lastName" name="lastName" type="text" pattern="/^[a-Z ,.'-]+$/i">
                     <label for="lastName" data-error="erreur" data-success="ok">Nom</label>
                   </div>
                 </div>
                 <div class="col offset-s1 s10">
                   <div class="input-field col s12">
-                    <input class="validate" id="firstName" type="text">
+                    <input class="validate" id="firstName" name="firstName" type="text" pattern="/^[a-Z ,.'-]+$/i">
                     <label for="firstName" data-error="erreur" data-success="ok">Prenom</label>
                   </div>
                 </div>
                 <div class="col offset-s1 s10" style="color:grey;">
-                  &nbsp; Sexe : &nbsp;
+                  &nbsp; Genre : &nbsp;
                   <p>
-                    <input id="maleSex" name="sexGroup" type="radio" />
-                    <label for="maleSex">Homme</label>
+                    <input id="maleGender" name="genderGroup" type="radio" />
+                    <label for="maleGender">Homme</label>
                   </p>
                   <p>
-                    <input id="femaleSex" name="sexGroup" type="radio" />
-                    <label for="femaleSex">Femme</label>
+                    <input id="femaleGender" name="genderGroup" type="radio" />
+                    <label for="femaleGender">Femme</label>
                   </p>
                 </div>
                 <div class="col offset-s1 s10">
                   <div class="input-field col s12">
-                    <input class="validate" id="address" type="text">
+                    <input class="validate" id="address" name="address" type="text">
                     <label for="address" data-error="erreur" data-success="ok">Adresse postale</label>
                   </div>
                 </div>
                 <div class="col offset-s1 s10">
                   <div class="input-field col s12">
-                    <input class="validate" id="zip" type="text">
-                    <label for="zip" data-error="erreur" data-success="ok">Code postal</label>
+                    <input class="validate" id="zipCode" name="zipCode" type="text">
+                    <label for="zipCode" data-error="erreur" data-success="ok">Code postal</label>
                   </div>
                 </div>
                 <div class="col offset-s1 s10">
                   <div class="input-field col s12">
-                    <input class="validate" id="city" type="text">
+                    <input class="validate" id="city" name="city" type="text">
                     <label for="city" data-error="erreur" data-success="ok">Ville</label>
                   </div>
                 </div>
                 <div class="col offset-s1 s10">
                   <div class="input-field col s12">
-                    <input class="validate" id="phone" type="text">
+                    <input class="validate" id="phone" name="phone" type="text">
                     <label for="phone" data-error="erreur" data-success="ok">Téléphone</label>
                   </div>
                 </div>
