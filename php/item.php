@@ -8,15 +8,16 @@
         function __construct($request,$response) {
             $this->request = $request;
             $this->response = $response;
+            session_start();
         }
         
         function launch(){
-            $itemId = $_POST["id"];
+            $itemId = $_POST['id'];
             $firstItem = ItemQuery::create()->findPK($itemId);
-            $name = "Produit";
+            $name = 'Produit';
             $this->response->getContent()->assign('name', $name);
             $this->response->getContent()->assign('item', $firstItem);
-            $this->response->setTemplate("item.tpl");
+            $this->response->setTemplate('item.tpl');
             return $this->response;
         }
      

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-11-23 14:07:53
+/* Smarty version 3.1.31, created on 2017-11-23 17:17:16
   from "/home/ubuntu/workspace/templates/signUp.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5a16d6394fae15_65396176',
+  'unifunc' => 'content_5a17029c98eea1_71363985',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '78e2a357a54ca4dfb611fb28fcacdc6bcbb7c0af' => 
     array (
       0 => '/home/ubuntu/workspace/templates/signUp.tpl',
-      1 => 1511445869,
+      1 => 1511457428,
       2 => 'file',
     ),
   ),
@@ -20,21 +20,21 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a16d6394fae15_65396176 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a17029c98eea1_71363985 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
  <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_13754637115a16d6394e9c62_14647709', "body");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_21183852025a17029c984d93_40853146', "body");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "Layouts/layout.tpl");
 }
 /* {block "body"} */
-class Block_13754637115a16d6394e9c62_14647709 extends Smarty_Internal_Block
+class Block_21183852025a17029c984d93_40853146 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_13754637115a16d6394e9c62_14647709',
+    0 => 'Block_21183852025a17029c984d93_40853146',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -47,22 +47,20 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
       <div class="col s11 m11">
         <div class="card blue-grey darken-1">
           <div class="card-content black-text">
-            <form id="signUpForm" action="/index.php?page=signUp" method="post">
+            <form id="signUpForm" action="/index.php?module=signUp&action=sendForm" method="post">
               <div class="row">
                 <div class="col offset-s1 s10">
                   <img class="profile-img" src="https://colerisetemp2.files.wordpress.com/2009/11/dock-icon-flat.png" alt="">
                 </div>
                 <div class="col offset-s1 s10">
                   <div class="input-field col s12">
-                    <input class="validate" id="email" name="email" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]<?php echo 2;?>
-$">
+                    <input class="validate" id="email" name="email" type="text">
                     <label for="email" data-error="erreur" data-success="ok">Email</label>
                   </div>
                 </div>
                 <div class="col offset-s1 s10">
                   <div class="input-field col s12">
-                    <input class="validate" id="password" name="password" type="password" pattern=".<?php echo 6;?>
-">
+                    <input class="validate" id="password" name="password" type="password">
                     <label for="password" data-error="Le mot de passe doit faire 6 caractère minimum" data-success="ok">Mot de passe</label>
                   </div>
                 </div>
@@ -87,12 +85,12 @@ $">
                 <div class="col offset-s1 s10" style="color:grey;">
                   &nbsp; Genre : &nbsp;
                   <p>
-                    <input id="maleGender" name="genderGroup" type="radio" />
-                    <label for="maleGender">Homme</label>
+                    <input id="male" name="gender" type="radio" value="m"/>
+                    <label for="male">Homme</label>
                   </p>
                   <p>
-                    <input id="femaleGender" name="genderGroup" type="radio" />
-                    <label for="femaleGender">Femme</label>
+                    <input id="female" name="gender" type="radio" value="f"/>
+                    <label for="female">Femme</label>
                   </p>
                 </div>
                 <div class="col offset-s1 s10">
@@ -131,9 +129,6 @@ $">
     </div>
   </div>
 </div>
-<?php echo '<script'; ?>
- type="text/javascript" src="js/signUp.js"><?php echo '</script'; ?>
->
 <?php
 }
 }

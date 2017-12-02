@@ -5,7 +5,7 @@
       <div class="col s11 m11">
         <div class="card blue-grey darken-1">
           <div class="card-content black-text">
-            <form id="signInForm" action="/index.php?page=signIn" method="post">
+            <form id="signInForm" action="/index.php?module=signIn&action=sendForm" method="post">
               <div class="row">
                 <div class="col offset-s1 s10">
                   <img class="profile-img" src="https://colerisetemp2.files.wordpress.com/2009/11/dock-icon-flat.png" alt="">

@@ -83,9 +83,18 @@ nav {
 }
 
 .carousel {
-    height: 30em;
+    height: 60em !important;
 }
 
-.page-footer {
-    background-color: grey;
+.carousel.carousel-slider .carousel-item h2{
+    margin:20rem;
+    font-size: 10rem;
+}
+
+.carousel.carousel-slider .carousel-item p{
+        font-size: 2rem;
+}
+
+.blue{
+    background-image: url("https://static.pexels.com/photos/32237/pexels-photo.jpg") !important;
 }

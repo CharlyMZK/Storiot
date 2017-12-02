@@ -6,20 +6,20 @@
       <div class="col s11 m11">
         <div class="card blue-grey darken-1">
           <div class="card-content black-text">
-            <form id="signUpForm" action="/index.php?page=signUp" method="post">
+            <form id="signUpForm" action="/index.php?module=signUp&action=sendForm" method="post">
               <div class="row">
                 <div class="col offset-s1 s10">
                   <img class="profile-img" src="https://colerisetemp2.files.wordpress.com/2009/11/dock-icon-flat.png" alt="">
                 </div>
                 <div class="col offset-s1 s10">
                   <div class="input-field col s12">
-                    <input class="validate" id="email" name="email" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2}$">
+                    <input class="validate" id="email" name="email" type="text">
                     <label for="email" data-error="erreur" data-success="ok">Email</label>
                   </div>
                 </div>
                 <div class="col offset-s1 s10">
                   <div class="input-field col s12">
-                    <input class="validate" id="password" name="password" type="password" pattern=".{6}">
+                    <input class="validate" id="password" name="password" type="password">
                     <label for="password" data-error="Le mot de passe doit faire 6 caractère minimum" data-success="ok">Mot de passe</label>
                   </div>
                 </div>
@@ -44,12 +44,12 @@
                 <div class="col offset-s1 s10" style="color:grey;">
                   &nbsp; Genre : &nbsp;
                   <p>
-                    <input id="maleGender" name="genderGroup" type="radio" />
-                    <label for="maleGender">Homme</label>
+                    <input id="male" name="gender" type="radio" value="m"/>
+                    <label for="male">Homme</label>
                   </p>
                   <p>
-                    <input id="femaleGender" name="genderGroup" type="radio" />
-                    <label for="femaleGender">Femme</label>
+                    <input id="female" name="gender" type="radio" value="f"/>
+                    <label for="female">Femme</label>
                   </p>
                 </div>
                 <div class="col offset-s1 s10">
@@ -88,5 +88,4 @@
     </div>
   </div>
 </div>
-<script type="text/javascript" src="js/signUp.js"></script>
 {/block}

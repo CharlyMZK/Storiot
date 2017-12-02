@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-10-23 06:38:25
+/* Smarty version 3.1.31, created on 2017-11-26 12:39:32
   from "/home/ubuntu/workspace/templates/contact.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_59ed8e61117601_70990289',
+  'unifunc' => 'content_5a1ab604d51eb1_27425709',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'cf6c0440a98e1942e2f76830934de32391aee0d8' => 
     array (
       0 => '/home/ubuntu/workspace/templates/contact.tpl',
-      1 => 1508689601,
+      1 => 1511508669,
       2 => 'file',
     ),
   ),
@@ -20,21 +20,21 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_59ed8e61117601_70990289 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a1ab604d51eb1_27425709 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
  <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_71440580559ed8e61112582_78687723', "body");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_20830752435a1ab604d4c4e8_81242812', "body");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "Layouts/layout.tpl");
 }
 /* {block "body"} */
-class Block_71440580559ed8e61112582_78687723 extends Smarty_Internal_Block
+class Block_20830752435a1ab604d4c4e8_81242812 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_71440580559ed8e61112582_78687723',
+    0 => 'Block_20830752435a1ab604d4c4e8_81242812',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -79,7 +79,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
                 </div>
               </div>
               <div class="center">
-                <button class="btn waves-effect waves-light" type="submit">Changer</button>
+                <button class="btn waves-effect waves-light" type="submit">Envoyer</button>
                 <button class="btn waves-effect red" type="reset">Retour</button>
               </div>
             </div>

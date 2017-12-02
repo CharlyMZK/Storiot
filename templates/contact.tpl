@@ -38,7 +38,7 @@
                 </div>
               </div>
               <div class="center">
-                <button class="btn waves-effect waves-light" type="submit">Changer</button>
+                <button class="btn waves-effect waves-light" type="submit">Envoyer</button>
                 <button class="btn waves-effect red" type="reset">Retour</button>
               </div>
             </div>

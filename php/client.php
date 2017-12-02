@@ -4,10 +4,10 @@
 
 	
 	$erreur = false;
-	if ($action == "validation") {
-			$nom = $_POST ["nom"];
-			$prenom = $_POST ["prenom"];
-			$email = $_POST ["email"];
+	if ($action == 'validation') {
+			$nom = $_POST ['nom'];
+			$prenom = $_POST ['prenom'];
+			$email = $_POST ['email'];
 
 			// *******************************************
 			// Tests Donn�es 
@@ -18,7 +18,7 @@
 			
 			// ...
 	
-			if ($erreur) $smarty->display("$page.tpl");
+			if ($erreur) $smarty->display('$page.tpl');
 			else {
 /*
 				$client = new Client ();
@@ -32,5 +32,5 @@
 
 			
 			}
-	} else $smarty->display("$page.tpl");
+	} else $smarty->display('$page.tpl');
 ?>

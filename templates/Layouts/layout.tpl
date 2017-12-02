@@ -13,6 +13,7 @@
       </div>
       {block "body"}{/block}
     </div>
+  </section>
 </body>
 {include file='Layouts/footer.tpl'}
 

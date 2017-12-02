@@ -4,20 +4,22 @@
         <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
         <column name="firstName" type="varchar" size="255" required="true" />
         <column name="lastName" type="varchar" size="255" required="true" />
-        <column name="gender" type="integer" size="1" required="true" />
+        <column name="gender" type="varchar" size="1" required="true" />
         <column name="email" type="varchar" size="255" required="true" />
         <column name="password" type="varchar" size="255" required="true" />
         <column name="address" type="varchar" size="255" />
         <column name="city" type="varchar" size="255" />
-        <column name="zipCode" type="integer" size="5" />
-        <column name="phone" type="integer" size="10" />
+        <column name="zipCode" type="varchar" size="5" />
+        <column name="phone" type="varchar" size="10" />
         <column name="confirmed" type="boolean" defaultValue="false" />
     </table>
     <table name="creditcard" phpName="CreditCard">
         <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
         <column name="reference" type="varchar" size="255" />
         <column name="csv" type="varchar" size="3" />
-        <column name="expireDate" type="timestamp" />
+        <column name="expireMonth" type="integer" size="2" />
+        <column name="expireYear" type="integer" size="2" />
+        <column name="holder" type="varchar" size="255" />
         <column name="userId" type="integer" required="true" />
         <foreign-key foreignTable="user" onDelete="CASCADE" skipSql="true">
             <reference local="userId" foreign="id" />

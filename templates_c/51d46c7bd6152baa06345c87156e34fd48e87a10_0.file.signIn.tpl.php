@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-11-10 07:47:17
+/* Smarty version 3.1.31, created on 2017-11-23 14:47:07
   from "/home/ubuntu/workspace/templates/signIn.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5a0559853596e3_29867993',
+  'unifunc' => 'content_5a16df6b537d84_51335579',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '51d46c7bd6152baa06345c87156e34fd48e87a10' => 
     array (
       0 => '/home/ubuntu/workspace/templates/signIn.tpl',
-      1 => 1510242324,
+      1 => 1511448414,
       2 => 'file',
     ),
   ),
@@ -20,21 +20,21 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a0559853596e3_29867993 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a16df6b537d84_51335579 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
  <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_18266703465a055985353ca2_26647026', "body");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_5803813965a16df6b532b19_20936441', "body");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "Layouts/layout.tpl");
 }
 /* {block "body"} */
-class Block_18266703465a055985353ca2_26647026 extends Smarty_Internal_Block
+class Block_5803813965a16df6b532b19_20936441 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_18266703465a055985353ca2_26647026',
+    0 => 'Block_5803813965a16df6b532b19_20936441',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -46,7 +46,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
       <div class="col s11 m11">
         <div class="card blue-grey darken-1">
           <div class="card-content black-text">
-            <form id="signInForm" action="/index.php?page=signIn" method="post">
+            <form id="signInForm" action="/index.php?module=signIn&action=sendForm" method="post">
               <div class="row">
                 <div class="col offset-s1 s10">
                   <img class="profile-img" src="https://colerisetemp2.files.wordpress.com/2009/11/dock-icon-flat.png" alt="">
