@@ -10,6 +10,7 @@ use Map\ItemTableMap;
 use Propel\Runtime\Propel;
 use Propel\Runtime\ActiveQuery\Criteria;
 use Propel\Runtime\ActiveQuery\ModelCriteria;
+use Propel\Runtime\ActiveQuery\ModelJoin;
 use Propel\Runtime\Collection\ObjectCollection;
 use Propel\Runtime\Connection\ConnectionInterface;
 use Propel\Runtime\Exception\PropelException;
@@ -22,6 +23,7 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildItemQuery orderById($order = Criteria::ASC) Order by the id column
  * @method     ChildItemQuery orderByName($order = Criteria::ASC) Order by the name column
  * @method     ChildItemQuery orderByDescription($order = Criteria::ASC) Order by the description column
+ * @method     ChildItemQuery orderByAdddate($order = Criteria::ASC) Order by the addDate column
  * @method     ChildItemQuery orderByImage($order = Criteria::ASC) Order by the image column
  * @method     ChildItemQuery orderByPrice($order = Criteria::ASC) Order by the price column
  * @method     ChildItemQuery orderBySize($order = Criteria::ASC) Order by the size column
@@ -30,6 +32,7 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildItemQuery groupById() Group by the id column
  * @method     ChildItemQuery groupByName() Group by the name column
  * @method     ChildItemQuery groupByDescription() Group by the description column
+ * @method     ChildItemQuery groupByAdddate() Group by the addDate column
  * @method     ChildItemQuery groupByImage() Group by the image column
  * @method     ChildItemQuery groupByPrice() Group by the price column
  * @method     ChildItemQuery groupBySize() Group by the size column
@@ -43,12 +46,35 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildItemQuery rightJoinWith($relation) Adds a RIGHT JOIN clause and with to the query
  * @method     ChildItemQuery innerJoinWith($relation) Adds a INNER JOIN clause and with to the query
  *
+ * @method     ChildItemQuery leftJoinItemInCart($relationAlias = null) Adds a LEFT JOIN clause to the query using the ItemInCart relation
+ * @method     ChildItemQuery rightJoinItemInCart($relationAlias = null) Adds a RIGHT JOIN clause to the query using the ItemInCart relation
+ * @method     ChildItemQuery innerJoinItemInCart($relationAlias = null) Adds a INNER JOIN clause to the query using the ItemInCart relation
+ *
+ * @method     ChildItemQuery joinWithItemInCart($joinType = Criteria::INNER_JOIN) Adds a join clause and with to the query using the ItemInCart relation
+ *
+ * @method     ChildItemQuery leftJoinWithItemInCart() Adds a LEFT JOIN clause and with to the query using the ItemInCart relation
+ * @method     ChildItemQuery rightJoinWithItemInCart() Adds a RIGHT JOIN clause and with to the query using the ItemInCart relation
+ * @method     ChildItemQuery innerJoinWithItemInCart() Adds a INNER JOIN clause and with to the query using the ItemInCart relation
+ *
+ * @method     ChildItemQuery leftJoinItemType($relationAlias = null) Adds a LEFT JOIN clause to the query using the ItemType relation
+ * @method     ChildItemQuery rightJoinItemType($relationAlias = null) Adds a RIGHT JOIN clause to the query using the ItemType relation
+ * @method     ChildItemQuery innerJoinItemType($relationAlias = null) Adds a INNER JOIN clause to the query using the ItemType relation
+ *
+ * @method     ChildItemQuery joinWithItemType($joinType = Criteria::INNER_JOIN) Adds a join clause and with to the query using the ItemType relation
+ *
+ * @method     ChildItemQuery leftJoinWithItemType() Adds a LEFT JOIN clause and with to the query using the ItemType relation
+ * @method     ChildItemQuery rightJoinWithItemType() Adds a RIGHT JOIN clause and with to the query using the ItemType relation
+ * @method     ChildItemQuery innerJoinWithItemType() Adds a INNER JOIN clause and with to the query using the ItemType relation
+ *
+ * @method     \ItemInCartQuery|\ItemTypeQuery endUse() Finalizes a secondary criteria and merges it with its primary Criteria
+ *
  * @method     ChildItem findOne(ConnectionInterface $con = null) Return the first ChildItem matching the query
  * @method     ChildItem findOneOrCreate(ConnectionInterface $con = null) Return the first ChildItem matching the query, or a new ChildItem object populated from the query conditions when no match is found
  *
  * @method     ChildItem findOneById(int $id) Return the first ChildItem filtered by the id column
  * @method     ChildItem findOneByName(string $name) Return the first ChildItem filtered by the name column
  * @method     ChildItem findOneByDescription(string $description) Return the first ChildItem filtered by the description column
+ * @method     ChildItem findOneByAdddate(string $addDate) Return the first ChildItem filtered by the addDate column
  * @method     ChildItem findOneByImage(string $image) Return the first ChildItem filtered by the image column
  * @method     ChildItem findOneByPrice(double $price) Return the first ChildItem filtered by the price column
  * @method     ChildItem findOneBySize(double $size) Return the first ChildItem filtered by the size column
@@ -60,6 +86,7 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildItem requireOneById(int $id) Return the first ChildItem filtered by the id column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildItem requireOneByName(string $name) Return the first ChildItem filtered by the name column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildItem requireOneByDescription(string $description) Return the first ChildItem filtered by the description column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
+ * @method     ChildItem requireOneByAdddate(string $addDate) Return the first ChildItem filtered by the addDate column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildItem requireOneByImage(string $image) Return the first ChildItem filtered by the image column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildItem requireOneByPrice(double $price) Return the first ChildItem filtered by the price column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildItem requireOneBySize(double $size) Return the first ChildItem filtered by the size column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
@@ -69,6 +96,7 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildItem[]|ObjectCollection findById(int $id) Return ChildItem objects filtered by the id column
  * @method     ChildItem[]|ObjectCollection findByName(string $name) Return ChildItem objects filtered by the name column
  * @method     ChildItem[]|ObjectCollection findByDescription(string $description) Return ChildItem objects filtered by the description column
+ * @method     ChildItem[]|ObjectCollection findByAdddate(string $addDate) Return ChildItem objects filtered by the addDate column
  * @method     ChildItem[]|ObjectCollection findByImage(string $image) Return ChildItem objects filtered by the image column
  * @method     ChildItem[]|ObjectCollection findByPrice(double $price) Return ChildItem objects filtered by the price column
  * @method     ChildItem[]|ObjectCollection findBySize(double $size) Return ChildItem objects filtered by the size column
@@ -171,7 +199,7 @@ abstract class ItemQuery extends ModelCriteria
      */
     protected function findPkSimple($key, ConnectionInterface $con)
     {
-        $sql = 'SELECT id, name, description, image, price, size, weight FROM item WHERE id = :p0';
+        $sql = 'SELECT id, name, description, addDate, image, price, size, weight FROM item WHERE id = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -353,6 +381,49 @@ abstract class ItemQuery extends ModelCriteria
     }
 
     /**
+     * Filter the query on the addDate column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByAdddate('2011-03-14'); // WHERE addDate = '2011-03-14'
+     * $query->filterByAdddate('now'); // WHERE addDate = '2011-03-14'
+     * $query->filterByAdddate(array('max' => 'yesterday')); // WHERE addDate > '2011-03-13'
+     * </code>
+     *
+     * @param     mixed $adddate The value to use as filter.
+     *              Values can be integers (unix timestamps), DateTime objects, or strings.
+     *              Empty strings are treated as NULL.
+     *              Use scalar values for equality.
+     *              Use array values for in_array() equivalent.
+     *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return $this|ChildItemQuery The current query, for fluid interface
+     */
+    public function filterByAdddate($adddate = null, $comparison = null)
+    {
+        if (is_array($adddate)) {
+            $useMinMax = false;
+            if (isset($adddate['min'])) {
+                $this->addUsingAlias(ItemTableMap::COL_ADDDATE, $adddate['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($adddate['max'])) {
+                $this->addUsingAlias(ItemTableMap::COL_ADDDATE, $adddate['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
+        }
+
+        return $this->addUsingAlias(ItemTableMap::COL_ADDDATE, $adddate, $comparison);
+    }
+
+    /**
      * Filter the query on the image column
      *
      * Example usage:
@@ -498,6 +569,152 @@ abstract class ItemQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(ItemTableMap::COL_WEIGHT, $weight, $comparison);
+    }
+
+    /**
+     * Filter the query by a related \ItemInCart object
+     *
+     * @param \ItemInCart|ObjectCollection $itemInCart the related object to use as filter
+     * @param string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return ChildItemQuery The current query, for fluid interface
+     */
+    public function filterByItemInCart($itemInCart, $comparison = null)
+    {
+        if ($itemInCart instanceof \ItemInCart) {
+            return $this
+                ->addUsingAlias(ItemTableMap::COL_ID, $itemInCart->getItemid(), $comparison);
+        } elseif ($itemInCart instanceof ObjectCollection) {
+            return $this
+                ->useItemInCartQuery()
+                ->filterByPrimaryKeys($itemInCart->getPrimaryKeys())
+                ->endUse();
+        } else {
+            throw new PropelException('filterByItemInCart() only accepts arguments of type \ItemInCart or Collection');
+        }
+    }
+
+    /**
+     * Adds a JOIN clause to the query using the ItemInCart relation
+     *
+     * @param     string $relationAlias optional alias for the relation
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return $this|ChildItemQuery The current query, for fluid interface
+     */
+    public function joinItemInCart($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    {
+        $tableMap = $this->getTableMap();
+        $relationMap = $tableMap->getRelation('ItemInCart');
+
+        // create a ModelJoin object for this join
+        $join = new ModelJoin();
+        $join->setJoinType($joinType);
+        $join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
+        if ($previousJoin = $this->getPreviousJoin()) {
+            $join->setPreviousJoin($previousJoin);
+        }
+
+        // add the ModelJoin to the current object
+        if ($relationAlias) {
+            $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
+            $this->addJoinObject($join, $relationAlias);
+        } else {
+            $this->addJoinObject($join, 'ItemInCart');
+        }
+
+        return $this;
+    }
+
+    /**
+     * Use the ItemInCart relation ItemInCart object
+     *
+     * @see useQuery()
+     *
+     * @param     string $relationAlias optional alias for the relation,
+     *                                   to be used as main alias in the secondary query
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return \ItemInCartQuery A secondary query class using the current class as primary query
+     */
+    public function useItemInCartQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    {
+        return $this
+            ->joinItemInCart($relationAlias, $joinType)
+            ->useQuery($relationAlias ? $relationAlias : 'ItemInCart', '\ItemInCartQuery');
+    }
+
+    /**
+     * Filter the query by a related \ItemType object
+     *
+     * @param \ItemType|ObjectCollection $itemType the related object to use as filter
+     * @param string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return ChildItemQuery The current query, for fluid interface
+     */
+    public function filterByItemType($itemType, $comparison = null)
+    {
+        if ($itemType instanceof \ItemType) {
+            return $this
+                ->addUsingAlias(ItemTableMap::COL_ID, $itemType->getItemid(), $comparison);
+        } elseif ($itemType instanceof ObjectCollection) {
+            return $this
+                ->useItemTypeQuery()
+                ->filterByPrimaryKeys($itemType->getPrimaryKeys())
+                ->endUse();
+        } else {
+            throw new PropelException('filterByItemType() only accepts arguments of type \ItemType or Collection');
+        }
+    }
+
+    /**
+     * Adds a JOIN clause to the query using the ItemType relation
+     *
+     * @param     string $relationAlias optional alias for the relation
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return $this|ChildItemQuery The current query, for fluid interface
+     */
+    public function joinItemType($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    {
+        $tableMap = $this->getTableMap();
+        $relationMap = $tableMap->getRelation('ItemType');
+
+        // create a ModelJoin object for this join
+        $join = new ModelJoin();
+        $join->setJoinType($joinType);
+        $join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
+        if ($previousJoin = $this->getPreviousJoin()) {
+            $join->setPreviousJoin($previousJoin);
+        }
+
+        // add the ModelJoin to the current object
+        if ($relationAlias) {
+            $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
+            $this->addJoinObject($join, $relationAlias);
+        } else {
+            $this->addJoinObject($join, 'ItemType');
+        }
+
+        return $this;
+    }
+
+    /**
+     * Use the ItemType relation ItemType object
+     *
+     * @see useQuery()
+     *
+     * @param     string $relationAlias optional alias for the relation,
+     *                                   to be used as main alias in the secondary query
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return \ItemTypeQuery A secondary query class using the current class as primary query
+     */
+    public function useItemTypeQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    {
+        return $this
+            ->joinItemType($relationAlias, $joinType)
+            ->useQuery($relationAlias ? $relationAlias : 'ItemType', '\ItemTypeQuery');
     }
 
     /**

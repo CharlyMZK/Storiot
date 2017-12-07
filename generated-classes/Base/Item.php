@@ -2,21 +2,31 @@
 
 namespace Base;
 
+use \Item as ChildItem;
+use \ItemInCart as ChildItemInCart;
+use \ItemInCartQuery as ChildItemInCartQuery;
 use \ItemQuery as ChildItemQuery;
+use \ItemType as ChildItemType;
+use \ItemTypeQuery as ChildItemTypeQuery;
+use \DateTime;
 use \Exception;
 use \PDO;
+use Map\ItemInCartTableMap;
 use Map\ItemTableMap;
+use Map\ItemTypeTableMap;
 use Propel\Runtime\Propel;
 use Propel\Runtime\ActiveQuery\Criteria;
 use Propel\Runtime\ActiveQuery\ModelCriteria;
 use Propel\Runtime\ActiveRecord\ActiveRecordInterface;
 use Propel\Runtime\Collection\Collection;
+use Propel\Runtime\Collection\ObjectCollection;
 use Propel\Runtime\Connection\ConnectionInterface;
 use Propel\Runtime\Exception\BadMethodCallException;
 use Propel\Runtime\Exception\LogicException;
 use Propel\Runtime\Exception\PropelException;
 use Propel\Runtime\Map\TableMap;
 use Propel\Runtime\Parser\AbstractParser;
+use Propel\Runtime\Util\PropelDateTime;
 
 /**
  * Base class that represents a row from the 'item' table.
@@ -81,6 +91,13 @@ abstract class Item implements ActiveRecordInterface
     protected $description;
 
     /**
+     * The value for the adddate field.
+     *
+     * @var        DateTime
+     */
+    protected $adddate;
+
+    /**
      * The value for the image field.
      *
      * @var        string
@@ -109,12 +126,36 @@ abstract class Item implements ActiveRecordInterface
     protected $weight;
 
     /**
+     * @var        ObjectCollection|ChildItemInCart[] Collection to store aggregation of ChildItemInCart objects.
+     */
+    protected $collItemInCarts;
+    protected $collItemInCartsPartial;
+
+    /**
+     * @var        ObjectCollection|ChildItemType[] Collection to store aggregation of ChildItemType objects.
+     */
+    protected $collItemTypes;
+    protected $collItemTypesPartial;
+
+    /**
      * Flag to prevent endless save loop, if this object is referenced
      * by another object which falls in this transaction.
      *
      * @var boolean
      */
     protected $alreadyInSave = false;
+
+    /**
+     * An array of objects scheduled for deletion.
+     * @var ObjectCollection|ChildItemInCart[]
+     */
+    protected $itemInCartsScheduledForDeletion = null;
+
+    /**
+     * An array of objects scheduled for deletion.
+     * @var ObjectCollection|ChildItemType[]
+     */
+    protected $itemTypesScheduledForDeletion = null;
 
     /**
      * Initializes internal state of Base\Item object.
@@ -372,6 +413,26 @@ abstract class Item implements ActiveRecordInterface
     }
 
     /**
+     * Get the [optionally formatted] temporal [adddate] column value.
+     *
+     *
+     * @param      string $format The date/time format string (either date()-style or strftime()-style).
+     *                            If format is NULL, then the raw DateTime object will be returned.
+     *
+     * @return string|DateTime Formatted date/time value as string or DateTime object (if format is NULL), NULL if column is NULL, and 0 if column value is 0000-00-00
+     *
+     * @throws PropelException - if unable to parse/validate the date/time value.
+     */
+    public function getAdddate($format = NULL)
+    {
+        if ($format === null) {
+            return $this->adddate;
+        } else {
+            return $this->adddate instanceof \DateTimeInterface ? $this->adddate->format($format) : null;
+        }
+    }
+
+    /**
      * Get the [image] column value.
      *
      * @return string
@@ -470,6 +531,26 @@ abstract class Item implements ActiveRecordInterface
 
         return $this;
     } // setDescription()
+
+    /**
+     * Sets the value of [adddate] column to a normalized version of the date/time value specified.
+     *
+     * @param  mixed $v string, integer (timestamp), or \DateTimeInterface value.
+     *               Empty strings are treated as NULL.
+     * @return $this|\Item The current object (for fluent API support)
+     */
+    public function setAdddate($v)
+    {
+        $dt = PropelDateTime::newInstance($v, null, 'DateTime');
+        if ($this->adddate !== null || $dt !== null) {
+            if ($this->adddate === null || $dt === null || $dt->format("Y-m-d") !== $this->adddate->format("Y-m-d")) {
+                $this->adddate = $dt === null ? null : clone $dt;
+                $this->modifiedColumns[ItemTableMap::COL_ADDDATE] = true;
+            }
+        } // if either are not null
+
+        return $this;
+    } // setAdddate()
 
     /**
      * Set the value of [image] column.
@@ -596,16 +677,22 @@ abstract class Item implements ActiveRecordInterface
             $col = $row[TableMap::TYPE_NUM == $indexType ? 2 + $startcol : ItemTableMap::translateFieldName('Description', TableMap::TYPE_PHPNAME, $indexType)];
             $this->description = (null !== $col) ? (string) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 3 + $startcol : ItemTableMap::translateFieldName('Image', TableMap::TYPE_PHPNAME, $indexType)];
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 3 + $startcol : ItemTableMap::translateFieldName('Adddate', TableMap::TYPE_PHPNAME, $indexType)];
+            if ($col === '0000-00-00') {
+                $col = null;
+            }
+            $this->adddate = (null !== $col) ? PropelDateTime::newInstance($col, null, 'DateTime') : null;
+
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 4 + $startcol : ItemTableMap::translateFieldName('Image', TableMap::TYPE_PHPNAME, $indexType)];
             $this->image = (null !== $col) ? (string) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 4 + $startcol : ItemTableMap::translateFieldName('Price', TableMap::TYPE_PHPNAME, $indexType)];
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 5 + $startcol : ItemTableMap::translateFieldName('Price', TableMap::TYPE_PHPNAME, $indexType)];
             $this->price = (null !== $col) ? (double) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 5 + $startcol : ItemTableMap::translateFieldName('Size', TableMap::TYPE_PHPNAME, $indexType)];
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 6 + $startcol : ItemTableMap::translateFieldName('Size', TableMap::TYPE_PHPNAME, $indexType)];
             $this->size = (null !== $col) ? (double) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 6 + $startcol : ItemTableMap::translateFieldName('Weight', TableMap::TYPE_PHPNAME, $indexType)];
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 7 + $startcol : ItemTableMap::translateFieldName('Weight', TableMap::TYPE_PHPNAME, $indexType)];
             $this->weight = (null !== $col) ? (double) $col : null;
             $this->resetModified();
 
@@ -615,7 +702,7 @@ abstract class Item implements ActiveRecordInterface
                 $this->ensureConsistency();
             }
 
-            return $startcol + 7; // 7 = ItemTableMap::NUM_HYDRATE_COLUMNS.
+            return $startcol + 8; // 8 = ItemTableMap::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException(sprintf('Error populating %s object', '\\Item'), 0, $e);
@@ -675,6 +762,10 @@ abstract class Item implements ActiveRecordInterface
         $this->hydrate($row, 0, true, $dataFetcher->getIndexType()); // rehydrate
 
         if ($deep) {  // also de-associate any related objects?
+
+            $this->collItemInCarts = null;
+
+            $this->collItemTypes = null;
 
         } // if (deep)
     }
@@ -790,6 +881,40 @@ abstract class Item implements ActiveRecordInterface
                 $this->resetModified();
             }
 
+            if ($this->itemInCartsScheduledForDeletion !== null) {
+                if (!$this->itemInCartsScheduledForDeletion->isEmpty()) {
+                    \ItemInCartQuery::create()
+                        ->filterByPrimaryKeys($this->itemInCartsScheduledForDeletion->getPrimaryKeys(false))
+                        ->delete($con);
+                    $this->itemInCartsScheduledForDeletion = null;
+                }
+            }
+
+            if ($this->collItemInCarts !== null) {
+                foreach ($this->collItemInCarts as $referrerFK) {
+                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
+                        $affectedRows += $referrerFK->save($con);
+                    }
+                }
+            }
+
+            if ($this->itemTypesScheduledForDeletion !== null) {
+                if (!$this->itemTypesScheduledForDeletion->isEmpty()) {
+                    \ItemTypeQuery::create()
+                        ->filterByPrimaryKeys($this->itemTypesScheduledForDeletion->getPrimaryKeys(false))
+                        ->delete($con);
+                    $this->itemTypesScheduledForDeletion = null;
+                }
+            }
+
+            if ($this->collItemTypes !== null) {
+                foreach ($this->collItemTypes as $referrerFK) {
+                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
+                        $affectedRows += $referrerFK->save($con);
+                    }
+                }
+            }
+
             $this->alreadyInSave = false;
 
         }
@@ -825,6 +950,9 @@ abstract class Item implements ActiveRecordInterface
         if ($this->isColumnModified(ItemTableMap::COL_DESCRIPTION)) {
             $modifiedColumns[':p' . $index++]  = 'description';
         }
+        if ($this->isColumnModified(ItemTableMap::COL_ADDDATE)) {
+            $modifiedColumns[':p' . $index++]  = 'addDate';
+        }
         if ($this->isColumnModified(ItemTableMap::COL_IMAGE)) {
             $modifiedColumns[':p' . $index++]  = 'image';
         }
@@ -856,6 +984,9 @@ abstract class Item implements ActiveRecordInterface
                         break;
                     case 'description':
                         $stmt->bindValue($identifier, $this->description, PDO::PARAM_STR);
+                        break;
+                    case 'addDate':
+                        $stmt->bindValue($identifier, $this->adddate ? $this->adddate->format("Y-m-d H:i:s.u") : null, PDO::PARAM_STR);
                         break;
                     case 'image':
                         $stmt->bindValue($identifier, $this->image, PDO::PARAM_STR);
@@ -941,15 +1072,18 @@ abstract class Item implements ActiveRecordInterface
                 return $this->getDescription();
                 break;
             case 3:
-                return $this->getImage();
+                return $this->getAdddate();
                 break;
             case 4:
-                return $this->getPrice();
+                return $this->getImage();
                 break;
             case 5:
-                return $this->getSize();
+                return $this->getPrice();
                 break;
             case 6:
+                return $this->getSize();
+                break;
+            case 7:
                 return $this->getWeight();
                 break;
             default:
@@ -969,10 +1103,11 @@ abstract class Item implements ActiveRecordInterface
      *                    Defaults to TableMap::TYPE_PHPNAME.
      * @param     boolean $includeLazyLoadColumns (optional) Whether to include lazy loaded columns. Defaults to TRUE.
      * @param     array $alreadyDumpedObjects List of objects to skip to avoid recursion
+     * @param     boolean $includeForeignObjects (optional) Whether to include hydrated related objects. Default to FALSE.
      *
      * @return array an associative array containing the field names (as keys) and field values
      */
-    public function toArray($keyType = TableMap::TYPE_PHPNAME, $includeLazyLoadColumns = true, $alreadyDumpedObjects = array())
+    public function toArray($keyType = TableMap::TYPE_PHPNAME, $includeLazyLoadColumns = true, $alreadyDumpedObjects = array(), $includeForeignObjects = false)
     {
 
         if (isset($alreadyDumpedObjects['Item'][$this->hashCode()])) {
@@ -984,16 +1119,53 @@ abstract class Item implements ActiveRecordInterface
             $keys[0] => $this->getId(),
             $keys[1] => $this->getName(),
             $keys[2] => $this->getDescription(),
-            $keys[3] => $this->getImage(),
-            $keys[4] => $this->getPrice(),
-            $keys[5] => $this->getSize(),
-            $keys[6] => $this->getWeight(),
+            $keys[3] => $this->getAdddate(),
+            $keys[4] => $this->getImage(),
+            $keys[5] => $this->getPrice(),
+            $keys[6] => $this->getSize(),
+            $keys[7] => $this->getWeight(),
         );
+        if ($result[$keys[3]] instanceof \DateTimeInterface) {
+            $result[$keys[3]] = $result[$keys[3]]->format('c');
+        }
+
         $virtualColumns = $this->virtualColumns;
         foreach ($virtualColumns as $key => $virtualColumn) {
             $result[$key] = $virtualColumn;
         }
 
+        if ($includeForeignObjects) {
+            if (null !== $this->collItemInCarts) {
+
+                switch ($keyType) {
+                    case TableMap::TYPE_CAMELNAME:
+                        $key = 'itemInCarts';
+                        break;
+                    case TableMap::TYPE_FIELDNAME:
+                        $key = 'itemInCarts';
+                        break;
+                    default:
+                        $key = 'ItemInCarts';
+                }
+
+                $result[$key] = $this->collItemInCarts->toArray(null, false, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
+            }
+            if (null !== $this->collItemTypes) {
+
+                switch ($keyType) {
+                    case TableMap::TYPE_CAMELNAME:
+                        $key = 'itemTypes';
+                        break;
+                    case TableMap::TYPE_FIELDNAME:
+                        $key = 'itemTypes';
+                        break;
+                    default:
+                        $key = 'ItemTypes';
+                }
+
+                $result[$key] = $this->collItemTypes->toArray(null, false, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
+            }
+        }
 
         return $result;
     }
@@ -1037,15 +1209,18 @@ abstract class Item implements ActiveRecordInterface
                 $this->setDescription($value);
                 break;
             case 3:
-                $this->setImage($value);
+                $this->setAdddate($value);
                 break;
             case 4:
-                $this->setPrice($value);
+                $this->setImage($value);
                 break;
             case 5:
-                $this->setSize($value);
+                $this->setPrice($value);
                 break;
             case 6:
+                $this->setSize($value);
+                break;
+            case 7:
                 $this->setWeight($value);
                 break;
         } // switch()
@@ -1084,16 +1259,19 @@ abstract class Item implements ActiveRecordInterface
             $this->setDescription($arr[$keys[2]]);
         }
         if (array_key_exists($keys[3], $arr)) {
-            $this->setImage($arr[$keys[3]]);
+            $this->setAdddate($arr[$keys[3]]);
         }
         if (array_key_exists($keys[4], $arr)) {
-            $this->setPrice($arr[$keys[4]]);
+            $this->setImage($arr[$keys[4]]);
         }
         if (array_key_exists($keys[5], $arr)) {
-            $this->setSize($arr[$keys[5]]);
+            $this->setPrice($arr[$keys[5]]);
         }
         if (array_key_exists($keys[6], $arr)) {
-            $this->setWeight($arr[$keys[6]]);
+            $this->setSize($arr[$keys[6]]);
+        }
+        if (array_key_exists($keys[7], $arr)) {
+            $this->setWeight($arr[$keys[7]]);
         }
     }
 
@@ -1144,6 +1322,9 @@ abstract class Item implements ActiveRecordInterface
         }
         if ($this->isColumnModified(ItemTableMap::COL_DESCRIPTION)) {
             $criteria->add(ItemTableMap::COL_DESCRIPTION, $this->description);
+        }
+        if ($this->isColumnModified(ItemTableMap::COL_ADDDATE)) {
+            $criteria->add(ItemTableMap::COL_ADDDATE, $this->adddate);
         }
         if ($this->isColumnModified(ItemTableMap::COL_IMAGE)) {
             $criteria->add(ItemTableMap::COL_IMAGE, $this->image);
@@ -1245,10 +1426,31 @@ abstract class Item implements ActiveRecordInterface
     {
         $copyObj->setName($this->getName());
         $copyObj->setDescription($this->getDescription());
+        $copyObj->setAdddate($this->getAdddate());
         $copyObj->setImage($this->getImage());
         $copyObj->setPrice($this->getPrice());
         $copyObj->setSize($this->getSize());
         $copyObj->setWeight($this->getWeight());
+
+        if ($deepCopy) {
+            // important: temporarily setNew(false) because this affects the behavior of
+            // the getter/setter methods for fkey referrer objects.
+            $copyObj->setNew(false);
+
+            foreach ($this->getItemInCarts() as $relObj) {
+                if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
+                    $copyObj->addItemInCart($relObj->copy($deepCopy));
+                }
+            }
+
+            foreach ($this->getItemTypes() as $relObj) {
+                if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
+                    $copyObj->addItemType($relObj->copy($deepCopy));
+                }
+            }
+
+        } // if ($deepCopy)
+
         if ($makeNew) {
             $copyObj->setNew(true);
             $copyObj->setId(NULL); // this is a auto-increment column, so set to default value
@@ -1277,6 +1479,527 @@ abstract class Item implements ActiveRecordInterface
         return $copyObj;
     }
 
+
+    /**
+     * Initializes a collection based on the name of a relation.
+     * Avoids crafting an 'init[$relationName]s' method name
+     * that wouldn't work when StandardEnglishPluralizer is used.
+     *
+     * @param      string $relationName The name of the relation to initialize
+     * @return void
+     */
+    public function initRelation($relationName)
+    {
+        if ('ItemInCart' == $relationName) {
+            $this->initItemInCarts();
+            return;
+        }
+        if ('ItemType' == $relationName) {
+            $this->initItemTypes();
+            return;
+        }
+    }
+
+    /**
+     * Clears out the collItemInCarts collection
+     *
+     * This does not modify the database; however, it will remove any associated objects, causing
+     * them to be refetched by subsequent calls to accessor method.
+     *
+     * @return void
+     * @see        addItemInCarts()
+     */
+    public function clearItemInCarts()
+    {
+        $this->collItemInCarts = null; // important to set this to NULL since that means it is uninitialized
+    }
+
+    /**
+     * Reset is the collItemInCarts collection loaded partially.
+     */
+    public function resetPartialItemInCarts($v = true)
+    {
+        $this->collItemInCartsPartial = $v;
+    }
+
+    /**
+     * Initializes the collItemInCarts collection.
+     *
+     * By default this just sets the collItemInCarts collection to an empty array (like clearcollItemInCarts());
+     * however, you may wish to override this method in your stub class to provide setting appropriate
+     * to your application -- for example, setting the initial array to the values stored in database.
+     *
+     * @param      boolean $overrideExisting If set to true, the method call initializes
+     *                                        the collection even if it is not empty
+     *
+     * @return void
+     */
+    public function initItemInCarts($overrideExisting = true)
+    {
+        if (null !== $this->collItemInCarts && !$overrideExisting) {
+            return;
+        }
+
+        $collectionClassName = ItemInCartTableMap::getTableMap()->getCollectionClassName();
+
+        $this->collItemInCarts = new $collectionClassName;
+        $this->collItemInCarts->setModel('\ItemInCart');
+    }
+
+    /**
+     * Gets an array of ChildItemInCart objects which contain a foreign key that references this object.
+     *
+     * If the $criteria is not null, it is used to always fetch the results from the database.
+     * Otherwise the results are fetched from the database the first time, then cached.
+     * Next time the same method is called without $criteria, the cached collection is returned.
+     * If this ChildItem is new, it will return
+     * an empty collection or the current collection; the criteria is ignored on a new object.
+     *
+     * @param      Criteria $criteria optional Criteria object to narrow the query
+     * @param      ConnectionInterface $con optional connection object
+     * @return ObjectCollection|ChildItemInCart[] List of ChildItemInCart objects
+     * @throws PropelException
+     */
+    public function getItemInCarts(Criteria $criteria = null, ConnectionInterface $con = null)
+    {
+        $partial = $this->collItemInCartsPartial && !$this->isNew();
+        if (null === $this->collItemInCarts || null !== $criteria  || $partial) {
+            if ($this->isNew() && null === $this->collItemInCarts) {
+                // return empty collection
+                $this->initItemInCarts();
+            } else {
+                $collItemInCarts = ChildItemInCartQuery::create(null, $criteria)
+                    ->filterByItem($this)
+                    ->find($con);
+
+                if (null !== $criteria) {
+                    if (false !== $this->collItemInCartsPartial && count($collItemInCarts)) {
+                        $this->initItemInCarts(false);
+
+                        foreach ($collItemInCarts as $obj) {
+                            if (false == $this->collItemInCarts->contains($obj)) {
+                                $this->collItemInCarts->append($obj);
+                            }
+                        }
+
+                        $this->collItemInCartsPartial = true;
+                    }
+
+                    return $collItemInCarts;
+                }
+
+                if ($partial && $this->collItemInCarts) {
+                    foreach ($this->collItemInCarts as $obj) {
+                        if ($obj->isNew()) {
+                            $collItemInCarts[] = $obj;
+                        }
+                    }
+                }
+
+                $this->collItemInCarts = $collItemInCarts;
+                $this->collItemInCartsPartial = false;
+            }
+        }
+
+        return $this->collItemInCarts;
+    }
+
+    /**
+     * Sets a collection of ChildItemInCart objects related by a one-to-many relationship
+     * to the current object.
+     * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
+     * and new objects from the given Propel collection.
+     *
+     * @param      Collection $itemInCarts A Propel collection.
+     * @param      ConnectionInterface $con Optional connection object
+     * @return $this|ChildItem The current object (for fluent API support)
+     */
+    public function setItemInCarts(Collection $itemInCarts, ConnectionInterface $con = null)
+    {
+        /** @var ChildItemInCart[] $itemInCartsToDelete */
+        $itemInCartsToDelete = $this->getItemInCarts(new Criteria(), $con)->diff($itemInCarts);
+
+
+        $this->itemInCartsScheduledForDeletion = $itemInCartsToDelete;
+
+        foreach ($itemInCartsToDelete as $itemInCartRemoved) {
+            $itemInCartRemoved->setItem(null);
+        }
+
+        $this->collItemInCarts = null;
+        foreach ($itemInCarts as $itemInCart) {
+            $this->addItemInCart($itemInCart);
+        }
+
+        $this->collItemInCarts = $itemInCarts;
+        $this->collItemInCartsPartial = false;
+
+        return $this;
+    }
+
+    /**
+     * Returns the number of related ItemInCart objects.
+     *
+     * @param      Criteria $criteria
+     * @param      boolean $distinct
+     * @param      ConnectionInterface $con
+     * @return int             Count of related ItemInCart objects.
+     * @throws PropelException
+     */
+    public function countItemInCarts(Criteria $criteria = null, $distinct = false, ConnectionInterface $con = null)
+    {
+        $partial = $this->collItemInCartsPartial && !$this->isNew();
+        if (null === $this->collItemInCarts || null !== $criteria || $partial) {
+            if ($this->isNew() && null === $this->collItemInCarts) {
+                return 0;
+            }
+
+            if ($partial && !$criteria) {
+                return count($this->getItemInCarts());
+            }
+
+            $query = ChildItemInCartQuery::create(null, $criteria);
+            if ($distinct) {
+                $query->distinct();
+            }
+
+            return $query
+                ->filterByItem($this)
+                ->count($con);
+        }
+
+        return count($this->collItemInCarts);
+    }
+
+    /**
+     * Method called to associate a ChildItemInCart object to this object
+     * through the ChildItemInCart foreign key attribute.
+     *
+     * @param  ChildItemInCart $l ChildItemInCart
+     * @return $this|\Item The current object (for fluent API support)
+     */
+    public function addItemInCart(ChildItemInCart $l)
+    {
+        if ($this->collItemInCarts === null) {
+            $this->initItemInCarts();
+            $this->collItemInCartsPartial = true;
+        }
+
+        if (!$this->collItemInCarts->contains($l)) {
+            $this->doAddItemInCart($l);
+
+            if ($this->itemInCartsScheduledForDeletion and $this->itemInCartsScheduledForDeletion->contains($l)) {
+                $this->itemInCartsScheduledForDeletion->remove($this->itemInCartsScheduledForDeletion->search($l));
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param ChildItemInCart $itemInCart The ChildItemInCart object to add.
+     */
+    protected function doAddItemInCart(ChildItemInCart $itemInCart)
+    {
+        $this->collItemInCarts[]= $itemInCart;
+        $itemInCart->setItem($this);
+    }
+
+    /**
+     * @param  ChildItemInCart $itemInCart The ChildItemInCart object to remove.
+     * @return $this|ChildItem The current object (for fluent API support)
+     */
+    public function removeItemInCart(ChildItemInCart $itemInCart)
+    {
+        if ($this->getItemInCarts()->contains($itemInCart)) {
+            $pos = $this->collItemInCarts->search($itemInCart);
+            $this->collItemInCarts->remove($pos);
+            if (null === $this->itemInCartsScheduledForDeletion) {
+                $this->itemInCartsScheduledForDeletion = clone $this->collItemInCarts;
+                $this->itemInCartsScheduledForDeletion->clear();
+            }
+            $this->itemInCartsScheduledForDeletion[]= clone $itemInCart;
+            $itemInCart->setItem(null);
+        }
+
+        return $this;
+    }
+
+
+    /**
+     * If this collection has already been initialized with
+     * an identical criteria, it returns the collection.
+     * Otherwise if this Item is new, it will return
+     * an empty collection; or if this Item has previously
+     * been saved, it will retrieve related ItemInCarts from storage.
+     *
+     * This method is protected by default in order to keep the public
+     * api reasonable.  You can provide public methods for those you
+     * actually need in Item.
+     *
+     * @param      Criteria $criteria optional Criteria object to narrow the query
+     * @param      ConnectionInterface $con optional connection object
+     * @param      string $joinBehavior optional join type to use (defaults to Criteria::LEFT_JOIN)
+     * @return ObjectCollection|ChildItemInCart[] List of ChildItemInCart objects
+     */
+    public function getItemInCartsJoinCart(Criteria $criteria = null, ConnectionInterface $con = null, $joinBehavior = Criteria::LEFT_JOIN)
+    {
+        $query = ChildItemInCartQuery::create(null, $criteria);
+        $query->joinWith('Cart', $joinBehavior);
+
+        return $this->getItemInCarts($query, $con);
+    }
+
+    /**
+     * Clears out the collItemTypes collection
+     *
+     * This does not modify the database; however, it will remove any associated objects, causing
+     * them to be refetched by subsequent calls to accessor method.
+     *
+     * @return void
+     * @see        addItemTypes()
+     */
+    public function clearItemTypes()
+    {
+        $this->collItemTypes = null; // important to set this to NULL since that means it is uninitialized
+    }
+
+    /**
+     * Reset is the collItemTypes collection loaded partially.
+     */
+    public function resetPartialItemTypes($v = true)
+    {
+        $this->collItemTypesPartial = $v;
+    }
+
+    /**
+     * Initializes the collItemTypes collection.
+     *
+     * By default this just sets the collItemTypes collection to an empty array (like clearcollItemTypes());
+     * however, you may wish to override this method in your stub class to provide setting appropriate
+     * to your application -- for example, setting the initial array to the values stored in database.
+     *
+     * @param      boolean $overrideExisting If set to true, the method call initializes
+     *                                        the collection even if it is not empty
+     *
+     * @return void
+     */
+    public function initItemTypes($overrideExisting = true)
+    {
+        if (null !== $this->collItemTypes && !$overrideExisting) {
+            return;
+        }
+
+        $collectionClassName = ItemTypeTableMap::getTableMap()->getCollectionClassName();
+
+        $this->collItemTypes = new $collectionClassName;
+        $this->collItemTypes->setModel('\ItemType');
+    }
+
+    /**
+     * Gets an array of ChildItemType objects which contain a foreign key that references this object.
+     *
+     * If the $criteria is not null, it is used to always fetch the results from the database.
+     * Otherwise the results are fetched from the database the first time, then cached.
+     * Next time the same method is called without $criteria, the cached collection is returned.
+     * If this ChildItem is new, it will return
+     * an empty collection or the current collection; the criteria is ignored on a new object.
+     *
+     * @param      Criteria $criteria optional Criteria object to narrow the query
+     * @param      ConnectionInterface $con optional connection object
+     * @return ObjectCollection|ChildItemType[] List of ChildItemType objects
+     * @throws PropelException
+     */
+    public function getItemTypes(Criteria $criteria = null, ConnectionInterface $con = null)
+    {
+        $partial = $this->collItemTypesPartial && !$this->isNew();
+        if (null === $this->collItemTypes || null !== $criteria  || $partial) {
+            if ($this->isNew() && null === $this->collItemTypes) {
+                // return empty collection
+                $this->initItemTypes();
+            } else {
+                $collItemTypes = ChildItemTypeQuery::create(null, $criteria)
+                    ->filterByItem($this)
+                    ->find($con);
+
+                if (null !== $criteria) {
+                    if (false !== $this->collItemTypesPartial && count($collItemTypes)) {
+                        $this->initItemTypes(false);
+
+                        foreach ($collItemTypes as $obj) {
+                            if (false == $this->collItemTypes->contains($obj)) {
+                                $this->collItemTypes->append($obj);
+                            }
+                        }
+
+                        $this->collItemTypesPartial = true;
+                    }
+
+                    return $collItemTypes;
+                }
+
+                if ($partial && $this->collItemTypes) {
+                    foreach ($this->collItemTypes as $obj) {
+                        if ($obj->isNew()) {
+                            $collItemTypes[] = $obj;
+                        }
+                    }
+                }
+
+                $this->collItemTypes = $collItemTypes;
+                $this->collItemTypesPartial = false;
+            }
+        }
+
+        return $this->collItemTypes;
+    }
+
+    /**
+     * Sets a collection of ChildItemType objects related by a one-to-many relationship
+     * to the current object.
+     * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
+     * and new objects from the given Propel collection.
+     *
+     * @param      Collection $itemTypes A Propel collection.
+     * @param      ConnectionInterface $con Optional connection object
+     * @return $this|ChildItem The current object (for fluent API support)
+     */
+    public function setItemTypes(Collection $itemTypes, ConnectionInterface $con = null)
+    {
+        /** @var ChildItemType[] $itemTypesToDelete */
+        $itemTypesToDelete = $this->getItemTypes(new Criteria(), $con)->diff($itemTypes);
+
+
+        $this->itemTypesScheduledForDeletion = $itemTypesToDelete;
+
+        foreach ($itemTypesToDelete as $itemTypeRemoved) {
+            $itemTypeRemoved->setItem(null);
+        }
+
+        $this->collItemTypes = null;
+        foreach ($itemTypes as $itemType) {
+            $this->addItemType($itemType);
+        }
+
+        $this->collItemTypes = $itemTypes;
+        $this->collItemTypesPartial = false;
+
+        return $this;
+    }
+
+    /**
+     * Returns the number of related ItemType objects.
+     *
+     * @param      Criteria $criteria
+     * @param      boolean $distinct
+     * @param      ConnectionInterface $con
+     * @return int             Count of related ItemType objects.
+     * @throws PropelException
+     */
+    public function countItemTypes(Criteria $criteria = null, $distinct = false, ConnectionInterface $con = null)
+    {
+        $partial = $this->collItemTypesPartial && !$this->isNew();
+        if (null === $this->collItemTypes || null !== $criteria || $partial) {
+            if ($this->isNew() && null === $this->collItemTypes) {
+                return 0;
+            }
+
+            if ($partial && !$criteria) {
+                return count($this->getItemTypes());
+            }
+
+            $query = ChildItemTypeQuery::create(null, $criteria);
+            if ($distinct) {
+                $query->distinct();
+            }
+
+            return $query
+                ->filterByItem($this)
+                ->count($con);
+        }
+
+        return count($this->collItemTypes);
+    }
+
+    /**
+     * Method called to associate a ChildItemType object to this object
+     * through the ChildItemType foreign key attribute.
+     *
+     * @param  ChildItemType $l ChildItemType
+     * @return $this|\Item The current object (for fluent API support)
+     */
+    public function addItemType(ChildItemType $l)
+    {
+        if ($this->collItemTypes === null) {
+            $this->initItemTypes();
+            $this->collItemTypesPartial = true;
+        }
+
+        if (!$this->collItemTypes->contains($l)) {
+            $this->doAddItemType($l);
+
+            if ($this->itemTypesScheduledForDeletion and $this->itemTypesScheduledForDeletion->contains($l)) {
+                $this->itemTypesScheduledForDeletion->remove($this->itemTypesScheduledForDeletion->search($l));
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param ChildItemType $itemType The ChildItemType object to add.
+     */
+    protected function doAddItemType(ChildItemType $itemType)
+    {
+        $this->collItemTypes[]= $itemType;
+        $itemType->setItem($this);
+    }
+
+    /**
+     * @param  ChildItemType $itemType The ChildItemType object to remove.
+     * @return $this|ChildItem The current object (for fluent API support)
+     */
+    public function removeItemType(ChildItemType $itemType)
+    {
+        if ($this->getItemTypes()->contains($itemType)) {
+            $pos = $this->collItemTypes->search($itemType);
+            $this->collItemTypes->remove($pos);
+            if (null === $this->itemTypesScheduledForDeletion) {
+                $this->itemTypesScheduledForDeletion = clone $this->collItemTypes;
+                $this->itemTypesScheduledForDeletion->clear();
+            }
+            $this->itemTypesScheduledForDeletion[]= clone $itemType;
+            $itemType->setItem(null);
+        }
+
+        return $this;
+    }
+
+
+    /**
+     * If this collection has already been initialized with
+     * an identical criteria, it returns the collection.
+     * Otherwise if this Item is new, it will return
+     * an empty collection; or if this Item has previously
+     * been saved, it will retrieve related ItemTypes from storage.
+     *
+     * This method is protected by default in order to keep the public
+     * api reasonable.  You can provide public methods for those you
+     * actually need in Item.
+     *
+     * @param      Criteria $criteria optional Criteria object to narrow the query
+     * @param      ConnectionInterface $con optional connection object
+     * @param      string $joinBehavior optional join type to use (defaults to Criteria::LEFT_JOIN)
+     * @return ObjectCollection|ChildItemType[] List of ChildItemType objects
+     */
+    public function getItemTypesJoinType(Criteria $criteria = null, ConnectionInterface $con = null, $joinBehavior = Criteria::LEFT_JOIN)
+    {
+        $query = ChildItemTypeQuery::create(null, $criteria);
+        $query->joinWith('Type', $joinBehavior);
+
+        return $this->getItemTypes($query, $con);
+    }
+
     /**
      * Clears the current object, sets all attributes to their default values and removes
      * outgoing references as well as back-references (from other objects to this one. Results probably in a database
@@ -1287,6 +2010,7 @@ abstract class Item implements ActiveRecordInterface
         $this->id = null;
         $this->name = null;
         $this->description = null;
+        $this->adddate = null;
         $this->image = null;
         $this->price = null;
         $this->size = null;
@@ -1309,8 +2033,20 @@ abstract class Item implements ActiveRecordInterface
     public function clearAllReferences($deep = false)
     {
         if ($deep) {
+            if ($this->collItemInCarts) {
+                foreach ($this->collItemInCarts as $o) {
+                    $o->clearAllReferences($deep);
+                }
+            }
+            if ($this->collItemTypes) {
+                foreach ($this->collItemTypes as $o) {
+                    $o->clearAllReferences($deep);
+                }
+            }
         } // if ($deep)
 
+        $this->collItemInCarts = null;
+        $this->collItemTypes = null;
     }
 
     /**

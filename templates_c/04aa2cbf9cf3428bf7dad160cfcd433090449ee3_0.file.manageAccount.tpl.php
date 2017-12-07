@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-11-30 15:29:05
+/* Smarty version 3.1.31, created on 2017-12-07 15:07:28
   from "/home/ubuntu/workspace/templates/manageAccount.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5a2023c15a2398_73738499',
+  'unifunc' => 'content_5a29593064c180_67126258',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '04aa2cbf9cf3428bf7dad160cfcd433090449ee3' => 
     array (
       0 => '/home/ubuntu/workspace/templates/manageAccount.tpl',
-      1 => 1512055741,
+      1 => 1512658731,
       2 => 'file',
     ),
   ),
@@ -20,28 +20,34 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a2023c15a2398_73738499 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a29593064c180_67126258 (Smarty_Internal_Template $_smarty_tpl) {
+if (!is_callable('smarty_modifier_date_format')) require_once '/home/ubuntu/workspace/vendor/smarty/smarty/libs/plugins/modifier.date_format.php';
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
  <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_17165683625a2023c157d028_89155423', "body");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_14563917145a295930615090_24952783', "body");
 ?>
 
 <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "Layouts/layout.tpl");
 }
 /* {block "body"} */
-class Block_17165683625a2023c157d028_89155423 extends Smarty_Internal_Block
+class Block_14563917145a295930615090_24952783 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_17165683625a2023c157d028_89155423',
+    0 => 'Block_14563917145a295930615090_24952783',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
+<div class="col s12">
+  <div class="page-header">
+    <h4 class="header" id="header-main">Gestion du compte</h4>
+  </div>
+</div>
 <div class="card dark">
   <div class="card-tabs indicator blue">
     <ul class="tabs tabs-fixed-width">
@@ -53,102 +59,113 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
   </div>
   <div class="card-content">
     <div id="informationCard">
-        <div class="col offset-s1 s10">
-          <div class="input-field col s12">
-            <input class="validate" id="email" type="email" value=<?php echo $_smarty_tpl->tpl_vars['user']->value->getEmail();?>
+      <div class="col offset-s1 s10">
+        <div class="input-field col s12">
+          <input id="email" type="email" value=<?php echo $_smarty_tpl->tpl_vars['user']->value->getEmail();?>
 >
-            <label for="email data-error=" erreur="" data-success="ok">Email</label>
-          </div>
+          <label for="email data-error=" erreur="" data-success="ok">Email</label>
         </div>
-        <div class="col offset-s1 s10">
-          <div class="input-field col s12">
-            <input type="text" class="validate" name="lastName" value=<?php echo $_smarty_tpl->tpl_vars['user']->value->getLastName();?>
+      </div>
+      <div class="col offset-s1 s10" style="color:grey;">
+        &nbsp; Genre :
+        <p>
+          <input class="with-gap" id="male" name="gender" type="radio" value="m" <?php if ($_smarty_tpl->tpl_vars['user']->value->getGender() == 'm') {?>checked<?php }?>/>
+          <label for="male">Homme</label>
+        </p>
+        <p>
+          <input class="with-gap" id="female" name="gender" type="radio" value="f" <?php if ($_smarty_tpl->tpl_vars['user']->value->getGender() == 'f') {?>checked<?php }?>/>
+          <label for="female">Femme</label>
+        </p>
+      </div>
+      <div class="col offset-s1 s10">
+        <div class="input-field col s12">
+          <input type="text" id="lastName" pattern="/^[a-Z ,.'-]+$/i" value=<?php echo $_smarty_tpl->tpl_vars['user']->value->getLastName();?>
 >
-            <label for="lastName" data-error="erreur" data-success="ok">Nom</label>
-          </div>
+          <label for="lastName">Nom</label>
         </div>
-        <div class="col offset-s1 s10">
-          <div class="input-field col s12">
-            <input class="validate" id="firstName" type="text" value=<?php echo $_smarty_tpl->tpl_vars['user']->value->getFirstName();?>
+      </div>
+      <div class="col offset-s1 s10">
+        <div class="input-field col s12">
+          <input id="firstName" type="text" pattern="/^[a-Z ,.'-]+$/i" value=<?php echo $_smarty_tpl->tpl_vars['user']->value->getFirstName();?>
 >
-            <label for="firstName" data-error="erreur" data-success="ok">Prenom</label>
-          </div>
+          <label for="firstName">Prenom</label>
         </div>
-        <div class="col offset-s1 s10" style="color:grey;">
-          &nbsp; Genre :
-          <p>
-            <input id="male" name="gender" type="radio" value="m" checked=<?php echo $_smarty_tpl->tpl_vars['user']->value->getGender();?>
+      </div>
+      <div class="col offset-s1 s10">
+        <div class="input-field col s12">
+          <input class="datepicker" id="birthDate" type="time" data-value=<?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['user']->value->getBirthDate(),"%d/%m/%Y");?>
 />
-            <label for="male">Homme</label>
-          </p>
-          <p>
-            <input id="female" name="gender" type="radio" value="f" checked=<?php echo $_smarty_tpl->tpl_vars['user']->value->getGender();?>
-/>
-            <label for="female">Femme</label>
-          </p>
-          <div class="center">
-            <button class="btn waves-effect waves-light" id="updateInformation" type="submit">Changer</button>
-            <button class="btn waves-effect red" id="cancelInformation" type="reset">Annuler</button>
-          </div>
+          <label class="active" for="birthDate">Date de naissance</label>
         </div>
+      </div>
+      <div class="col offset-s1 s10">
+        <div class="input-field col s12 center">
+          <button class="btn waves-effect waves-light" id="updateInformation" type="submit">Changer</button>
+          <button class="btn waves-effect waves-dark white black-text cancel" type="reset">Quitter</button>
+        </div>
+      </div>
     </div>
     <div id="passwordCard">
-        <div class="col offset-s1 s10">
-          <div class="input-field col s12">
-            <input class="validate" id="password" type="password">
-            <label for="password" data-error="erreur" data-success="ok">Mot de passe actuel</label>
-          </div>
+      <div class="col offset-s1 s10">
+        <div class="input-field col s12">
+          <input id="password" type="password">
+          <label for="password">Mot de passe actuel</label>
         </div>
-        <div class="col offset-s1 s10">
-          <div class="input-field col s12">
-            <input class="validate" id="newPassword" type="password">
-            <label for="newPassword" data-error="erreur" data-success="ok">Nouveau mot de passe</label>
-          </div>
+      </div>
+      <div class="col offset-s1 s10">
+        <div class="input-field col s12">
+          <input id="newPassword" type="password">
+          <label for="newPassword">Nouveau mot de passe</label>
         </div>
-        <div class="col offset-s1 s10">
-          <div class="input-field col s12">
-            <input class="validate" id="confirmPassword" type="password">
-            <label for="confirmPassword" data-error="erreur" data-success="ok">Confirmation du mot de passe</label>
-          </div>
+      </div>
+      <div class="col offset-s1 s10">
+        <div class="input-field col s12">
+          <input id="confirmPassword" type="password">
+          <label for="confirmPassword">Confirmation du mot de passe</label>
         </div>
-        <div class="center">
-          <button class="btn waves-effect waves-light" id="updatePassword" type="submit">Changer</button>
-          <button class="btn waves-effect red" id="cancelPassword" type="reset">Annuler</button>
-        </div>
+      </div>
+      <div class="center">
+        <button class="btn waves-effect waves-light" id="updatePassword" type="submit">Changer</button>
+        <button class="btn waves-effect waves-dark white black-text cancel" type="reset">Quitter</button>
+      </div>
     </div>
     <div id="addressCard">
-        <div class="col offset-s1 s10">
-          <div class="input-field col s12">
-            <input class="validate" id="address" type="text" value=<?php echo $_smarty_tpl->tpl_vars['user']->value->getAddress();?>
+      <div class="col offset-s1 s10">
+        <div class="input-field col s12">
+          <input id="address" type="text" value=<?php echo $_smarty_tpl->tpl_vars['user']->value->getAddress();?>
 >
-            <label for="address" data-error="erreur" data-success="ok">Adresse postale</label>
-          </div>
+          <label for="address">Adresse postale</label>
         </div>
-        <div class="col offset-s1 s10">
-          <div class="input-field col s12">
-            <input class="validate" id="zipCode" type="text" value=<?php echo $_smarty_tpl->tpl_vars['user']->value->getZipCode();?>
+      </div>
+      <div class="col offset-s1 s10">
+        <div class="input-field col s12">
+          <input id="zipCode" type="text" onkeypress="return isNumberKey(event)" maxlength="5" value=<?php echo $_smarty_tpl->tpl_vars['user']->value->getZipCode();?>
 >
-            <label for="zipCode" data-error="erreur" data-success="ok">Code postal</label>
-          </div>
+          <label for="zipCode">Code postal</label>
         </div>
-        <div class="col offset-s1 s10">
-          <div class="input-field col s12">
-            <input class="validate" id="city" type="text" value=<?php echo $_smarty_tpl->tpl_vars['user']->value->getCity();?>
+      </div>
+      <div class="col offset-s1 s10">
+        <div class="input-field col s12">
+          <input id="city" type="text" value=<?php echo $_smarty_tpl->tpl_vars['user']->value->getCity();?>
 >
-            <label for="city" data-error="erreur" data-success="ok">Ville</label>
-          </div>
+          <label for="city">Ville</label>
         </div>
-        <div class="col offset-s1 s10">
-          <div class="input-field col s12">
-            <input class="validate" id="phone" type="text" value=<?php echo $_smarty_tpl->tpl_vars['user']->value->getPhone();?>
+      </div>
+      <div class="col offset-s1 s10">
+        <div class="input-field col s12">
+          <input id="phone" type="text" onkeypress="return isNumberKey(event)" maxlength="10" value=<?php echo $_smarty_tpl->tpl_vars['user']->value->getPhone();?>
 >
-            <label for="phone" data-error="erreur" data-success="ok">Téléphone</label>
-          </div>
+          <label for="phone">Téléphone</label>
+        </div>
+      </div>
+      <div class="col offset-s1 s10">
+        <div class="input-field col s12">
           <div class="center">
             <button class="btn waves-effect waves-light" id="updateAddress" type="submit">Changer</button>
-            <button class="btn waves-effect red" id="cancelAddress" type="reset">Annuler</button>
+            <button class="btn waves-effect waves-dark white black-text cancel" type="reset">Quitter</button>
           </div>
         </div>
+      </div>
     </div>
     <div id="paymentCard">
       <table class="striped highlight centered responsive-table">
@@ -157,6 +174,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
             <th>Numero</th>
             <th colspan="3">Expiration</th>
             <th>Titulaire</th>
+            <th>Supprimer</th>
             <th/>
           </tr>
         </thead>
@@ -183,8 +201,10 @@ foreach ($_from as $_smarty_tpl->tpl_vars['creditCard']->value) {
 </p>
             </td>
             <td>
-              <button class="btn waves-effect red deletePayment" value="<?php echo $_smarty_tpl->tpl_vars['creditCard']->value->getId();?>
-" type="submit">Supprimer</button>
+              <a class="btn-floating waves-effect waves-light red deletePayment" id="<?php echo $_smarty_tpl->tpl_vars['creditCard']->value->getId();?>
+">
+                <i class="material-icons">delete</i>
+              </a>
             </td>
           </tr>
           <?php
@@ -194,29 +214,46 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);
 ?>
 
           <tr>
-            <td>
-              <input class="validate" id="reference" type="text">
-              <label for="reference" data-error="erreur" data-success="ok">Numéro de carte</label>
-            </td>
-            <td>
-              <input class="validate" id="expireMonth" type="text">
-              <label for="expireMonth" data-error="erreur" data-success="ok">Mois</label>
-            </td>
-            <td>/</td>
-            <td>
-              <input class="validate" id="expireYear" type="text">
-              <label for="expireYear" data-error="erreur" data-success="ok">Année</label>
-            </td>
-            <td>
-              <input class="validate" id="holder" type="text">
-              <label for="holder" data-error="erreur" data-success="ok">Titulaire</label>
-            </td>
-            <td>
-              <button class="btn waves-effect waves-light" id="addPayment" type="submit">Ajouter</button>
-            </td>
+            <form id="manageAccountForm" action="/index.php?module=manageAccount&action=sendForm#paymentCard" method="post">
+              <td>
+                <div class="input-field">
+                  <input class="validate" name="reference" type="text" onkeypress="return isNumberKey(event)" maxlength="16">
+                  <label for="reference">Numéro de carte</label>
+                </div>
+              </td>
+              <td>
+                <div class="input-field">
+                  <input name="expireMonth" type="text" onkeypress="return isNumberKey(event)" maxlength="2">
+                  <label for="expireMonth">Mois</label>
+                </div>
+              </td>
+              <td>/</td>
+              <td>
+                <div class="input-field">
+                  <input name="expireYear" type="text" onkeypress="return isNumberKey(event)" maxlength="2">
+                  <label for="expireYear">Année</label>
+                </div>
+              </td>
+              <td>
+                <div class="input-field">
+                  <input name="holder" type="text">
+                  <label for="holder">Titulaire</label>
+                </div>
+              </td>
+              <td>
+                <button class="btn waves-effect waves-light" id="addPayment" type="submit">Ajouter</button>
+              </td>
+            </form>
           </tr>
         </tbody>
       </table>
+      <div class="col offset-s1 s10">
+        <div class="input-field col s12">
+          <div class="center">
+            <button class="btn waves-effect waves-dark white black-text cancel" type="reset">Quitter</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -1,4 +1,9 @@
 {extends file="Layouts/layout.tpl"} {block "body"}
+<div class="col s12">
+  <div class="page-header">
+    <h4 class="header" id="header-main">Gestion du compte</h4>
+  </div>
+</div>
 <div class="card dark">
   <div class="card-tabs indicator blue">
     <ul class="tabs tabs-fixed-width">
@@ -10,93 +15,105 @@
   </div>
   <div class="card-content">
     <div id="informationCard">
-        <div class="col offset-s1 s10">
-          <div class="input-field col s12">
-            <input class="validate" id="email" type="email" value={$user->getEmail()}>
-            <label for="email data-error=" erreur="" data-success="ok">Email</label>
-          </div>
+      <div class="col offset-s1 s10">
+        <div class="input-field col s12">
+          <input id="email" type="email" value={$user->getEmail()}>
+          <label for="email data-error=" erreur="" data-success="ok">Email</label>
         </div>
-        <div class="col offset-s1 s10">
-          <div class="input-field col s12">
-            <input type="text" class="validate" name="lastName" value={$user->getLastName()}>
-            <label for="lastName" data-error="erreur" data-success="ok">Nom</label>
-          </div>
+      </div>
+      <div class="col offset-s1 s10" style="color:grey;">
+        &nbsp; Genre :
+        <p>
+          <input class="with-gap" id="male" name="gender" type="radio" value="m" {if $user->getGender() == m}checked{/if}/>
+          <label for="male">Homme</label>
+        </p>
+        <p>
+          <input class="with-gap" id="female" name="gender" type="radio" value="f" {if $user->getGender() == f}checked{/if}/>
+          <label for="female">Femme</label>
+        </p>
+      </div>
+      <div class="col offset-s1 s10">
+        <div class="input-field col s12">
+          <input type="text" id="lastName" pattern="/^[a-Z ,.'-]+$/i" value={$user->getLastName()}>
+          <label for="lastName">Nom</label>
         </div>
-        <div class="col offset-s1 s10">
-          <div class="input-field col s12">
-            <input class="validate" id="firstName" type="text" value={$user->getFirstName()}>
-            <label for="firstName" data-error="erreur" data-success="ok">Prenom</label>
-          </div>
+      </div>
+      <div class="col offset-s1 s10">
+        <div class="input-field col s12">
+          <input id="firstName" type="text" pattern="/^[a-Z ,.'-]+$/i" value={$user->getFirstName()}>
+          <label for="firstName">Prenom</label>
         </div>
-        <div class="col offset-s1 s10" style="color:grey;">
-          &nbsp; Genre :
-          <p>
-            <input id="male" name="gender" type="radio" value="m" checked={$user->getGender()}/>
-            <label for="male">Homme</label>
-          </p>
-          <p>
-            <input id="female" name="gender" type="radio" value="f" checked={$user->getGender()}/>
-            <label for="female">Femme</label>
-          </p>
-          <div class="center">
-            <button class="btn waves-effect waves-light" id="updateInformation" type="submit">Changer</button>
-            <button class="btn waves-effect red" id="cancelInformation" type="reset">Annuler</button>
-          </div>
+      </div>
+      <div class="col offset-s1 s10">
+        <div class="input-field col s12">
+          <input class="datepicker" id="birthDate" type="time" data-value={$user->getBirthDate()|date_format:"%d/%m/%Y"}/>
+          <label class="active" for="birthDate">Date de naissance</label>
         </div>
+      </div>
+      <div class="col offset-s1 s10">
+        <div class="input-field col s12 center">
+          <button class="btn waves-effect waves-light" id="updateInformation" type="submit">Changer</button>
+          <button class="btn waves-effect waves-dark white black-text cancel" type="reset">Quitter</button>
+        </div>
+      </div>
     </div>
     <div id="passwordCard">
-        <div class="col offset-s1 s10">
-          <div class="input-field col s12">
-            <input class="validate" id="password" type="password">
-            <label for="password" data-error="erreur" data-success="ok">Mot de passe actuel</label>
-          </div>
+      <div class="col offset-s1 s10">
+        <div class="input-field col s12">
+          <input id="password" type="password">
+          <label for="password">Mot de passe actuel</label>
         </div>
-        <div class="col offset-s1 s10">
-          <div class="input-field col s12">
-            <input class="validate" id="newPassword" type="password">
-            <label for="newPassword" data-error="erreur" data-success="ok">Nouveau mot de passe</label>
-          </div>
+      </div>
+      <div class="col offset-s1 s10">
+        <div class="input-field col s12">
+          <input id="newPassword" type="password">
+          <label for="newPassword">Nouveau mot de passe</label>
         </div>
-        <div class="col offset-s1 s10">
-          <div class="input-field col s12">
-            <input class="validate" id="confirmPassword" type="password">
-            <label for="confirmPassword" data-error="erreur" data-success="ok">Confirmation du mot de passe</label>
-          </div>
+      </div>
+      <div class="col offset-s1 s10">
+        <div class="input-field col s12">
+          <input id="confirmPassword" type="password">
+          <label for="confirmPassword">Confirmation du mot de passe</label>
         </div>
-        <div class="center">
-          <button class="btn waves-effect waves-light" id="updatePassword" type="submit">Changer</button>
-          <button class="btn waves-effect red" id="cancelPassword" type="reset">Annuler</button>
-        </div>
+      </div>
+      <div class="center">
+        <button class="btn waves-effect waves-light" id="updatePassword" type="submit">Changer</button>
+        <button class="btn waves-effect waves-dark white black-text cancel" type="reset">Quitter</button>
+      </div>
     </div>
     <div id="addressCard">
-        <div class="col offset-s1 s10">
-          <div class="input-field col s12">
-            <input class="validate" id="address" type="text" value={$user->getAddress()}>
-            <label for="address" data-error="erreur" data-success="ok">Adresse postale</label>
-          </div>
+      <div class="col offset-s1 s10">
+        <div class="input-field col s12">
+          <input id="address" type="text" value={$user->getAddress()}>
+          <label for="address">Adresse postale</label>
         </div>
-        <div class="col offset-s1 s10">
-          <div class="input-field col s12">
-            <input class="validate" id="zipCode" type="text" value={$user->getZipCode()}>
-            <label for="zipCode" data-error="erreur" data-success="ok">Code postal</label>
-          </div>
+      </div>
+      <div class="col offset-s1 s10">
+        <div class="input-field col s12">
+          <input id="zipCode" type="text" onkeypress="return isNumberKey(event)" maxlength="5" value={$user->getZipCode()}>
+          <label for="zipCode">Code postal</label>
         </div>
-        <div class="col offset-s1 s10">
-          <div class="input-field col s12">
-            <input class="validate" id="city" type="text" value={$user->getCity()}>
-            <label for="city" data-error="erreur" data-success="ok">Ville</label>
-          </div>
+      </div>
+      <div class="col offset-s1 s10">
+        <div class="input-field col s12">
+          <input id="city" type="text" value={$user->getCity()}>
+          <label for="city">Ville</label>
         </div>
-        <div class="col offset-s1 s10">
-          <div class="input-field col s12">
-            <input class="validate" id="phone" type="text" value={$user->getPhone()}>
-            <label for="phone" data-error="erreur" data-success="ok">Téléphone</label>
-          </div>
+      </div>
+      <div class="col offset-s1 s10">
+        <div class="input-field col s12">
+          <input id="phone" type="text" onkeypress="return isNumberKey(event)" maxlength="10" value={$user->getPhone()}>
+          <label for="phone">Téléphone</label>
+        </div>
+      </div>
+      <div class="col offset-s1 s10">
+        <div class="input-field col s12">
           <div class="center">
             <button class="btn waves-effect waves-light" id="updateAddress" type="submit">Changer</button>
-            <button class="btn waves-effect red" id="cancelAddress" type="reset">Annuler</button>
+            <button class="btn waves-effect waves-dark white black-text cancel" type="reset">Quitter</button>
           </div>
         </div>
+      </div>
     </div>
     <div id="paymentCard">
       <table class="striped highlight centered responsive-table">
@@ -105,6 +122,7 @@
             <th>Numero</th>
             <th colspan="3">Expiration</th>
             <th>Titulaire</th>
+            <th>Supprimer</th>
             <th/>
           </tr>
         </thead>
@@ -123,34 +141,53 @@
               <p>{$creditCard->getHolder()}</p>
             </td>
             <td>
-              <button class="btn waves-effect red deletePayment" value="{$creditCard->getId()}" type="submit">Supprimer</button>
+              <a class="btn-floating waves-effect waves-light red deletePayment" id="{$creditCard->getId()}">
+                <i class="material-icons">delete</i>
+              </a>
             </td>
           </tr>
           {/foreach}
           <tr>
-            <td>
-              <input class="validate" id="reference" type="text">
-              <label for="reference" data-error="erreur" data-success="ok">Numéro de carte</label>
-            </td>
-            <td>
-              <input class="validate" id="expireMonth" type="text">
-              <label for="expireMonth" data-error="erreur" data-success="ok">Mois</label>
-            </td>
-            <td>/</td>
-            <td>
-              <input class="validate" id="expireYear" type="text">
-              <label for="expireYear" data-error="erreur" data-success="ok">Année</label>
-            </td>
-            <td>
-              <input class="validate" id="holder" type="text">
-              <label for="holder" data-error="erreur" data-success="ok">Titulaire</label>
-            </td>
-            <td>
-              <button class="btn waves-effect waves-light" id="addPayment" type="submit">Ajouter</button>
-            </td>
+            <form id="manageAccountForm" action="/index.php?module=manageAccount&action=sendForm#paymentCard" method="post">
+              <td>
+                <div class="input-field">
+                  <input class="validate" name="reference" type="text" onkeypress="return isNumberKey(event)" maxlength="16">
+                  <label for="reference">Numéro de carte</label>
+                </div>
+              </td>
+              <td>
+                <div class="input-field">
+                  <input name="expireMonth" type="text" onkeypress="return isNumberKey(event)" maxlength="2">
+                  <label for="expireMonth">Mois</label>
+                </div>
+              </td>
+              <td>/</td>
+              <td>
+                <div class="input-field">
+                  <input name="expireYear" type="text" onkeypress="return isNumberKey(event)" maxlength="2">
+                  <label for="expireYear">Année</label>
+                </div>
+              </td>
+              <td>
+                <div class="input-field">
+                  <input name="holder" type="text">
+                  <label for="holder">Titulaire</label>
+                </div>
+              </td>
+              <td>
+                <button class="btn waves-effect waves-light" id="addPayment" type="submit">Ajouter</button>
+              </td>
+            </form>
           </tr>
         </tbody>
       </table>
+      <div class="col offset-s1 s10">
+        <div class="input-field col s12">
+          <div class="center">
+            <button class="btn waves-effect waves-dark white black-text cancel" type="reset">Quitter</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

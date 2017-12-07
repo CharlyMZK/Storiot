@@ -59,7 +59,7 @@ class ItemTableMap extends TableMap
     /**
      * The total number of columns
      */
-    const NUM_COLUMNS = 7;
+    const NUM_COLUMNS = 8;
 
     /**
      * The number of lazy-loaded columns
@@ -69,7 +69,7 @@ class ItemTableMap extends TableMap
     /**
      * The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS)
      */
-    const NUM_HYDRATE_COLUMNS = 7;
+    const NUM_HYDRATE_COLUMNS = 8;
 
     /**
      * the column name for the id field
@@ -85,6 +85,11 @@ class ItemTableMap extends TableMap
      * the column name for the description field
      */
     const COL_DESCRIPTION = 'item.description';
+
+    /**
+     * the column name for the addDate field
+     */
+    const COL_ADDDATE = 'item.addDate';
 
     /**
      * the column name for the image field
@@ -118,11 +123,11 @@ class ItemTableMap extends TableMap
      * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        self::TYPE_PHPNAME       => array('Id', 'Name', 'Description', 'Image', 'Price', 'Size', 'Weight', ),
-        self::TYPE_CAMELNAME     => array('id', 'name', 'description', 'image', 'price', 'size', 'weight', ),
-        self::TYPE_COLNAME       => array(ItemTableMap::COL_ID, ItemTableMap::COL_NAME, ItemTableMap::COL_DESCRIPTION, ItemTableMap::COL_IMAGE, ItemTableMap::COL_PRICE, ItemTableMap::COL_SIZE, ItemTableMap::COL_WEIGHT, ),
-        self::TYPE_FIELDNAME     => array('id', 'name', 'description', 'image', 'price', 'size', 'weight', ),
-        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, )
+        self::TYPE_PHPNAME       => array('Id', 'Name', 'Description', 'Adddate', 'Image', 'Price', 'Size', 'Weight', ),
+        self::TYPE_CAMELNAME     => array('id', 'name', 'description', 'adddate', 'image', 'price', 'size', 'weight', ),
+        self::TYPE_COLNAME       => array(ItemTableMap::COL_ID, ItemTableMap::COL_NAME, ItemTableMap::COL_DESCRIPTION, ItemTableMap::COL_ADDDATE, ItemTableMap::COL_IMAGE, ItemTableMap::COL_PRICE, ItemTableMap::COL_SIZE, ItemTableMap::COL_WEIGHT, ),
+        self::TYPE_FIELDNAME     => array('id', 'name', 'description', 'addDate', 'image', 'price', 'size', 'weight', ),
+        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, 7, )
     );
 
     /**
@@ -132,11 +137,11 @@ class ItemTableMap extends TableMap
      * e.g. self::$fieldKeys[self::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        self::TYPE_PHPNAME       => array('Id' => 0, 'Name' => 1, 'Description' => 2, 'Image' => 3, 'Price' => 4, 'Size' => 5, 'Weight' => 6, ),
-        self::TYPE_CAMELNAME     => array('id' => 0, 'name' => 1, 'description' => 2, 'image' => 3, 'price' => 4, 'size' => 5, 'weight' => 6, ),
-        self::TYPE_COLNAME       => array(ItemTableMap::COL_ID => 0, ItemTableMap::COL_NAME => 1, ItemTableMap::COL_DESCRIPTION => 2, ItemTableMap::COL_IMAGE => 3, ItemTableMap::COL_PRICE => 4, ItemTableMap::COL_SIZE => 5, ItemTableMap::COL_WEIGHT => 6, ),
-        self::TYPE_FIELDNAME     => array('id' => 0, 'name' => 1, 'description' => 2, 'image' => 3, 'price' => 4, 'size' => 5, 'weight' => 6, ),
-        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, )
+        self::TYPE_PHPNAME       => array('Id' => 0, 'Name' => 1, 'Description' => 2, 'Adddate' => 3, 'Image' => 4, 'Price' => 5, 'Size' => 6, 'Weight' => 7, ),
+        self::TYPE_CAMELNAME     => array('id' => 0, 'name' => 1, 'description' => 2, 'adddate' => 3, 'image' => 4, 'price' => 5, 'size' => 6, 'weight' => 7, ),
+        self::TYPE_COLNAME       => array(ItemTableMap::COL_ID => 0, ItemTableMap::COL_NAME => 1, ItemTableMap::COL_DESCRIPTION => 2, ItemTableMap::COL_ADDDATE => 3, ItemTableMap::COL_IMAGE => 4, ItemTableMap::COL_PRICE => 5, ItemTableMap::COL_SIZE => 6, ItemTableMap::COL_WEIGHT => 7, ),
+        self::TYPE_FIELDNAME     => array('id' => 0, 'name' => 1, 'description' => 2, 'addDate' => 3, 'image' => 4, 'price' => 5, 'size' => 6, 'weight' => 7, ),
+        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, 7, )
     );
 
     /**
@@ -159,6 +164,7 @@ class ItemTableMap extends TableMap
         $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
         $this->addColumn('name', 'Name', 'VARCHAR', true, 255, null);
         $this->addColumn('description', 'Description', 'VARCHAR', true, 255, null);
+        $this->addColumn('addDate', 'Adddate', 'DATE', false, null, null);
         $this->addColumn('image', 'Image', 'VARCHAR', true, 255, null);
         $this->addColumn('price', 'Price', 'FLOAT', false, 10, null);
         $this->addColumn('size', 'Size', 'FLOAT', false, 10, null);
@@ -170,7 +176,31 @@ class ItemTableMap extends TableMap
      */
     public function buildRelations()
     {
+        $this->addRelation('ItemInCart', '\\ItemInCart', RelationMap::ONE_TO_MANY, array (
+  0 =>
+  array (
+    0 => ':itemId',
+    1 => ':id',
+  ),
+), 'CASCADE', null, 'ItemInCarts', false);
+        $this->addRelation('ItemType', '\\ItemType', RelationMap::ONE_TO_MANY, array (
+  0 =>
+  array (
+    0 => ':itemId',
+    1 => ':id',
+  ),
+), 'CASCADE', null, 'ItemTypes', false);
     } // buildRelations()
+    /**
+     * Method to invalidate the instance pool of all tables related to item     * by a foreign key with ON DELETE CASCADE
+     */
+    public static function clearRelatedInstancePool()
+    {
+        // Invalidate objects in related instance pools,
+        // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
+        ItemInCartTableMap::clearInstancePool();
+        ItemTypeTableMap::clearInstancePool();
+    }
 
     /**
      * Retrieves a string version of the primary key from the DB resultset row that can be used to uniquely identify a row in this table.
@@ -316,6 +346,7 @@ class ItemTableMap extends TableMap
             $criteria->addSelectColumn(ItemTableMap::COL_ID);
             $criteria->addSelectColumn(ItemTableMap::COL_NAME);
             $criteria->addSelectColumn(ItemTableMap::COL_DESCRIPTION);
+            $criteria->addSelectColumn(ItemTableMap::COL_ADDDATE);
             $criteria->addSelectColumn(ItemTableMap::COL_IMAGE);
             $criteria->addSelectColumn(ItemTableMap::COL_PRICE);
             $criteria->addSelectColumn(ItemTableMap::COL_SIZE);
@@ -324,6 +355,7 @@ class ItemTableMap extends TableMap
             $criteria->addSelectColumn($alias . '.id');
             $criteria->addSelectColumn($alias . '.name');
             $criteria->addSelectColumn($alias . '.description');
+            $criteria->addSelectColumn($alias . '.addDate');
             $criteria->addSelectColumn($alias . '.image');
             $criteria->addSelectColumn($alias . '.price');
             $criteria->addSelectColumn($alias . '.size');

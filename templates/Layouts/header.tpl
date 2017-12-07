@@ -24,6 +24,9 @@
 card a{
     color:#26a69a !important;
 }
+table thead tr th, table tbody tr td a{
+     color:#846C63!important;
+}
   html {
     position: relative;
     min-height: 100%;
@@ -146,15 +149,15 @@ nav {
 
 .banner{
     height:5em;    
-     -webkit-filter: opacity(.8);
-  filter: opacity(.8);
-  font-weight:bold;
+    -webkit-filter: opacity(.8);
+    filter: opacity(.8);
+    font-weight:bold;
     padding-top:2em;
-        background: rgba(0,0,0,0.4);
-     font-family: Brush-Script-MT, Calibri, Trebuchet, sans-serif;
-     text-align:center;
+    background: rgba(0,0,0,0.4);
+    font-family: Brush-Script-MT, Calibri, Trebuchet, sans-serif;
+    text-align:center;
 }
-#header{
+.header{
       font-family: Brush-Script-MT, Calibri, Trebuchet, sans-serif;
       text-transform:uppercase;
       color:#846C63!important;
@@ -230,6 +233,13 @@ nav {
   color:  #846C63!important
 }
 
+.brown-background{
+  background-color:  #846C63!important
+}
+.more-row{
+    margin-bottom:3em;
+}
+
 .grey-text.text-lighten-3{
     color:#88AAA9!important
 }
@@ -239,6 +249,17 @@ nav {
     background-color:rgba(189,177,173,0.1)!important;
 }
 
+.card .card-image img{
+    height:19em;
+}
+
+.delete-button{
+    color:red;
+}
+
+.input-quantity{
+    width:5em !important;
+}
 </style>
 
 <script>
@@ -256,4 +277,5 @@ $('.dropdown-button').dropdown({
 
 		}); // End Document Ready
 })(jQuery); // End of jQuery name space
+   $(".button-collapse").sideNav();
 </script>

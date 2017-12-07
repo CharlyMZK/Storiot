@@ -13,7 +13,8 @@
         
         function launch(){
             $user = UserQuery::create()->findOneById($_SESSION['userId']);
-           
+            $creditCards = CreditCardQuery::create()->filterByUserId($_SESSION['userId']);
+            
             if($this->request->action == 'updateInformation'){
                 $this->updateUserInformation($user);
                 $this->updateSessionUserFirstName($user);
@@ -21,17 +22,14 @@
                 $this->updateUserPassword($user);
             } else if ($this->request->action == 'updateAddress') {
                 $this->updateUserAddress($user);
-            } else if ($this->request->action == 'addPayment') {
+            } else if ($this->request->action == 'sendForm') {
                 $this->addUserPayment($user);
             } else if($this->request->action == 'deletePayment') {
                 $this->deleteUserPayment();
             }
             
-            $creditCards = CreditCardQuery::create()->filterByUserId($_SESSION['userId']);
-            
             $this->response->getContent()->assign('user', $user);
             $this->response->getContent()->assign('creditCards', $creditCards);
-            $this->response->getContent()->assign('name', 'Manage account');
             $this->response->setTemplate('manageAccount.tpl');
             
             return $this->response;
@@ -39,14 +37,16 @@
      
         function updateUserInformation($user){
             $email = $_POST['email'];
+            $gender = $_POST['gender'];
         	$firstName = $_POST['firstName'];
         	$lastName = $_POST['lastName'];
-        	$gender = $_POST['gender'];
+        	$birthDate = $_POST['birthDate'];
 
         	$user->setEmail($email);
+        	$user->setGender($gender);
         	$user->setFirstName($firstName);
         	$user->setLastName($lastName);
-        	$user->setGender($gender);
+        	$user->setBirthDate(DateTime::createFromFormat('d/m/Y', $birthDate));
         	$user->save();
         } 
         
@@ -56,9 +56,13 @@
         
         function updateUserPassword($user){
             $password = $_POST['newPassword'];
-            
-        	$user->setPassword($password);
-        	$user->save();
+            $confirmPassword = $_POST['confirmPassword'];
+            if($password == $confirmPassword) {
+                if($user->getPassword() == $password) {
+                    $user->setPassword($password);
+            	    $user->save();
+                }
+            }
         }
         
         function updateUserAddress($user){
@@ -90,7 +94,8 @@
         }
         
         function deleteUserPayment() {
-            $idPayment = $_GET['idPayment'];
+            $idPayment = $_POST['idPayment'];
+            
             $creditCard = CreditCardQuery::create()->findOneById($idPayment);
             $creditCard->delete();
         }

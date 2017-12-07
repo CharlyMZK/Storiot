@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-11-26 12:31:08
+/* Smarty version 3.1.31, created on 2017-12-07 08:21:22
   from "/home/ubuntu/workspace/templates/Layouts/header.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5a1ab40c36c891_72836964',
+  'unifunc' => 'content_5a28fa02a27320_46659306',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b467e21a25cc6ed33953166309252a208b11072b' => 
     array (
       0 => '/home/ubuntu/workspace/templates/Layouts/header.tpl',
-      1 => 1511699466,
+      1 => 1512634858,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a1ab40c36c891_72836964 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a28fa02a27320_46659306 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
 <head>
@@ -51,6 +51,9 @@ function content_5a1ab40c36c891_72836964 (Smarty_Internal_Template $_smarty_tpl)
 <style>
 card a{
     color:#26a69a !important;
+}
+table thead tr th, table tbody tr td a{
+     color:#846C63!important;
 }
   html {
     position: relative;
@@ -174,15 +177,15 @@ nav {
 
 .banner{
     height:5em;    
-     -webkit-filter: opacity(.8);
-  filter: opacity(.8);
-  font-weight:bold;
+    -webkit-filter: opacity(.8);
+    filter: opacity(.8);
+    font-weight:bold;
     padding-top:2em;
-        background: rgba(0,0,0,0.4);
-     font-family: Brush-Script-MT, Calibri, Trebuchet, sans-serif;
-     text-align:center;
+    background: rgba(0,0,0,0.4);
+    font-family: Brush-Script-MT, Calibri, Trebuchet, sans-serif;
+    text-align:center;
 }
-#header{
+.header{
       font-family: Brush-Script-MT, Calibri, Trebuchet, sans-serif;
       text-transform:uppercase;
       color:#846C63!important;
@@ -258,6 +261,13 @@ nav {
   color:  #846C63!important
 }
 
+.brown-background{
+  background-color:  #846C63!important
+}
+.more-row{
+    margin-bottom:3em;
+}
+
 .grey-text.text-lighten-3{
     color:#88AAA9!important
 }
@@ -267,6 +277,17 @@ nav {
     background-color:rgba(189,177,173,0.1)!important;
 }
 
+.card .card-image img{
+    height:19em;
+}
+
+.delete-button{
+    color:red;
+}
+
+.input-quantity{
+    width:5em !important;
+}
 </style>
 
 <?php echo '<script'; ?>
@@ -285,6 +306,7 @@ $('.dropdown-button').dropdown({
 
 		}); // End Document Ready
 })(jQuery); // End of jQuery name space
+   $(".button-collapse").sideNav();
 <?php echo '</script'; ?>
 ><?php }
 }

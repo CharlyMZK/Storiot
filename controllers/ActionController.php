@@ -4,6 +4,7 @@
         protected $_response;
         
         public static function process(Request $request, Response $response){
+            session_start();
             if($request->getParam('module') == ""){
                 $module = 'home';
             }else{

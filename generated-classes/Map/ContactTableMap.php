@@ -97,9 +97,9 @@ class ContactTableMap extends TableMap
     const COL_MESSAGE = 'contact.message';
 
     /**
-     * the column name for the sendDate field
+     * the column name for the sendingDate field
      */
-    const COL_SENDDATE = 'contact.sendDate';
+    const COL_SENDINGDATE = 'contact.sendingDate';
 
     /**
      * The default string format for model objects of the related table
@@ -113,10 +113,10 @@ class ContactTableMap extends TableMap
      * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        self::TYPE_PHPNAME       => array('Id', 'Email', 'Category', 'Subject', 'Message', 'Senddate', ),
-        self::TYPE_CAMELNAME     => array('id', 'email', 'category', 'subject', 'message', 'senddate', ),
-        self::TYPE_COLNAME       => array(ContactTableMap::COL_ID, ContactTableMap::COL_EMAIL, ContactTableMap::COL_CATEGORY, ContactTableMap::COL_SUBJECT, ContactTableMap::COL_MESSAGE, ContactTableMap::COL_SENDDATE, ),
-        self::TYPE_FIELDNAME     => array('id', 'email', 'category', 'subject', 'message', 'sendDate', ),
+        self::TYPE_PHPNAME       => array('Id', 'Email', 'Category', 'Subject', 'Message', 'Sendingdate', ),
+        self::TYPE_CAMELNAME     => array('id', 'email', 'category', 'subject', 'message', 'sendingdate', ),
+        self::TYPE_COLNAME       => array(ContactTableMap::COL_ID, ContactTableMap::COL_EMAIL, ContactTableMap::COL_CATEGORY, ContactTableMap::COL_SUBJECT, ContactTableMap::COL_MESSAGE, ContactTableMap::COL_SENDINGDATE, ),
+        self::TYPE_FIELDNAME     => array('id', 'email', 'category', 'subject', 'message', 'sendingDate', ),
         self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, )
     );
 
@@ -127,10 +127,10 @@ class ContactTableMap extends TableMap
      * e.g. self::$fieldKeys[self::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        self::TYPE_PHPNAME       => array('Id' => 0, 'Email' => 1, 'Category' => 2, 'Subject' => 3, 'Message' => 4, 'Senddate' => 5, ),
-        self::TYPE_CAMELNAME     => array('id' => 0, 'email' => 1, 'category' => 2, 'subject' => 3, 'message' => 4, 'senddate' => 5, ),
-        self::TYPE_COLNAME       => array(ContactTableMap::COL_ID => 0, ContactTableMap::COL_EMAIL => 1, ContactTableMap::COL_CATEGORY => 2, ContactTableMap::COL_SUBJECT => 3, ContactTableMap::COL_MESSAGE => 4, ContactTableMap::COL_SENDDATE => 5, ),
-        self::TYPE_FIELDNAME     => array('id' => 0, 'email' => 1, 'category' => 2, 'subject' => 3, 'message' => 4, 'sendDate' => 5, ),
+        self::TYPE_PHPNAME       => array('Id' => 0, 'Email' => 1, 'Category' => 2, 'Subject' => 3, 'Message' => 4, 'Sendingdate' => 5, ),
+        self::TYPE_CAMELNAME     => array('id' => 0, 'email' => 1, 'category' => 2, 'subject' => 3, 'message' => 4, 'sendingdate' => 5, ),
+        self::TYPE_COLNAME       => array(ContactTableMap::COL_ID => 0, ContactTableMap::COL_EMAIL => 1, ContactTableMap::COL_CATEGORY => 2, ContactTableMap::COL_SUBJECT => 3, ContactTableMap::COL_MESSAGE => 4, ContactTableMap::COL_SENDINGDATE => 5, ),
+        self::TYPE_FIELDNAME     => array('id' => 0, 'email' => 1, 'category' => 2, 'subject' => 3, 'message' => 4, 'sendingDate' => 5, ),
         self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, )
     );
 
@@ -156,7 +156,7 @@ class ContactTableMap extends TableMap
         $this->addColumn('category', 'Category', 'VARCHAR', true, 255, null);
         $this->addColumn('subject', 'Subject', 'VARCHAR', true, 255, null);
         $this->addColumn('message', 'Message', 'VARCHAR', true, 10000, null);
-        $this->addColumn('sendDate', 'Senddate', 'TIMESTAMP', false, null, null);
+        $this->addColumn('sendingDate', 'Sendingdate', 'TIMESTAMP', false, null, null);
     } // initialize()
 
     /**
@@ -312,14 +312,14 @@ class ContactTableMap extends TableMap
             $criteria->addSelectColumn(ContactTableMap::COL_CATEGORY);
             $criteria->addSelectColumn(ContactTableMap::COL_SUBJECT);
             $criteria->addSelectColumn(ContactTableMap::COL_MESSAGE);
-            $criteria->addSelectColumn(ContactTableMap::COL_SENDDATE);
+            $criteria->addSelectColumn(ContactTableMap::COL_SENDINGDATE);
         } else {
             $criteria->addSelectColumn($alias . '.id');
             $criteria->addSelectColumn($alias . '.email');
             $criteria->addSelectColumn($alias . '.category');
             $criteria->addSelectColumn($alias . '.subject');
             $criteria->addSelectColumn($alias . '.message');
-            $criteria->addSelectColumn($alias . '.sendDate');
+            $criteria->addSelectColumn($alias . '.sendingDate');
         }
     }
 

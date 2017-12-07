@@ -12,11 +12,12 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`
 (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `firstName` VARCHAR(255) NOT NULL,
-    `lastName` VARCHAR(255) NOT NULL,
-    `gender` VARCHAR(1) NOT NULL,
     `email` VARCHAR(255) NOT NULL,
     `password` VARCHAR(255) NOT NULL,
+    `gender` VARCHAR(1) NOT NULL,
+    `firstName` VARCHAR(255) NOT NULL,
+    `lastName` VARCHAR(255) NOT NULL,
+    `birthDate` DATE NOT NULL,
     `address` VARCHAR(255),
     `city` VARCHAR(255),
     `zipCode` VARCHAR(5),
@@ -57,7 +58,7 @@ CREATE TABLE `contact`
     `category` VARCHAR(255) NOT NULL,
     `subject` VARCHAR(255) NOT NULL,
     `message` VARCHAR(10000) NOT NULL,
-    `sendDate` DATETIME,
+    `sendingDate` DATETIME,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 
@@ -94,6 +95,23 @@ CREATE TABLE `review`
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
+-- itemInCart
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `itemInCart`;
+
+CREATE TABLE `itemInCart`
+(
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `cartId` INTEGER NOT NULL,
+    `itemId` INTEGER NOT NULL,
+    `quantity` INTEGER(10),
+    PRIMARY KEY (`id`),
+    INDEX `itemInCart_fi_643881` (`cartId`),
+    INDEX `itemInCart_fi_3cbf97` (`itemId`)
+) ENGINE=InnoDB;
+
+-- ---------------------------------------------------------------------
 -- cart
 -- ---------------------------------------------------------------------
 
@@ -118,10 +136,40 @@ CREATE TABLE `item`
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(255) NOT NULL,
     `description` VARCHAR(255) NOT NULL,
+    `addDate` DATE,
     `image` VARCHAR(255) NOT NULL,
     `price` FLOAT(10),
     `size` FLOAT(10),
     `weight` FLOAT(10),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB;
+
+-- ---------------------------------------------------------------------
+-- itemType
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `itemType`;
+
+CREATE TABLE `itemType`
+(
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `itemId` INTEGER NOT NULL,
+    `typeId` INTEGER NOT NULL,
+    PRIMARY KEY (`id`),
+    INDEX `itemType_fi_3cbf97` (`itemId`),
+    INDEX `itemType_fi_af1a2f` (`typeId`)
+) ENGINE=InnoDB;
+
+-- ---------------------------------------------------------------------
+-- type
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `type`;
+
+CREATE TABLE `type`
+(
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(255) NOT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 

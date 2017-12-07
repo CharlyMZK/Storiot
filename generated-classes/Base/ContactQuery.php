@@ -24,14 +24,14 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildContactQuery orderByCategory($order = Criteria::ASC) Order by the category column
  * @method     ChildContactQuery orderBySubject($order = Criteria::ASC) Order by the subject column
  * @method     ChildContactQuery orderByMessage($order = Criteria::ASC) Order by the message column
- * @method     ChildContactQuery orderBySenddate($order = Criteria::ASC) Order by the sendDate column
+ * @method     ChildContactQuery orderBySendingdate($order = Criteria::ASC) Order by the sendingDate column
  *
  * @method     ChildContactQuery groupById() Group by the id column
  * @method     ChildContactQuery groupByEmail() Group by the email column
  * @method     ChildContactQuery groupByCategory() Group by the category column
  * @method     ChildContactQuery groupBySubject() Group by the subject column
  * @method     ChildContactQuery groupByMessage() Group by the message column
- * @method     ChildContactQuery groupBySenddate() Group by the sendDate column
+ * @method     ChildContactQuery groupBySendingdate() Group by the sendingDate column
  *
  * @method     ChildContactQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method     ChildContactQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
@@ -49,7 +49,7 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildContact findOneByCategory(string $category) Return the first ChildContact filtered by the category column
  * @method     ChildContact findOneBySubject(string $subject) Return the first ChildContact filtered by the subject column
  * @method     ChildContact findOneByMessage(string $message) Return the first ChildContact filtered by the message column
- * @method     ChildContact findOneBySenddate(string $sendDate) Return the first ChildContact filtered by the sendDate column *
+ * @method     ChildContact findOneBySendingdate(string $sendingDate) Return the first ChildContact filtered by the sendingDate column *
 
  * @method     ChildContact requirePk($key, ConnectionInterface $con = null) Return the ChildContact by primary key and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildContact requireOne(ConnectionInterface $con = null) Return the first ChildContact matching the query and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
@@ -59,7 +59,7 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildContact requireOneByCategory(string $category) Return the first ChildContact filtered by the category column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildContact requireOneBySubject(string $subject) Return the first ChildContact filtered by the subject column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildContact requireOneByMessage(string $message) Return the first ChildContact filtered by the message column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
- * @method     ChildContact requireOneBySenddate(string $sendDate) Return the first ChildContact filtered by the sendDate column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
+ * @method     ChildContact requireOneBySendingdate(string $sendingDate) Return the first ChildContact filtered by the sendingDate column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  *
  * @method     ChildContact[]|ObjectCollection find(ConnectionInterface $con = null) Return ChildContact objects based on current ModelCriteria
  * @method     ChildContact[]|ObjectCollection findById(int $id) Return ChildContact objects filtered by the id column
@@ -67,7 +67,7 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildContact[]|ObjectCollection findByCategory(string $category) Return ChildContact objects filtered by the category column
  * @method     ChildContact[]|ObjectCollection findBySubject(string $subject) Return ChildContact objects filtered by the subject column
  * @method     ChildContact[]|ObjectCollection findByMessage(string $message) Return ChildContact objects filtered by the message column
- * @method     ChildContact[]|ObjectCollection findBySenddate(string $sendDate) Return ChildContact objects filtered by the sendDate column
+ * @method     ChildContact[]|ObjectCollection findBySendingdate(string $sendingDate) Return ChildContact objects filtered by the sendingDate column
  * @method     ChildContact[]|\Propel\Runtime\Util\PropelModelPager paginate($page = 1, $maxPerPage = 10, ConnectionInterface $con = null) Issue a SELECT query based on the current ModelCriteria and uses a page and a maximum number of results per page to compute an offset and a limit
  *
  */
@@ -166,7 +166,7 @@ abstract class ContactQuery extends ModelCriteria
      */
     protected function findPkSimple($key, ConnectionInterface $con)
     {
-        $sql = 'SELECT id, email, category, subject, message, sendDate FROM contact WHERE id = :p0';
+        $sql = 'SELECT id, email, category, subject, message, sendingDate FROM contact WHERE id = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -398,16 +398,16 @@ abstract class ContactQuery extends ModelCriteria
     }
 
     /**
-     * Filter the query on the sendDate column
+     * Filter the query on the sendingDate column
      *
      * Example usage:
      * <code>
-     * $query->filterBySenddate('2011-03-14'); // WHERE sendDate = '2011-03-14'
-     * $query->filterBySenddate('now'); // WHERE sendDate = '2011-03-14'
-     * $query->filterBySenddate(array('max' => 'yesterday')); // WHERE sendDate > '2011-03-13'
+     * $query->filterBySendingdate('2011-03-14'); // WHERE sendingDate = '2011-03-14'
+     * $query->filterBySendingdate('now'); // WHERE sendingDate = '2011-03-14'
+     * $query->filterBySendingdate(array('max' => 'yesterday')); // WHERE sendingDate > '2011-03-13'
      * </code>
      *
-     * @param     mixed $senddate The value to use as filter.
+     * @param     mixed $sendingdate The value to use as filter.
      *              Values can be integers (unix timestamps), DateTime objects, or strings.
      *              Empty strings are treated as NULL.
      *              Use scalar values for equality.
@@ -417,16 +417,16 @@ abstract class ContactQuery extends ModelCriteria
      *
      * @return $this|ChildContactQuery The current query, for fluid interface
      */
-    public function filterBySenddate($senddate = null, $comparison = null)
+    public function filterBySendingdate($sendingdate = null, $comparison = null)
     {
-        if (is_array($senddate)) {
+        if (is_array($sendingdate)) {
             $useMinMax = false;
-            if (isset($senddate['min'])) {
-                $this->addUsingAlias(ContactTableMap::COL_SENDDATE, $senddate['min'], Criteria::GREATER_EQUAL);
+            if (isset($sendingdate['min'])) {
+                $this->addUsingAlias(ContactTableMap::COL_SENDINGDATE, $sendingdate['min'], Criteria::GREATER_EQUAL);
                 $useMinMax = true;
             }
-            if (isset($senddate['max'])) {
-                $this->addUsingAlias(ContactTableMap::COL_SENDDATE, $senddate['max'], Criteria::LESS_EQUAL);
+            if (isset($sendingdate['max'])) {
+                $this->addUsingAlias(ContactTableMap::COL_SENDINGDATE, $sendingdate['max'], Criteria::LESS_EQUAL);
                 $useMinMax = true;
             }
             if ($useMinMax) {
@@ -437,7 +437,7 @@ abstract class ContactQuery extends ModelCriteria
             }
         }
 
-        return $this->addUsingAlias(ContactTableMap::COL_SENDDATE, $senddate, $comparison);
+        return $this->addUsingAlias(ContactTableMap::COL_SENDINGDATE, $sendingdate, $comparison);
     }
 
     /**

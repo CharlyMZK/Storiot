@@ -59,7 +59,7 @@ class UserTableMap extends TableMap
     /**
      * The total number of columns
      */
-    const NUM_COLUMNS = 11;
+    const NUM_COLUMNS = 12;
 
     /**
      * The number of lazy-loaded columns
@@ -69,12 +69,27 @@ class UserTableMap extends TableMap
     /**
      * The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS)
      */
-    const NUM_HYDRATE_COLUMNS = 11;
+    const NUM_HYDRATE_COLUMNS = 12;
 
     /**
      * the column name for the id field
      */
     const COL_ID = 'user.id';
+
+    /**
+     * the column name for the email field
+     */
+    const COL_EMAIL = 'user.email';
+
+    /**
+     * the column name for the password field
+     */
+    const COL_PASSWORD = 'user.password';
+
+    /**
+     * the column name for the gender field
+     */
+    const COL_GENDER = 'user.gender';
 
     /**
      * the column name for the firstName field
@@ -87,19 +102,9 @@ class UserTableMap extends TableMap
     const COL_LASTNAME = 'user.lastName';
 
     /**
-     * the column name for the gender field
+     * the column name for the birthDate field
      */
-    const COL_GENDER = 'user.gender';
-
-    /**
-     * the column name for the email field
-     */
-    const COL_EMAIL = 'user.email';
-
-    /**
-     * the column name for the password field
-     */
-    const COL_PASSWORD = 'user.password';
+    const COL_BIRTHDATE = 'user.birthDate';
 
     /**
      * the column name for the address field
@@ -138,11 +143,11 @@ class UserTableMap extends TableMap
      * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        self::TYPE_PHPNAME       => array('Id', 'Firstname', 'Lastname', 'Gender', 'Email', 'Password', 'Address', 'City', 'Zipcode', 'Phone', 'Confirmed', ),
-        self::TYPE_CAMELNAME     => array('id', 'firstname', 'lastname', 'gender', 'email', 'password', 'address', 'city', 'zipcode', 'phone', 'confirmed', ),
-        self::TYPE_COLNAME       => array(UserTableMap::COL_ID, UserTableMap::COL_FIRSTNAME, UserTableMap::COL_LASTNAME, UserTableMap::COL_GENDER, UserTableMap::COL_EMAIL, UserTableMap::COL_PASSWORD, UserTableMap::COL_ADDRESS, UserTableMap::COL_CITY, UserTableMap::COL_ZIPCODE, UserTableMap::COL_PHONE, UserTableMap::COL_CONFIRMED, ),
-        self::TYPE_FIELDNAME     => array('id', 'firstName', 'lastName', 'gender', 'email', 'password', 'address', 'city', 'zipCode', 'phone', 'confirmed', ),
-        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, )
+        self::TYPE_PHPNAME       => array('Id', 'Email', 'Password', 'Gender', 'Firstname', 'Lastname', 'Birthdate', 'Address', 'City', 'Zipcode', 'Phone', 'Confirmed', ),
+        self::TYPE_CAMELNAME     => array('id', 'email', 'password', 'gender', 'firstname', 'lastname', 'birthdate', 'address', 'city', 'zipcode', 'phone', 'confirmed', ),
+        self::TYPE_COLNAME       => array(UserTableMap::COL_ID, UserTableMap::COL_EMAIL, UserTableMap::COL_PASSWORD, UserTableMap::COL_GENDER, UserTableMap::COL_FIRSTNAME, UserTableMap::COL_LASTNAME, UserTableMap::COL_BIRTHDATE, UserTableMap::COL_ADDRESS, UserTableMap::COL_CITY, UserTableMap::COL_ZIPCODE, UserTableMap::COL_PHONE, UserTableMap::COL_CONFIRMED, ),
+        self::TYPE_FIELDNAME     => array('id', 'email', 'password', 'gender', 'firstName', 'lastName', 'birthDate', 'address', 'city', 'zipCode', 'phone', 'confirmed', ),
+        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, )
     );
 
     /**
@@ -152,11 +157,11 @@ class UserTableMap extends TableMap
      * e.g. self::$fieldKeys[self::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        self::TYPE_PHPNAME       => array('Id' => 0, 'Firstname' => 1, 'Lastname' => 2, 'Gender' => 3, 'Email' => 4, 'Password' => 5, 'Address' => 6, 'City' => 7, 'Zipcode' => 8, 'Phone' => 9, 'Confirmed' => 10, ),
-        self::TYPE_CAMELNAME     => array('id' => 0, 'firstname' => 1, 'lastname' => 2, 'gender' => 3, 'email' => 4, 'password' => 5, 'address' => 6, 'city' => 7, 'zipcode' => 8, 'phone' => 9, 'confirmed' => 10, ),
-        self::TYPE_COLNAME       => array(UserTableMap::COL_ID => 0, UserTableMap::COL_FIRSTNAME => 1, UserTableMap::COL_LASTNAME => 2, UserTableMap::COL_GENDER => 3, UserTableMap::COL_EMAIL => 4, UserTableMap::COL_PASSWORD => 5, UserTableMap::COL_ADDRESS => 6, UserTableMap::COL_CITY => 7, UserTableMap::COL_ZIPCODE => 8, UserTableMap::COL_PHONE => 9, UserTableMap::COL_CONFIRMED => 10, ),
-        self::TYPE_FIELDNAME     => array('id' => 0, 'firstName' => 1, 'lastName' => 2, 'gender' => 3, 'email' => 4, 'password' => 5, 'address' => 6, 'city' => 7, 'zipCode' => 8, 'phone' => 9, 'confirmed' => 10, ),
-        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, )
+        self::TYPE_PHPNAME       => array('Id' => 0, 'Email' => 1, 'Password' => 2, 'Gender' => 3, 'Firstname' => 4, 'Lastname' => 5, 'Birthdate' => 6, 'Address' => 7, 'City' => 8, 'Zipcode' => 9, 'Phone' => 10, 'Confirmed' => 11, ),
+        self::TYPE_CAMELNAME     => array('id' => 0, 'email' => 1, 'password' => 2, 'gender' => 3, 'firstname' => 4, 'lastname' => 5, 'birthdate' => 6, 'address' => 7, 'city' => 8, 'zipcode' => 9, 'phone' => 10, 'confirmed' => 11, ),
+        self::TYPE_COLNAME       => array(UserTableMap::COL_ID => 0, UserTableMap::COL_EMAIL => 1, UserTableMap::COL_PASSWORD => 2, UserTableMap::COL_GENDER => 3, UserTableMap::COL_FIRSTNAME => 4, UserTableMap::COL_LASTNAME => 5, UserTableMap::COL_BIRTHDATE => 6, UserTableMap::COL_ADDRESS => 7, UserTableMap::COL_CITY => 8, UserTableMap::COL_ZIPCODE => 9, UserTableMap::COL_PHONE => 10, UserTableMap::COL_CONFIRMED => 11, ),
+        self::TYPE_FIELDNAME     => array('id' => 0, 'email' => 1, 'password' => 2, 'gender' => 3, 'firstName' => 4, 'lastName' => 5, 'birthDate' => 6, 'address' => 7, 'city' => 8, 'zipCode' => 9, 'phone' => 10, 'confirmed' => 11, ),
+        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, )
     );
 
     /**
@@ -177,11 +182,12 @@ class UserTableMap extends TableMap
         $this->setUseIdGenerator(true);
         // columns
         $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
-        $this->addColumn('firstName', 'Firstname', 'VARCHAR', true, 255, null);
-        $this->addColumn('lastName', 'Lastname', 'VARCHAR', true, 255, null);
-        $this->addColumn('gender', 'Gender', 'VARCHAR', true, 1, null);
         $this->addColumn('email', 'Email', 'VARCHAR', true, 255, null);
         $this->addColumn('password', 'Password', 'VARCHAR', true, 255, null);
+        $this->addColumn('gender', 'Gender', 'VARCHAR', true, 1, null);
+        $this->addColumn('firstName', 'Firstname', 'VARCHAR', true, 255, null);
+        $this->addColumn('lastName', 'Lastname', 'VARCHAR', true, 255, null);
+        $this->addColumn('birthDate', 'Birthdate', 'DATE', true, null, null);
         $this->addColumn('address', 'Address', 'VARCHAR', false, 255, null);
         $this->addColumn('city', 'City', 'VARCHAR', false, 255, null);
         $this->addColumn('zipCode', 'Zipcode', 'VARCHAR', false, 5, null);
@@ -378,11 +384,12 @@ class UserTableMap extends TableMap
     {
         if (null === $alias) {
             $criteria->addSelectColumn(UserTableMap::COL_ID);
-            $criteria->addSelectColumn(UserTableMap::COL_FIRSTNAME);
-            $criteria->addSelectColumn(UserTableMap::COL_LASTNAME);
-            $criteria->addSelectColumn(UserTableMap::COL_GENDER);
             $criteria->addSelectColumn(UserTableMap::COL_EMAIL);
             $criteria->addSelectColumn(UserTableMap::COL_PASSWORD);
+            $criteria->addSelectColumn(UserTableMap::COL_GENDER);
+            $criteria->addSelectColumn(UserTableMap::COL_FIRSTNAME);
+            $criteria->addSelectColumn(UserTableMap::COL_LASTNAME);
+            $criteria->addSelectColumn(UserTableMap::COL_BIRTHDATE);
             $criteria->addSelectColumn(UserTableMap::COL_ADDRESS);
             $criteria->addSelectColumn(UserTableMap::COL_CITY);
             $criteria->addSelectColumn(UserTableMap::COL_ZIPCODE);
@@ -390,11 +397,12 @@ class UserTableMap extends TableMap
             $criteria->addSelectColumn(UserTableMap::COL_CONFIRMED);
         } else {
             $criteria->addSelectColumn($alias . '.id');
-            $criteria->addSelectColumn($alias . '.firstName');
-            $criteria->addSelectColumn($alias . '.lastName');
-            $criteria->addSelectColumn($alias . '.gender');
             $criteria->addSelectColumn($alias . '.email');
             $criteria->addSelectColumn($alias . '.password');
+            $criteria->addSelectColumn($alias . '.gender');
+            $criteria->addSelectColumn($alias . '.firstName');
+            $criteria->addSelectColumn($alias . '.lastName');
+            $criteria->addSelectColumn($alias . '.birthDate');
             $criteria->addSelectColumn($alias . '.address');
             $criteria->addSelectColumn($alias . '.city');
             $criteria->addSelectColumn($alias . '.zipCode');

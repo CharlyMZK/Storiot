@@ -1,145 +1,88 @@
 {extends file="Layouts/layout.tpl"} {block "body"}
+<div class="col s12">
+  <div class="page-header">
+    <h4 class="header" id="header-main">Nouveautés</h4>
+  </div>
+</div>
 <div class="row">
   <div class="col s12 m12 item-row">
-   
-    <div class="col s4">
-      <div class="card">
-        <div class="card-image">
-          <img src="https://static.pexels.com/photos/529599/pexels-photo-529599.jpeg">
-          <a class="btn-floating button-floating-1 waves-effect waves-light deep-purple darken-3"><i class="material-icons">add_shopping_cart</i></a>
-          <a class="btn-floating button-floating-2 waves-effect waves-light deep-purple darken-3"><i class="material-icons">trending_up</i></a>
-        </div>
-        <div class="card-content">
-          <span class="card-title"><a href="#">Parrot drone</a></span>
-          <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-          <br/>
-          <p><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_half</i><span class="price">315 €</span></p>
-        </div>
-      </div>
-    </div>
 
+    {foreach from=$newItems item=item} {if $smarty.foreach.item.index == 10} {break} {/if}
     <div class="col s4">
       <div class="card">
         <div class="card-image">
-          <img src="https://static.pexels.com/photos/529599/pexels-photo-529599.jpeg">
-          <a class="btn-floating button-floating-1 waves-effect waves-light deep-purple darken-3"><i class="material-icons">add_shopping_cart</i></a>
-          <a class="btn-floating button-floating-2 waves-effect waves-light deep-purple darken-3"><i class="material-icons">trending_up</i></a>
+          <img src={$item->getImage()}>
+          <button type="submit" class="btn-floating button-floating-2 waves-effect waves-light deep-purple darken-3 addToCart"><i class="material-icons" >add_shopping_cart</i></button>
         </div>
         <div class="card-content">
-          <span class="card-title"><a href="#">Parrot drone</a></span>
-          <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+          <span class="card-title"><a href="#"  name="item" id = "item">{$item->getName()}</a></span>
+          <p>{$item->getDescription()}</p>
           <br/>
-          <p><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_half</i><span class="price">315 €</span></p>
+          <p><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_half</i><span class="price">{$item->getPrice()} €</span></p>
         </div>
       </div>
     </div>
-
-   
-    <div class="col s4">
-      <div class="card">
-        <div class="card-image">
-          <img src="https://static.pexels.com/photos/529599/pexels-photo-529599.jpeg">
-          <a class="btn-floating button-floating-1 waves-effect waves-light deep-purple darken-3"><i class="material-icons">add_shopping_cart</i></a>
-          <a class="btn-floating button-floating-2 waves-effect waves-light deep-purple darken-3"><i class="material-icons">trending_up</i></a>
-        </div>
-        <div class="card-content">
-          <span class="card-title"><a href="#">Parrot drone</a></span>
-          <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-          <br/>
-          <p><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_half</i><span class="price">315 €</span></p>
-        </div>
-      </div>
-    </div>
-    
-   
-    <div class="col s4">
-      <div class="card">
-        <div class="card-image">
-          <img src="https://static.pexels.com/photos/529599/pexels-photo-529599.jpeg">
-          <a class="btn-floating button-floating-1 waves-effect waves-light deep-purple darken-3"><i class="material-icons">add_shopping_cart</i></a>
-          <a class="btn-floating button-floating-2 waves-effect waves-light deep-purple darken-3"><i class="material-icons">trending_up</i></a>
-        </div>
-        <div class="card-content">
-          <span class="card-title"><a href="#">Parrot drone</a></span>
-          <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-          <br/>
-          <p><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_half</i><span class="price">315 €</span></p>
-        </div>
-      </div>
-    </div>
+    {/foreach}
+  </div>
+  <div class="more-row center">
+    <button class="btn waves-effect waves-light brown-background" type="submit">See more</button>
   </div>
   <div class="page-header">
-    <h4 id="header">Promotions</h4>
+    <h4 class="header" id="header-promo">Promotions</h4>
   </div>
   <div class="col s12 m12 item-row">
-   
-    <div class="col s4">
-      <div class="card">
-        <div class="card-image">
-          <img src="https://static.pexels.com/photos/529599/pexels-photo-529599.jpeg">
-          <a class="btn-floating button-floating-1 waves-effect waves-light deep-purple darken-3"><i class="material-icons">add_shopping_cart</i></a>
-          <a class="btn-floating button-floating-2 waves-effect waves-light deep-purple darken-3"><i class="material-icons">trending_up</i></a>
-        </div>
-        <div class="card-content">
-          <span class="card-title"><a href="#">Parrot drone</a></span>
-          <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-          <br/>
-          <p><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_half</i><span class="price">315 €</span></p>
-        </div>
-      </div>
-    </div>
 
+    {foreach from=$promotedItems item=item} {if $smarty.foreach.item.index == 10} {break} {/if}
     <div class="col s4">
       <div class="card">
         <div class="card-image">
-          <img src="https://static.pexels.com/photos/529599/pexels-photo-529599.jpeg">
-          <a class="btn-floating button-floating-1 waves-effect waves-light deep-purple darken-3"><i class="material-icons">add_shopping_cart</i></a>
+          <img src={$item->getImage()}>
+          <button type="submit" class="btn-floating button-floating-1 waves-effect waves-light deep-purple darken-3" id="addToCart"><i class="material-icons" >add_shopping_cart</i></button>
+          <!-- <a class="btn-floating button-floating-1 waves-effect waves-light deep-purple darken-3"><i class="material-icons" id="addToCard">add_shopping_cart</i></a> -->
           <a class="btn-floating button-floating-2 waves-effect waves-light deep-purple darken-3"><i class="material-icons">trending_up</i></a>
         </div>
         <div class="card-content">
-          <span class="card-title"><a href="#">Parrot drone</a></span>
-          <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+          <span class="card-title"><a href="#"  name="item" id = "item">{$item->getName()}</a></span>
+          <p>{$item->getDescription()}</p>
           <br/>
-          <p><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_half</i><span class="price">315 €</span></p>
+          <p><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_half</i><span class="price">{$item->getPrice()} €</span></p>
         </div>
       </div>
     </div>
+    {/foreach}
 
-   
+  </div>
+  <div class="more-row center">
+    <button class="btn waves-effect waves-light brown-background" type="submit">See more</button>
+  </div>
+  <div class="page-header">
+    <h4 class="header" id="header-best">Best sellers</h4>
+  </div>
+  <div class="col s12 m12 item-row">
+
+    {foreach from=$bestReviewItems item=item} {if $smarty.foreach.item.index == 10} {break} {/if}
     <div class="col s4">
       <div class="card">
         <div class="card-image">
-          <img src="https://static.pexels.com/photos/529599/pexels-photo-529599.jpeg">
-          <a class="btn-floating button-floating-1 waves-effect waves-light deep-purple darken-3"><i class="material-icons">add_shopping_cart</i></a>
+          <img src={$item->getImage()}>
+          <button type="submit" class="btn-floating button-floating-1 waves-effect waves-light deep-purple darken-3" id="addToCart"><i class="material-icons" >add_shopping_cart</i></button>
+          <!-- <a class="btn-floating button-floating-1 waves-effect waves-light deep-purple darken-3"><i class="material-icons" id="addToCard">add_shopping_cart</i></a> -->
           <a class="btn-floating button-floating-2 waves-effect waves-light deep-purple darken-3"><i class="material-icons">trending_up</i></a>
         </div>
         <div class="card-content">
-          <span class="card-title"><a href="#">Parrot drone</a></span>
-          <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+          <span class="card-title"><a href="#"  name="item" id = "item">{$item->getName()}</a></span>
+          <p>{$item->getDescription()}</p>
           <br/>
-          <p><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_half</i><span class="price">315 €</span></p>
+          <p><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_half</i><span class="price">{$item->getPrice()} €</span></p>
         </div>
       </div>
     </div>
-    
-   
-    <div class="col s4">
-      <div class="card">
-        <div class="card-image">
-          <img src="https://static.pexels.com/photos/529599/pexels-photo-529599.jpeg">
-          <a class="btn-floating button-floating-1 waves-effect waves-light deep-purple darken-3"><i class="material-icons">add_shopping_cart</i></a>
-          <a class="btn-floating button-floating-2 waves-effect waves-light deep-purple darken-3"><i class="material-icons">trending_up</i></a>
-        </div>
-        <div class="card-content">
-          <span class="card-title"><a href="#">Parrot drone</a></span>
-          <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-          <br/>
-          <p><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star_half</i><span class="price">315 €</span></p>
-        </div>
-      </div>
-    </div>
+    {/foreach}
   </div>
+  <div class="more-row center">
+    <button class="btn waves-effect waves-light brown-background" type="submit">See more</button>
   </div>
+</div>
 </div>
 <script type="text/javascript" src="js/home.js"></script>
 {/block}

@@ -44,7 +44,17 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildCartQuery rightJoinWithUser() Adds a RIGHT JOIN clause and with to the query using the User relation
  * @method     ChildCartQuery innerJoinWithUser() Adds a INNER JOIN clause and with to the query using the User relation
  *
- * @method     \UserQuery endUse() Finalizes a secondary criteria and merges it with its primary Criteria
+ * @method     ChildCartQuery leftJoinItemInCart($relationAlias = null) Adds a LEFT JOIN clause to the query using the ItemInCart relation
+ * @method     ChildCartQuery rightJoinItemInCart($relationAlias = null) Adds a RIGHT JOIN clause to the query using the ItemInCart relation
+ * @method     ChildCartQuery innerJoinItemInCart($relationAlias = null) Adds a INNER JOIN clause to the query using the ItemInCart relation
+ *
+ * @method     ChildCartQuery joinWithItemInCart($joinType = Criteria::INNER_JOIN) Adds a join clause and with to the query using the ItemInCart relation
+ *
+ * @method     ChildCartQuery leftJoinWithItemInCart() Adds a LEFT JOIN clause and with to the query using the ItemInCart relation
+ * @method     ChildCartQuery rightJoinWithItemInCart() Adds a RIGHT JOIN clause and with to the query using the ItemInCart relation
+ * @method     ChildCartQuery innerJoinWithItemInCart() Adds a INNER JOIN clause and with to the query using the ItemInCart relation
+ *
+ * @method     \UserQuery|\ItemInCartQuery endUse() Finalizes a secondary criteria and merges it with its primary Criteria
  *
  * @method     ChildCart findOne(ConnectionInterface $con = null) Return the first ChildCart matching the query
  * @method     ChildCart findOneOrCreate(ConnectionInterface $con = null) Return the first ChildCart matching the query, or a new ChildCart object populated from the query conditions when no match is found
@@ -408,6 +418,79 @@ abstract class CartQuery extends ModelCriteria
         return $this
             ->joinUser($relationAlias, $joinType)
             ->useQuery($relationAlias ? $relationAlias : 'User', '\UserQuery');
+    }
+
+    /**
+     * Filter the query by a related \ItemInCart object
+     *
+     * @param \ItemInCart|ObjectCollection $itemInCart the related object to use as filter
+     * @param string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return ChildCartQuery The current query, for fluid interface
+     */
+    public function filterByItemInCart($itemInCart, $comparison = null)
+    {
+        if ($itemInCart instanceof \ItemInCart) {
+            return $this
+                ->addUsingAlias(CartTableMap::COL_ID, $itemInCart->getCartid(), $comparison);
+        } elseif ($itemInCart instanceof ObjectCollection) {
+            return $this
+                ->useItemInCartQuery()
+                ->filterByPrimaryKeys($itemInCart->getPrimaryKeys())
+                ->endUse();
+        } else {
+            throw new PropelException('filterByItemInCart() only accepts arguments of type \ItemInCart or Collection');
+        }
+    }
+
+    /**
+     * Adds a JOIN clause to the query using the ItemInCart relation
+     *
+     * @param     string $relationAlias optional alias for the relation
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return $this|ChildCartQuery The current query, for fluid interface
+     */
+    public function joinItemInCart($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    {
+        $tableMap = $this->getTableMap();
+        $relationMap = $tableMap->getRelation('ItemInCart');
+
+        // create a ModelJoin object for this join
+        $join = new ModelJoin();
+        $join->setJoinType($joinType);
+        $join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
+        if ($previousJoin = $this->getPreviousJoin()) {
+            $join->setPreviousJoin($previousJoin);
+        }
+
+        // add the ModelJoin to the current object
+        if ($relationAlias) {
+            $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
+            $this->addJoinObject($join, $relationAlias);
+        } else {
+            $this->addJoinObject($join, 'ItemInCart');
+        }
+
+        return $this;
+    }
+
+    /**
+     * Use the ItemInCart relation ItemInCart object
+     *
+     * @see useQuery()
+     *
+     * @param     string $relationAlias optional alias for the relation,
+     *                                   to be used as main alias in the secondary query
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return \ItemInCartQuery A secondary query class using the current class as primary query
+     */
+    public function useItemInCartQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    {
+        return $this
+            ->joinItemInCart($relationAlias, $joinType)
+            ->useQuery($relationAlias ? $relationAlias : 'ItemInCart', '\ItemInCartQuery');
     }
 
     /**

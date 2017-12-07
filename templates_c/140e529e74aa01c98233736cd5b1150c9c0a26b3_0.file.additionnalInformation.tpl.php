@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-11-10 07:52:54
+/* Smarty version 3.1.31, created on 2017-12-07 15:08:37
   from "/home/ubuntu/workspace/templates/additionnalInformation.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5a055ad6cd1622_64692290',
+  'unifunc' => 'content_5a2959756c9d49_86584978',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '140e529e74aa01c98233736cd5b1150c9c0a26b3' => 
     array (
       0 => '/home/ubuntu/workspace/templates/additionnalInformation.tpl',
-      1 => 1509025004,
+      1 => 1512636133,
       2 => 'file',
     ),
   ),
@@ -20,28 +20,33 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a055ad6cd1622_64692290 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a2959756c9d49_86584978 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
  <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_13095676085a055ad6ccb656_80409886', "body");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_4000657385a2959756c32e6_03265355', "body");
 ?>
 
 <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "Layouts/layout.tpl");
 }
 /* {block "body"} */
-class Block_13095676085a055ad6ccb656_80409886 extends Smarty_Internal_Block
+class Block_4000657385a2959756c32e6_03265355 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_13095676085a055ad6ccb656_80409886',
+    0 => 'Block_4000657385a2959756c32e6_03265355',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
+<div class="col s12">
+  <div class="page-header">
+    <h4 class="header" id="header-main">Adresse de livraison</h4>
+  </div>
+</div>
 <div class="col m10 offset-m1 s12 l10 offset-l1">
   <div class="row">
     <div class="col s11 m11">
@@ -61,8 +66,8 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
               </div>
               <div class="col offset-s1 s10">
                 <div class="input-field col s12">
-                  <input class="validate" id="zip" type="text">
-                  <label for="zip" data-error="erreur" data-success="ok">Code postal</label>
+                  <input class="validate" id="zipCode" type="text">
+                  <label for="zipCode" data-error="erreur" data-success="ok">Code postal</label>
                 </div>
               </div>
               <div class="col offset-s1 s10">

@@ -2,11 +2,12 @@
 <database name="store" defaultIdMethod="native">
     <table name="user" phpName="User">
         <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
-        <column name="firstName" type="varchar" size="255" required="true" />
-        <column name="lastName" type="varchar" size="255" required="true" />
-        <column name="gender" type="varchar" size="1" required="true" />
         <column name="email" type="varchar" size="255" required="true" />
         <column name="password" type="varchar" size="255" required="true" />
+        <column name="gender" type="varchar" size="1" required="true" />
+        <column name="firstName" type="varchar" size="255" required="true" />
+        <column name="lastName" type="varchar" size="255" required="true" />
+        <column name="birthDate" type="date" required="true" />
         <column name="address" type="varchar" size="255" />
         <column name="city" type="varchar" size="255" />
         <column name="zipCode" type="varchar" size="5" />
@@ -31,7 +32,7 @@
         <column name="category" type="varchar" size="255" required="true" />
         <column name="subject" type="varchar" size="255" required="true" />
         <column name="message" type="varchar" size="10000" required="true" />
-        <column name="sendDate" type="timestamp" />
+        <column name="sendingDate" type="timestamp" />
     </table>
     <table name="order" phpName="Order">
         <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
@@ -51,6 +52,18 @@
             <reference local="userId" foreign="id" />
         </foreign-key>
     </table>
+    <table name="itemInCart" phpName="ItemInCart">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+        <column name="cartId" type="integer" required="true" />
+        <column name="itemId" type="integer" required="true" />
+        <column name="quantity" type="integer" size="10" />
+        <foreign-key foreignTable="cart" onDelete="CASCADE" skipSql="true">
+            <reference local="cartId" foreign="id" />
+        </foreign-key>
+        <foreign-key foreignTable="item" onDelete="CASCADE" skipSql="true">
+            <reference local="itemId" foreign="id" />
+        </foreign-key>
+    </table>
     <table name="cart" phpName="Cart">
         <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
         <column name="userId" type="integer" required="true" />
@@ -62,9 +75,25 @@
         <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
         <column name="name" type="varchar" size="255" required="true" />
         <column name="description" type="varchar" size="255" required="true" />
+        <column name="addDate" type="date" />
         <column name="image" type="varchar" size="255" required="true" />
         <column name="price" type="float" size="10" />
         <column name="size" type="float" size="10" />
         <column name="weight" type="float" size="10" />
+    </table>
+    <table name="itemType" phpName="ItemType">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+         <column name="itemId" type="integer" required="true" />
+        <column name="typeId" type="integer" required="true" />
+        <foreign-key foreignTable="item" onDelete="CASCADE" skipSql="true">
+            <reference local="itemId" foreign="id" />
+        </foreign-key>
+        <foreign-key foreignTable="type" onDelete="CASCADE" skipSql="true">
+            <reference local="typeId" foreign="id" />
+        </foreign-key>
+    </table>
+     <table name="type" phpName="Type">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+        <column name="name" type="varchar" size="255" required="true" />
     </table>
 </database>

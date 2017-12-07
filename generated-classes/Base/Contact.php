@@ -97,11 +97,11 @@ abstract class Contact implements ActiveRecordInterface
     protected $message;
 
     /**
-     * The value for the senddate field.
+     * The value for the sendingdate field.
      *
      * @var        DateTime
      */
-    protected $senddate;
+    protected $sendingdate;
 
     /**
      * Flag to prevent endless save loop, if this object is referenced
@@ -387,7 +387,7 @@ abstract class Contact implements ActiveRecordInterface
     }
 
     /**
-     * Get the [optionally formatted] temporal [senddate] column value.
+     * Get the [optionally formatted] temporal [sendingdate] column value.
      *
      *
      * @param      string $format The date/time format string (either date()-style or strftime()-style).
@@ -397,12 +397,12 @@ abstract class Contact implements ActiveRecordInterface
      *
      * @throws PropelException - if unable to parse/validate the date/time value.
      */
-    public function getSenddate($format = NULL)
+    public function getSendingdate($format = NULL)
     {
         if ($format === null) {
-            return $this->senddate;
+            return $this->sendingdate;
         } else {
-            return $this->senddate instanceof \DateTimeInterface ? $this->senddate->format($format) : null;
+            return $this->sendingdate instanceof \DateTimeInterface ? $this->sendingdate->format($format) : null;
         }
     }
 
@@ -507,24 +507,24 @@ abstract class Contact implements ActiveRecordInterface
     } // setMessage()
 
     /**
-     * Sets the value of [senddate] column to a normalized version of the date/time value specified.
+     * Sets the value of [sendingdate] column to a normalized version of the date/time value specified.
      *
      * @param  mixed $v string, integer (timestamp), or \DateTimeInterface value.
      *               Empty strings are treated as NULL.
      * @return $this|\Contact The current object (for fluent API support)
      */
-    public function setSenddate($v)
+    public function setSendingdate($v)
     {
         $dt = PropelDateTime::newInstance($v, null, 'DateTime');
-        if ($this->senddate !== null || $dt !== null) {
-            if ($this->senddate === null || $dt === null || $dt->format("Y-m-d H:i:s.u") !== $this->senddate->format("Y-m-d H:i:s.u")) {
-                $this->senddate = $dt === null ? null : clone $dt;
-                $this->modifiedColumns[ContactTableMap::COL_SENDDATE] = true;
+        if ($this->sendingdate !== null || $dt !== null) {
+            if ($this->sendingdate === null || $dt === null || $dt->format("Y-m-d H:i:s.u") !== $this->sendingdate->format("Y-m-d H:i:s.u")) {
+                $this->sendingdate = $dt === null ? null : clone $dt;
+                $this->modifiedColumns[ContactTableMap::COL_SENDINGDATE] = true;
             }
         } // if either are not null
 
         return $this;
-    } // setSenddate()
+    } // setSendingdate()
 
     /**
      * Indicates whether the columns in this object are only set to default values.
@@ -577,11 +577,11 @@ abstract class Contact implements ActiveRecordInterface
             $col = $row[TableMap::TYPE_NUM == $indexType ? 4 + $startcol : ContactTableMap::translateFieldName('Message', TableMap::TYPE_PHPNAME, $indexType)];
             $this->message = (null !== $col) ? (string) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 5 + $startcol : ContactTableMap::translateFieldName('Senddate', TableMap::TYPE_PHPNAME, $indexType)];
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 5 + $startcol : ContactTableMap::translateFieldName('Sendingdate', TableMap::TYPE_PHPNAME, $indexType)];
             if ($col === '0000-00-00 00:00:00') {
                 $col = null;
             }
-            $this->senddate = (null !== $col) ? PropelDateTime::newInstance($col, null, 'DateTime') : null;
+            $this->sendingdate = (null !== $col) ? PropelDateTime::newInstance($col, null, 'DateTime') : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -806,8 +806,8 @@ abstract class Contact implements ActiveRecordInterface
         if ($this->isColumnModified(ContactTableMap::COL_MESSAGE)) {
             $modifiedColumns[':p' . $index++]  = 'message';
         }
-        if ($this->isColumnModified(ContactTableMap::COL_SENDDATE)) {
-            $modifiedColumns[':p' . $index++]  = 'sendDate';
+        if ($this->isColumnModified(ContactTableMap::COL_SENDINGDATE)) {
+            $modifiedColumns[':p' . $index++]  = 'sendingDate';
         }
 
         $sql = sprintf(
@@ -835,8 +835,8 @@ abstract class Contact implements ActiveRecordInterface
                     case 'message':
                         $stmt->bindValue($identifier, $this->message, PDO::PARAM_STR);
                         break;
-                    case 'sendDate':
-                        $stmt->bindValue($identifier, $this->senddate ? $this->senddate->format("Y-m-d H:i:s.u") : null, PDO::PARAM_STR);
+                    case 'sendingDate':
+                        $stmt->bindValue($identifier, $this->sendingdate ? $this->sendingdate->format("Y-m-d H:i:s.u") : null, PDO::PARAM_STR);
                         break;
                 }
             }
@@ -916,7 +916,7 @@ abstract class Contact implements ActiveRecordInterface
                 return $this->getMessage();
                 break;
             case 5:
-                return $this->getSenddate();
+                return $this->getSendingdate();
                 break;
             default:
                 return null;
@@ -952,7 +952,7 @@ abstract class Contact implements ActiveRecordInterface
             $keys[2] => $this->getCategory(),
             $keys[3] => $this->getSubject(),
             $keys[4] => $this->getMessage(),
-            $keys[5] => $this->getSenddate(),
+            $keys[5] => $this->getSendingdate(),
         );
         if ($result[$keys[5]] instanceof \DateTimeInterface) {
             $result[$keys[5]] = $result[$keys[5]]->format('c');
@@ -1012,7 +1012,7 @@ abstract class Contact implements ActiveRecordInterface
                 $this->setMessage($value);
                 break;
             case 5:
-                $this->setSenddate($value);
+                $this->setSendingdate($value);
                 break;
         } // switch()
 
@@ -1056,7 +1056,7 @@ abstract class Contact implements ActiveRecordInterface
             $this->setMessage($arr[$keys[4]]);
         }
         if (array_key_exists($keys[5], $arr)) {
-            $this->setSenddate($arr[$keys[5]]);
+            $this->setSendingdate($arr[$keys[5]]);
         }
     }
 
@@ -1114,8 +1114,8 @@ abstract class Contact implements ActiveRecordInterface
         if ($this->isColumnModified(ContactTableMap::COL_MESSAGE)) {
             $criteria->add(ContactTableMap::COL_MESSAGE, $this->message);
         }
-        if ($this->isColumnModified(ContactTableMap::COL_SENDDATE)) {
-            $criteria->add(ContactTableMap::COL_SENDDATE, $this->senddate);
+        if ($this->isColumnModified(ContactTableMap::COL_SENDINGDATE)) {
+            $criteria->add(ContactTableMap::COL_SENDINGDATE, $this->sendingdate);
         }
 
         return $criteria;
@@ -1207,7 +1207,7 @@ abstract class Contact implements ActiveRecordInterface
         $copyObj->setCategory($this->getCategory());
         $copyObj->setSubject($this->getSubject());
         $copyObj->setMessage($this->getMessage());
-        $copyObj->setSenddate($this->getSenddate());
+        $copyObj->setSendingdate($this->getSendingdate());
         if ($makeNew) {
             $copyObj->setNew(true);
             $copyObj->setId(NULL); // this is a auto-increment column, so set to default value
@@ -1248,7 +1248,7 @@ abstract class Contact implements ActiveRecordInterface
         $this->category = null;
         $this->subject = null;
         $this->message = null;
-        $this->senddate = null;
+        $this->sendingdate = null;
         $this->alreadyInSave = false;
         $this->clearAllReferences();
         $this->resetModified();

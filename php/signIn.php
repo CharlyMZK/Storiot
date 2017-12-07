@@ -24,16 +24,14 @@
         }
         
         function launch(){
-            if($this->request->action == 'sendForm'){
+            if($this->request->action == 'sendForm') {
                 if($this->testConnection()) {
-                    $this->response->getContent()->assign('name', 'Nouveautés');
                     $this->response->setTemplate('home.tpl');
                 } else {
-                    $this->response->getContent()->assign('name', 'Connexion');
-                    $this->response->setTemplate('signIn.tpl'); 
+                    $this->response->getContent()->assign('errorMessage', 'L\'adresse email ou le mot de passe est incorrect');
+                    $this->response->setTemplate('signIn.tpl');  
                 }
             } else {
-                $this->response->getContent()->assign('name', 'Connexion');
                 $this->response->setTemplate('signIn.tpl');                
             }
             
@@ -46,12 +44,12 @@
             $password = $_POST['password'];
             
             $user = UserQuery::create()->findOneByEmail($email);
-
-            if($user){
-                if($user->getPassword() === $password){
-                    $this->createSession($user);
-                    $result = true;
-                }
+            
+            if($user && $user->getPassword() === $password){
+                $this->createSession($user);
+                $result = true;
+            } else {
+               $this->response->getContent()->assign('email', $email); 
             }
             
             return $result;

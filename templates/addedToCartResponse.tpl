@@ -1,1 +1,1 @@
-cet item a bien été ajouté
+state : {$state}
