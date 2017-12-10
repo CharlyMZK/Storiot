@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-12-05 21:20:44
+/* Smarty version 3.1.31, created on 2017-12-07 15:30:57
   from "/home/ubuntu/workspace/templates/Layouts/footer.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5a270dac380e37_77430332',
+  'unifunc' => 'content_5a295eb18f6b23_05933124',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5d0c24cbe8408778228e77a2897952cbd7da6e1e' => 
     array (
       0 => '/home/ubuntu/workspace/templates/Layouts/footer.tpl',
-      1 => 1512508801,
+      1 => 1512660654,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a270dac380e37_77430332 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a295eb18f6b23_05933124 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <footer class="page-footer grey.lighten-3">
   <div class="container">
@@ -30,7 +30,7 @@ function content_5a270dac380e37_77430332 (Smarty_Internal_Template $_smarty_tpl)
         <ul>
           <li><a class="grey-text text-lighten-3" href="?module=contact">Formulaire de contact</a></li>
           <li><a class="grey-text text-lighten-3" href="https://www.facebook.com/CNAM-151575061562484/">Nous rencontrer</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Informations</a></li>
+          <li><a class="grey-text text-lighten-3" href="?module=help">Informations</a></li>
         </ul>
       </div>
       <div class="col l3 s12">
@@ -52,9 +52,9 @@ function content_5a270dac380e37_77430332 (Smarty_Internal_Template $_smarty_tpl)
        <div class="col l3 s12">
         <h5 class="brown-text">Besoin d'aide?</h5>
         <ul>
-          <li><a class="grey-text text-lighten-3" href="#!">FAQ</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Concept STORIOT</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Blog</a></li>
+          <li><a class="grey-text text-lighten-3"  href="?module=help">FAQ</a></li>
+          <li><a class="grey-text text-lighten-3"  href="?module=help">Concept STORIOT</a></li>
+          <li><a class="grey-text text-lighten-3"  href="?module=help">Blog</a></li>
         </ul>
       </div>
     </div>

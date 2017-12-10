@@ -12,8 +12,6 @@
         }
         
         function launch(){
-            $name = 'Commande';
-            $this->response->getContent()->assign('name', $name);
             $this->response->setTemplate('order.tpl');
             return $this->response;
         }

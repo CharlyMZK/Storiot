@@ -25,7 +25,7 @@
     {/foreach}
   </div>
   <div class="more-row center">
-    <button class="btn waves-effect waves-light brown-background" type="submit">See more</button>
+    <a href="?module=mainItem" class="btn waves-effect waves-light brown-background" type="submit">Voir plus</a>
   </div>
   <div class="page-header">
     <h4 class="header" id="header-promo">Promotions</h4>
@@ -37,9 +37,7 @@
       <div class="card">
         <div class="card-image">
           <img src={$item->getImage()}>
-          <button type="submit" class="btn-floating button-floating-1 waves-effect waves-light deep-purple darken-3" id="addToCart"><i class="material-icons" >add_shopping_cart</i></button>
-          <!-- <a class="btn-floating button-floating-1 waves-effect waves-light deep-purple darken-3"><i class="material-icons" id="addToCard">add_shopping_cart</i></a> -->
-          <a class="btn-floating button-floating-2 waves-effect waves-light deep-purple darken-3"><i class="material-icons">trending_up</i></a>
+          <button type="submit" class="btn-floating button-floating-2 waves-effect waves-light deep-purple darken-3 addToCart"><i class="material-icons" >add_shopping_cart</i></button>
         </div>
         <div class="card-content">
           <span class="card-title"><a href="#"  name="item" id = "item">{$item->getName()}</a></span>
@@ -53,7 +51,7 @@
 
   </div>
   <div class="more-row center">
-    <button class="btn waves-effect waves-light brown-background" type="submit">See more</button>
+    <a href="?module=mainItem" class="btn waves-effect waves-light brown-background" type="submit">Voir plus</a>
   </div>
   <div class="page-header">
     <h4 class="header" id="header-best">Best sellers</h4>
@@ -65,9 +63,7 @@
       <div class="card">
         <div class="card-image">
           <img src={$item->getImage()}>
-          <button type="submit" class="btn-floating button-floating-1 waves-effect waves-light deep-purple darken-3" id="addToCart"><i class="material-icons" >add_shopping_cart</i></button>
-          <!-- <a class="btn-floating button-floating-1 waves-effect waves-light deep-purple darken-3"><i class="material-icons" id="addToCard">add_shopping_cart</i></a> -->
-          <a class="btn-floating button-floating-2 waves-effect waves-light deep-purple darken-3"><i class="material-icons">trending_up</i></a>
+          <button type="submit" class="btn-floating button-floating-2 waves-effect waves-light deep-purple darken-3 addToCart"><i class="material-icons" >add_shopping_cart</i></button>
         </div>
         <div class="card-content">
           <span class="card-title"><a href="#"  name="item" id = "item">{$item->getName()}</a></span>
@@ -80,9 +76,10 @@
     {/foreach}
   </div>
   <div class="more-row center">
-    <button class="btn waves-effect waves-light brown-background" type="submit">See more</button>
+    <a href="?module=mainItem" class="btn waves-effect waves-light brown-background" type="submit">Voir plus</a>
   </div>
 </div>
 </div>
+<script type="text/javascript" src="js/cart.js"></script>
 <script type="text/javascript" src="js/home.js"></script>
 {/block}

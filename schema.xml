@@ -82,9 +82,8 @@
         <column name="weight" type="float" size="10" />
     </table>
     <table name="itemType" phpName="ItemType">
-        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
-         <column name="itemId" type="integer" required="true" />
-        <column name="typeId" type="integer" required="true" />
+        <column name="itemId" type="integer" required="true" primaryKey="true"/>
+        <column name="typeId" type="integer" required="true" primaryKey="true"/>
         <foreign-key foreignTable="item" onDelete="CASCADE" skipSql="true">
             <reference local="itemId" foreign="id" />
         </foreign-key>

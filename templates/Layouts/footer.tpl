@@ -6,7 +6,7 @@
         <ul>
           <li><a class="grey-text text-lighten-3" href="?module=contact">Formulaire de contact</a></li>
           <li><a class="grey-text text-lighten-3" href="https://www.facebook.com/CNAM-151575061562484/">Nous rencontrer</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Informations</a></li>
+          <li><a class="grey-text text-lighten-3" href="?module=help">Informations</a></li>
         </ul>
       </div>
       <div class="col l3 s12">
@@ -28,9 +28,9 @@
        <div class="col l3 s12">
         <h5 class="brown-text">Besoin d'aide?</h5>
         <ul>
-          <li><a class="grey-text text-lighten-3" href="#!">FAQ</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Concept STORIOT</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Blog</a></li>
+          <li><a class="grey-text text-lighten-3"  href="?module=help">FAQ</a></li>
+          <li><a class="grey-text text-lighten-3"  href="?module=help">Concept STORIOT</a></li>
+          <li><a class="grey-text text-lighten-3"  href="?module=help">Blog</a></li>
         </ul>
       </div>
     </div>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-12-07 15:16:59
+/* Smarty version 3.1.31, created on 2017-12-07 15:29:18
   from "/home/ubuntu/workspace/templates/mainItem.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5a295b6bb0ff25_56321978',
+  'unifunc' => 'content_5a295e4e984960_21779409',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'de9dda2da7ac6611eb85e98dce89dd724d86acc8' => 
     array (
       0 => '/home/ubuntu/workspace/templates/mainItem.tpl',
-      1 => 1512659777,
+      1 => 1512660557,
       2 => 'file',
     ),
   ),
@@ -20,23 +20,23 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a295b6bb0ff25_56321978 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a295e4e984960_21779409 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
  <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_11032007845a295b6bb00979_94450628', "body");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_11026251505a295e4e974f63_16492161', "body");
 ?>
 
 <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "Layouts/layout.tpl");
 }
 /* {block "body"} */
-class Block_11032007845a295b6bb00979_94450628 extends Smarty_Internal_Block
+class Block_11026251505a295e4e974f63_16492161 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_11032007845a295b6bb00979_94450628',
+    0 => 'Block_11026251505a295e4e974f63_16492161',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -44,7 +44,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 
 <div class="col s12">
   <div class="page-header">
-    <h4 class="header" id="header-main">Recherche</h4>
+    <h4 class="header" id="header-main">Nos articles</h4>
   </div>
 </div>
 <div class="row hide-on-small-only hero-home">

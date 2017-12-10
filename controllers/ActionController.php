@@ -16,7 +16,7 @@
             } 
             require_once($path);
             $class = $module.'Controller';
-            $controller = new $class($request,$response);
+            $controller = new $class($request, $response);
             return $controller->launch();
         }
         

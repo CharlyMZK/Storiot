@@ -25,7 +25,7 @@ $(".input-quantity").on('change', function postinput(){
         data: { item: $('.item-' + id + '-quantity').attr('name'),  quantity: $('.item-' + id + '-quantity').val() },
         context: document.body
     }).done(function(data) {
-        Materialize.toast('La quantité a été modifée', 2000, 'green');
+       location.reload();
     }); 
 });
 

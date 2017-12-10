@@ -1,4 +1,5 @@
 <?php
+    require 'php/cart.php';
     class payController{
         
         public $publisher;
@@ -12,10 +13,19 @@
         }
         
         function launch(){
-            $name = 'Payer';
-            $this->response->getContent()->assign('name', $name);
-            $this->response->setTemplate('pay.tpl');
-            return $this->response;
+            if($this->request->action == 'pay'){
+                if(cartController::isUserConnected()){
+                    cartController::removeItemsInUserCart();
+                    $name = 'Payer';
+                    $this->response->getContent()->assign('name', $name);
+                    $this->response->setTemplate('pay.tpl');
+            
+                }else{
+                    $this->response->setTemplate('signIn.tpl');         
+                }
+                return $this->response;
+            }
+            
         }
      
       

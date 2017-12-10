@@ -12,7 +12,7 @@
             session_start();
         }
         
-        public function isUserConnected(){
+        public static function isUserConnected(){
             $isConnected = null;
             if($_SESSION['userId'] != 0){
                 $isConnected = true;
@@ -58,9 +58,18 @@
             }
         }
         
+         public static function removeItemsInUserCart(){
+            $itemsInCart = cartController::getItemsInUserConnectedCart();
+            if(cartController::isUserConnected()){
+             foreach ($itemsInCart  as &$objectInCart) {
+                   $objectInCart->delete();
+                }
+            }
+        }
+        
         public function addItemInCart($item){
             $item =  ItemQuery::create()->findOneById($_POST['item']);
-            if($this->isUserConnected()){
+            if(cartController::isUserConnected()){
                 $cart = CartQuery::create()->findOneByUserId($_SESSION['userId']);
                 $this->addItemInConnectedCart($cart,$item);
             }else{
@@ -74,7 +83,6 @@
                 $isTheObjectInUserCart = false;
                 foreach ($itemsInCart  as &$objectInCart) {
                         if($objectInCart->getItem()->getId() == $objectInSessionCart->getItem()->getId()){
-                            echo "<br/>Equals !";
                             $objectInCart->setQuantity($objectInCart->getQuantity() + $objectInSessionCart->getQuantity());
                             $objectInCart->save();
                             $isTheObjectInUserCart = true;
@@ -94,7 +102,6 @@
         public function setItemInCartQuantity($item, $quantity){
             $itemsInCart = $this->getItemsInCart();
             foreach ($itemsInCart  as &$objectInCart) {
-                echo $objectInCart->getItem()->getId()." <> ".$item;
                 if($objectInCart->getItem()->getId() == $item){
                     $objectInCart->setQuantity($quantity);
                 }
@@ -102,8 +109,16 @@
             }
         }
         
+        public static function getItemsInUserConnectedCart(){
+            if(cartController::isUserConnected()){
+                $cart = CartQuery::create()->findOneByUserId($_SESSION['userId']);
+                $itemsInCart =  ItemInCartQuery::create()->findByCartid($cart->getId());
+            }
+            return $itemsInCart;
+        }
+        
         public function getItemsInCart(){
-            if($this->isUserConnected()){
+            if(cartController::isUserConnected()){
                 $cart = CartQuery::create()->findOneByUserId($_SESSION['userId']);
                 $itemsInCart =  ItemInCartQuery::create()->findByCartid($cart->getId());
                 $this->mergeSessionAndUserCarts($cart,$itemsInCart);
@@ -115,23 +130,18 @@
         
          public function removeItemFromCart($itemId){
              $itemsInCart = $this->getItemsInCart();
-            
-            
-            var_dump(count($itemsInCart));
-            if($this->isUserConnected()){
+            if(cartController::isUserConnected()){
                  $index = 0;
              $indexToRemove = NULL;
              foreach ($itemsInCart  as &$objectInCart) {
-                echo "!".$objectInCart->getItem()->getId()." <> ".$itemId."!";
+
                 if($objectInCart->getItem()->getId() == $itemId){
                    $objectInCart->delete();
                 }
 
             }
-            echo "Index to reomve : ".$indexToRemove;
             if($indexToRemove !== NULL){
-                echo "!!! Removing !!!!!!";
-                //$itemsInCart = array_splice($itemsInCart,$indexToRemove,1);   
+
                 unset($itemsInCart[$indexToRemove]);
                 $itemsInCart = array_values($itemsInCart);
             }
@@ -140,16 +150,13 @@
                  $index = 0;
                  $indexToRemove = NULL;
                  foreach ($itemsInCart  as &$objectInCart) {
-                    echo "!".$objectInCart->getItem()->getId()." <> ".$itemId."!";
                     if($objectInCart->getItem()->getId() == $itemId){
                        $indexToRemove = $index;
                     }
                     $index ++;
                 }
-                echo "Index to reomve : ".$indexToRemove;
                 if($indexToRemove !== NULL){
-                    echo "!!! Removing !!!!!!";
-                    //$itemsInCart = array_splice($itemsInCart,$indexToRemove,1);   
+
                     unset($itemsInCart[$indexToRemove]);
                     $itemsInCart = array_values($itemsInCart);
                 }
@@ -158,7 +165,41 @@
             }
          }
              
+        public function getNoTaxAmount($itemsInCart){
+            $total = 0;
+            foreach ($itemsInCart  as &$objectInCart) {
+                $total += $objectInCart->getItem()->getPrice() * $objectInCart->getQuantity();
+            }
+            return $total;
+        }
         
+        public function getAmountWithTax($itemsInCart){
+            $total = 0;
+            
+            foreach ($itemsInCart  as &$objectInCart) {
+                $itemTypes = ItemTypeQuery::create()->findByItemId($objectInCart->getItem()->getId());
+                $itemPrice = $objectInCart->getItem()->getPrice();
+                foreach ($itemTypes  as &$itemType) {    
+                 $type = $itemType->getType()->getName();
+                 switch ($type) {
+                    case "TVA_20":
+                        $itemPrice = $itemPrice * 1.2;
+                        break;
+                    case "TVA_10":
+                        $itemPrice = $itemPrice * 1.1;
+                        break;
+                    case "TVA_5_5":
+                        $itemPrice = $itemPrice * 1.055;
+                        break;
+                }
+
+                }
+                $total += $itemPrice * $objectInCart->getQuantity();
+            }
+            return $total;
+        }
+                    
+                    
         function launch(){
                 if($this->request->action == 'addToCart'){
                     $state = 'Item ajouté';
@@ -168,7 +209,6 @@
                     return $this->response;
                 }else if ($this->request->action == 'setQuantity'){
                     $state = 'Quantité augementée';
-                    echo $_POST['item'] . " - ".$_POST['quantity'];
                     $this->setItemInCartQuantity($_POST['item'],$_POST['quantity']);
                     $this->response->getContent()->assign('state', $state);
                     $this->response->setTemplate('addedToCartResponse.tpl');
@@ -180,6 +220,10 @@
                     $this->response->setTemplate('addedToCartResponse.tpl');
                 }else{
                     $itemsInCart = $this->getItemsInCart();
+                    $noTaxAmount = $this->getNoTaxAmount($itemsInCart);
+                    $amountWithTax = $this->getAmountWithTax($itemsInCart);
+                    $this->response->getContent()->assign('noTaxAmount', $noTaxAmount);
+                    $this->response->getContent()->assign('amountWithTax', $amountWithTax);
                     $this->response->getContent()->assign('itemsInCart', $itemsInCart);
                     $this->response->setTemplate('cart.tpl');
                     

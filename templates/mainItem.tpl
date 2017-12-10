@@ -1,7 +1,7 @@
 {extends file="Layouts/layout.tpl"} {block "body"}
 <div class="col s12">
   <div class="page-header">
-    <h4 class="header" id="header-main">Recherche</h4>
+    <h4 class="header" id="header-main">Nos articles</h4>
   </div>
 </div>
 <div class="row hide-on-small-only hero-home">

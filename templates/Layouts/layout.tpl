@@ -11,5 +11,4 @@
   </section>
 </body>
 {include file='Layouts/footer.tpl'}
-
 </html>

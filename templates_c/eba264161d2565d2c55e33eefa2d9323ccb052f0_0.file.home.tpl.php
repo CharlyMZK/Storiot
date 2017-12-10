@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-12-07 15:19:26
+/* Smarty version 3.1.31, created on 2017-12-08 10:57:18
   from "/home/ubuntu/workspace/templates/home.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5a295bfe850f14_39724513',
+  'unifunc' => 'content_5a2a700ec7f219_37369921',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'eba264161d2565d2c55e33eefa2d9323ccb052f0' => 
     array (
       0 => '/home/ubuntu/workspace/templates/home.tpl',
-      1 => 1512659953,
+      1 => 1512730420,
       2 => 'file',
     ),
   ),
@@ -20,23 +20,23 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a295bfe850f14_39724513 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a2a700ec7f219_37369921 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
  <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_6851603785a295bfe829c98_69364330', "body");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_9694227035a2a700ec515a3_61203441', "body");
 ?>
 
 <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "Layouts/layout.tpl");
 }
 /* {block "body"} */
-class Block_6851603785a295bfe829c98_69364330 extends Smarty_Internal_Block
+class Block_9694227035a2a700ec515a3_61203441 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_6851603785a295bfe829c98_69364330',
+    0 => 'Block_9694227035a2a700ec515a3_61203441',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -82,7 +82,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);
 
   </div>
   <div class="more-row center">
-    <button class="btn waves-effect waves-light brown-background" type="submit">See more</button>
+    <a href="?module=mainItem" class="btn waves-effect waves-light brown-background" type="submit">Voir plus</a>
   </div>
   <div class="page-header">
     <h4 class="header" id="header-promo">Promotions</h4>
@@ -100,9 +100,7 @@ break 1;?> <?php }?>
         <div class="card-image">
           <img src=<?php echo $_smarty_tpl->tpl_vars['item']->value->getImage();?>
 >
-          <button type="submit" class="btn-floating button-floating-1 waves-effect waves-light deep-purple darken-3" id="addToCart"><i class="material-icons" >add_shopping_cart</i></button>
-          <!-- <a class="btn-floating button-floating-1 waves-effect waves-light deep-purple darken-3"><i class="material-icons" id="addToCard">add_shopping_cart</i></a> -->
-          <a class="btn-floating button-floating-2 waves-effect waves-light deep-purple darken-3"><i class="material-icons">trending_up</i></a>
+          <button type="submit" class="btn-floating button-floating-2 waves-effect waves-light deep-purple darken-3 addToCart"><i class="material-icons" >add_shopping_cart</i></button>
         </div>
         <div class="card-content">
           <span class="card-title"><a href="#"  name="item" id = "item"><?php echo $_smarty_tpl->tpl_vars['item']->value->getName();?>
@@ -124,7 +122,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);
 
   </div>
   <div class="more-row center">
-    <button class="btn waves-effect waves-light brown-background" type="submit">See more</button>
+    <a href="?module=mainItem" class="btn waves-effect waves-light brown-background" type="submit">Voir plus</a>
   </div>
   <div class="page-header">
     <h4 class="header" id="header-best">Best sellers</h4>
@@ -142,9 +140,7 @@ break 1;?> <?php }?>
         <div class="card-image">
           <img src=<?php echo $_smarty_tpl->tpl_vars['item']->value->getImage();?>
 >
-          <button type="submit" class="btn-floating button-floating-1 waves-effect waves-light deep-purple darken-3" id="addToCart"><i class="material-icons" >add_shopping_cart</i></button>
-          <!-- <a class="btn-floating button-floating-1 waves-effect waves-light deep-purple darken-3"><i class="material-icons" id="addToCard">add_shopping_cart</i></a> -->
-          <a class="btn-floating button-floating-2 waves-effect waves-light deep-purple darken-3"><i class="material-icons">trending_up</i></a>
+          <button type="submit" class="btn-floating button-floating-2 waves-effect waves-light deep-purple darken-3 addToCart"><i class="material-icons" >add_shopping_cart</i></button>
         </div>
         <div class="card-content">
           <span class="card-title"><a href="#"  name="item" id = "item"><?php echo $_smarty_tpl->tpl_vars['item']->value->getName();?>
@@ -165,10 +161,13 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);
 
   </div>
   <div class="more-row center">
-    <button class="btn waves-effect waves-light brown-background" type="submit">See more</button>
+    <a href="?module=mainItem" class="btn waves-effect waves-light brown-background" type="submit">Voir plus</a>
   </div>
 </div>
 </div>
+<?php echo '<script'; ?>
+ type="text/javascript" src="js/cart.js"><?php echo '</script'; ?>
+>
 <?php echo '<script'; ?>
  type="text/javascript" src="js/home.js"><?php echo '</script'; ?>
 >
