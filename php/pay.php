@@ -15,6 +15,7 @@
         function launch(){
             if($this->request->action == 'pay'){
                 if(cartController::isUserConnected()){
+                    cartController::createOrderFromCart();
                     cartController::removeItemsInUserCart();
                     $name = 'Payer';
                     $this->response->getContent()->assign('name', $name);

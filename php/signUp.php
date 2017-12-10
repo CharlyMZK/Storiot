@@ -15,8 +15,13 @@
             if($this->request->action == 'sendForm'){
                 if(!$this->testUserExist() && $this->passwordMatchs()) {
                     $user = $this->createUser();
-                    $this->response->getContent()->assign('user', $user);
-                    $this->response->setTemplate('confirmSignUp.tpl');
+                    if($user){
+                        $this->response->getContent()->assign('user', $user);
+                        $this->response->setTemplate('confirmSignUp.tpl');
+                    } else {
+                        $this->response->getContent()->assign('errorMessage', 'Vous avez renseigné des informations incorrectes, veuillez recommencer');
+                        $this->response->setTemplate('signUp.tpl'); 
+                    }
                 } else {
                     $this->response->setTemplate('signUp.tpl'); 
                 }
@@ -31,14 +36,18 @@
             $result = false;
             $regExEmail = '/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-z\-0-9]+\.)+[a-z]{2,}))$/i';
 
-            $email = preg_match($regExEmail, $_POST['email']);
+            if(preg_match($regExEmail, $_POST['email'])) {
+                $email = $_POST['email'];
+            } 
             
-            $user = UserQuery::create()->findOneByEmail($email);
-            if($user) {
-                $result = true;
-                $this->response->getContent()->assign('errorMessage', 'L\'email renseigné est déjà utilisé');
+            if($email) {
+                $user = UserQuery::create()->findOneByEmail($email);
+                if($user) {
+                    $result = true;
+                    $this->response->getContent()->assign('errorMessage', 'L\'email renseigné est déjà utilisé');
+                }
             }
-            
+    
             return $result;
         }
         
@@ -49,16 +58,27 @@
             $password = preg_match($regExPassword, $_POST['password']);
         	$confirmPassword = preg_match($regExPassword, $_POST['confirmPassword']);
         	
-        	if($password === $confirmPassword) {
-        	    $result = true;
-        	} else {
-        	    $this->response->getContent()->assign('errorMessage', 'Le mot de passe et le mot de passe de confirmation ne sont pas les mêmes');
-        	}
-        	
+        	if(preg_match($regExPassword, $_POST['password'])) {
+                $password = $_POST['password'];
+            }
+            if(preg_match($regExPassword, $_POST['confirmPassword'])) {
+                $confirmPassword = $_POST['confirmPassword'];
+            }
+            
+            if($password && $confirmPassword) {
+                if($password === $confirmPassword) {
+            	    $result = true;
+            	} else {
+            	    $this->response->getContent()->assign('errorMessage', 'Le mot de passe et le mot de passe de confirmation ne sont pas les mêmes');
+            	}
+            }
+            
         	return $result;
         }
         
         function createUser() {
+            $error = false;
+            
             $regExEmail = '/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-z\-0-9]+\.)+[a-z]{2,}))$/i';
             $regExPassword = '/.{6,}/';
             $regExName = '/[a-z ,.\'-]+/i';
@@ -70,54 +90,76 @@
             
             if(preg_match($regExEmail, $_POST['email'])) {
                 $email = $_POST['email'];
+            } else {
+                $error = true;
             }
             if(preg_match($regExPassword, $_POST['password'])) {
                 $password = $_POST['password'];
+            } else {
+                $error = true;
             }
             if(preg_match($regExPassword, $_POST['confirmPassword'])) {
                 $confirmPassword = $_POST['confirmPassword'];
+            } else {
+                $error = true;
             }
             if(preg_match($regExName, $_POST['lastName'])) {
                 $lastName = $_POST['lastName'];
+            } else {
+                $error = true;
             }
             if(preg_match($regExName, $_POST['firstName'])) {
                 $firstName = $_POST['firstName'];
+            } else {
+                $error = true;
             }
             if(preg_match($regExBirthDate, $_POST['birthDate'])) {
                 $birthDate = $_POST['birthDate'];
+            } else {
+                $error = true;
             }
             if(preg_match($regExAddress, $_POST['address'])) {
                 $address = $_POST['address'];
+            } else {
+                $error = true;
             }
             if(preg_match($regExZipCode, $_POST['zipCode'])) {
                 $zipCode = $_POST['zipCode'];
+            } else {
+                $error = true;
             }
             if(preg_match($regExCity, $_POST['city'])) {
                 $city = $_POST['city'];
+            } else {
+                $error = true;
             }
             if(preg_match($regExPhone, $_POST['phone'])) {
                 $phone = $_POST['phone'];
+            } else {
+                $error = true;
             }
             
         	$gender = $_POST['gender'];
         	
-        	// Mise des données dans l'objet à inserer dans la base
-        	$user = new User();
-        	$user->setEmail($email);
-        	$user->setPassword($password);
-        	$user->setGender($gender);
-        	$user->setLastName(strtoupper($lastName));
-        	$user->setFirstName(ucfirst($firstName));
-        	$user->setBirthDate(DateTime::createFromFormat('d/m/Y', $birthDate));
-        	$user->setAddress($address);
-        	$user->setZipCode($zipCode);
-        	$user->setCity(ucfirst($city));
-        	$user->setPhone($phone);
-        	$user->save();
-        	
-        	$cart = new Cart();
-        	$cart->setUser($user);
-        	$cart->save();
+        	if(!$error) {
+            	// Mise des données dans l'objet à inserer dans la base
+            	$user = new User();
+            	$user->setEmail($email);
+            	$user->setPassword($password);
+            	$user->setGender($gender);
+            	$user->setLastName(strtoupper($lastName));
+            	$user->setFirstName(ucfirst($firstName));
+            	$user->setBirthDate(DateTime::createFromFormat('d/m/Y', $birthDate));
+            	$user->setAddress($address);
+            	$user->setZipCode($zipCode);
+            	$user->setCity(ucfirst($city));
+            	$user->setPhone($phone);
+            	$user->save();
+            	
+            	$cart = new Cart();
+            	$cart->setUser($user);
+            	$cart->save();
+        	}
         	
         	return $user;
         }

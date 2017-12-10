@@ -5,6 +5,8 @@ namespace Base;
 use \Item as ChildItem;
 use \ItemInCart as ChildItemInCart;
 use \ItemInCartQuery as ChildItemInCartQuery;
+use \ItemInPackage as ChildItemInPackage;
+use \ItemInPackageQuery as ChildItemInPackageQuery;
 use \ItemQuery as ChildItemQuery;
 use \ItemType as ChildItemType;
 use \ItemTypeQuery as ChildItemTypeQuery;
@@ -12,6 +14,7 @@ use \DateTime;
 use \Exception;
 use \PDO;
 use Map\ItemInCartTableMap;
+use Map\ItemInPackageTableMap;
 use Map\ItemTableMap;
 use Map\ItemTypeTableMap;
 use Propel\Runtime\Propel;
@@ -126,6 +129,12 @@ abstract class Item implements ActiveRecordInterface
     protected $weight;
 
     /**
+     * @var        ObjectCollection|ChildItemInPackage[] Collection to store aggregation of ChildItemInPackage objects.
+     */
+    protected $collItemInPackages;
+    protected $collItemInPackagesPartial;
+
+    /**
      * @var        ObjectCollection|ChildItemInCart[] Collection to store aggregation of ChildItemInCart objects.
      */
     protected $collItemInCarts;
@@ -144,6 +153,12 @@ abstract class Item implements ActiveRecordInterface
      * @var boolean
      */
     protected $alreadyInSave = false;
+
+    /**
+     * An array of objects scheduled for deletion.
+     * @var ObjectCollection|ChildItemInPackage[]
+     */
+    protected $itemInPackagesScheduledForDeletion = null;
 
     /**
      * An array of objects scheduled for deletion.
@@ -763,6 +778,8 @@ abstract class Item implements ActiveRecordInterface
 
         if ($deep) {  // also de-associate any related objects?
 
+            $this->collItemInPackages = null;
+
             $this->collItemInCarts = null;
 
             $this->collItemTypes = null;
@@ -879,6 +896,23 @@ abstract class Item implements ActiveRecordInterface
                     $affectedRows += $this->doUpdate($con);
                 }
                 $this->resetModified();
+            }
+
+            if ($this->itemInPackagesScheduledForDeletion !== null) {
+                if (!$this->itemInPackagesScheduledForDeletion->isEmpty()) {
+                    \ItemInPackageQuery::create()
+                        ->filterByPrimaryKeys($this->itemInPackagesScheduledForDeletion->getPrimaryKeys(false))
+                        ->delete($con);
+                    $this->itemInPackagesScheduledForDeletion = null;
+                }
+            }
+
+            if ($this->collItemInPackages !== null) {
+                foreach ($this->collItemInPackages as $referrerFK) {
+                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
+                        $affectedRows += $referrerFK->save($con);
+                    }
+                }
             }
 
             if ($this->itemInCartsScheduledForDeletion !== null) {
@@ -1135,6 +1169,21 @@ abstract class Item implements ActiveRecordInterface
         }
 
         if ($includeForeignObjects) {
+            if (null !== $this->collItemInPackages) {
+
+                switch ($keyType) {
+                    case TableMap::TYPE_CAMELNAME:
+                        $key = 'itemInPackages';
+                        break;
+                    case TableMap::TYPE_FIELDNAME:
+                        $key = 'itemInPackages';
+                        break;
+                    default:
+                        $key = 'ItemInPackages';
+                }
+
+                $result[$key] = $this->collItemInPackages->toArray(null, false, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
+            }
             if (null !== $this->collItemInCarts) {
 
                 switch ($keyType) {
@@ -1437,6 +1486,12 @@ abstract class Item implements ActiveRecordInterface
             // the getter/setter methods for fkey referrer objects.
             $copyObj->setNew(false);
 
+            foreach ($this->getItemInPackages() as $relObj) {
+                if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
+                    $copyObj->addItemInPackage($relObj->copy($deepCopy));
+                }
+            }
+
             foreach ($this->getItemInCarts() as $relObj) {
                 if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
                     $copyObj->addItemInCart($relObj->copy($deepCopy));
@@ -1490,6 +1545,10 @@ abstract class Item implements ActiveRecordInterface
      */
     public function initRelation($relationName)
     {
+        if ('ItemInPackage' == $relationName) {
+            $this->initItemInPackages();
+            return;
+        }
         if ('ItemInCart' == $relationName) {
             $this->initItemInCarts();
             return;
@@ -1498,6 +1557,256 @@ abstract class Item implements ActiveRecordInterface
             $this->initItemTypes();
             return;
         }
+    }
+
+    /**
+     * Clears out the collItemInPackages collection
+     *
+     * This does not modify the database; however, it will remove any associated objects, causing
+     * them to be refetched by subsequent calls to accessor method.
+     *
+     * @return void
+     * @see        addItemInPackages()
+     */
+    public function clearItemInPackages()
+    {
+        $this->collItemInPackages = null; // important to set this to NULL since that means it is uninitialized
+    }
+
+    /**
+     * Reset is the collItemInPackages collection loaded partially.
+     */
+    public function resetPartialItemInPackages($v = true)
+    {
+        $this->collItemInPackagesPartial = $v;
+    }
+
+    /**
+     * Initializes the collItemInPackages collection.
+     *
+     * By default this just sets the collItemInPackages collection to an empty array (like clearcollItemInPackages());
+     * however, you may wish to override this method in your stub class to provide setting appropriate
+     * to your application -- for example, setting the initial array to the values stored in database.
+     *
+     * @param      boolean $overrideExisting If set to true, the method call initializes
+     *                                        the collection even if it is not empty
+     *
+     * @return void
+     */
+    public function initItemInPackages($overrideExisting = true)
+    {
+        if (null !== $this->collItemInPackages && !$overrideExisting) {
+            return;
+        }
+
+        $collectionClassName = ItemInPackageTableMap::getTableMap()->getCollectionClassName();
+
+        $this->collItemInPackages = new $collectionClassName;
+        $this->collItemInPackages->setModel('\ItemInPackage');
+    }
+
+    /**
+     * Gets an array of ChildItemInPackage objects which contain a foreign key that references this object.
+     *
+     * If the $criteria is not null, it is used to always fetch the results from the database.
+     * Otherwise the results are fetched from the database the first time, then cached.
+     * Next time the same method is called without $criteria, the cached collection is returned.
+     * If this ChildItem is new, it will return
+     * an empty collection or the current collection; the criteria is ignored on a new object.
+     *
+     * @param      Criteria $criteria optional Criteria object to narrow the query
+     * @param      ConnectionInterface $con optional connection object
+     * @return ObjectCollection|ChildItemInPackage[] List of ChildItemInPackage objects
+     * @throws PropelException
+     */
+    public function getItemInPackages(Criteria $criteria = null, ConnectionInterface $con = null)
+    {
+        $partial = $this->collItemInPackagesPartial && !$this->isNew();
+        if (null === $this->collItemInPackages || null !== $criteria  || $partial) {
+            if ($this->isNew() && null === $this->collItemInPackages) {
+                // return empty collection
+                $this->initItemInPackages();
+            } else {
+                $collItemInPackages = ChildItemInPackageQuery::create(null, $criteria)
+                    ->filterByItem($this)
+                    ->find($con);
+
+                if (null !== $criteria) {
+                    if (false !== $this->collItemInPackagesPartial && count($collItemInPackages)) {
+                        $this->initItemInPackages(false);
+
+                        foreach ($collItemInPackages as $obj) {
+                            if (false == $this->collItemInPackages->contains($obj)) {
+                                $this->collItemInPackages->append($obj);
+                            }
+                        }
+
+                        $this->collItemInPackagesPartial = true;
+                    }
+
+                    return $collItemInPackages;
+                }
+
+                if ($partial && $this->collItemInPackages) {
+                    foreach ($this->collItemInPackages as $obj) {
+                        if ($obj->isNew()) {
+                            $collItemInPackages[] = $obj;
+                        }
+                    }
+                }
+
+                $this->collItemInPackages = $collItemInPackages;
+                $this->collItemInPackagesPartial = false;
+            }
+        }
+
+        return $this->collItemInPackages;
+    }
+
+    /**
+     * Sets a collection of ChildItemInPackage objects related by a one-to-many relationship
+     * to the current object.
+     * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
+     * and new objects from the given Propel collection.
+     *
+     * @param      Collection $itemInPackages A Propel collection.
+     * @param      ConnectionInterface $con Optional connection object
+     * @return $this|ChildItem The current object (for fluent API support)
+     */
+    public function setItemInPackages(Collection $itemInPackages, ConnectionInterface $con = null)
+    {
+        /** @var ChildItemInPackage[] $itemInPackagesToDelete */
+        $itemInPackagesToDelete = $this->getItemInPackages(new Criteria(), $con)->diff($itemInPackages);
+
+
+        $this->itemInPackagesScheduledForDeletion = $itemInPackagesToDelete;
+
+        foreach ($itemInPackagesToDelete as $itemInPackageRemoved) {
+            $itemInPackageRemoved->setItem(null);
+        }
+
+        $this->collItemInPackages = null;
+        foreach ($itemInPackages as $itemInPackage) {
+            $this->addItemInPackage($itemInPackage);
+        }
+
+        $this->collItemInPackages = $itemInPackages;
+        $this->collItemInPackagesPartial = false;
+
+        return $this;
+    }
+
+    /**
+     * Returns the number of related ItemInPackage objects.
+     *
+     * @param      Criteria $criteria
+     * @param      boolean $distinct
+     * @param      ConnectionInterface $con
+     * @return int             Count of related ItemInPackage objects.
+     * @throws PropelException
+     */
+    public function countItemInPackages(Criteria $criteria = null, $distinct = false, ConnectionInterface $con = null)
+    {
+        $partial = $this->collItemInPackagesPartial && !$this->isNew();
+        if (null === $this->collItemInPackages || null !== $criteria || $partial) {
+            if ($this->isNew() && null === $this->collItemInPackages) {
+                return 0;
+            }
+
+            if ($partial && !$criteria) {
+                return count($this->getItemInPackages());
+            }
+
+            $query = ChildItemInPackageQuery::create(null, $criteria);
+            if ($distinct) {
+                $query->distinct();
+            }
+
+            return $query
+                ->filterByItem($this)
+                ->count($con);
+        }
+
+        return count($this->collItemInPackages);
+    }
+
+    /**
+     * Method called to associate a ChildItemInPackage object to this object
+     * through the ChildItemInPackage foreign key attribute.
+     *
+     * @param  ChildItemInPackage $l ChildItemInPackage
+     * @return $this|\Item The current object (for fluent API support)
+     */
+    public function addItemInPackage(ChildItemInPackage $l)
+    {
+        if ($this->collItemInPackages === null) {
+            $this->initItemInPackages();
+            $this->collItemInPackagesPartial = true;
+        }
+
+        if (!$this->collItemInPackages->contains($l)) {
+            $this->doAddItemInPackage($l);
+
+            if ($this->itemInPackagesScheduledForDeletion and $this->itemInPackagesScheduledForDeletion->contains($l)) {
+                $this->itemInPackagesScheduledForDeletion->remove($this->itemInPackagesScheduledForDeletion->search($l));
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param ChildItemInPackage $itemInPackage The ChildItemInPackage object to add.
+     */
+    protected function doAddItemInPackage(ChildItemInPackage $itemInPackage)
+    {
+        $this->collItemInPackages[]= $itemInPackage;
+        $itemInPackage->setItem($this);
+    }
+
+    /**
+     * @param  ChildItemInPackage $itemInPackage The ChildItemInPackage object to remove.
+     * @return $this|ChildItem The current object (for fluent API support)
+     */
+    public function removeItemInPackage(ChildItemInPackage $itemInPackage)
+    {
+        if ($this->getItemInPackages()->contains($itemInPackage)) {
+            $pos = $this->collItemInPackages->search($itemInPackage);
+            $this->collItemInPackages->remove($pos);
+            if (null === $this->itemInPackagesScheduledForDeletion) {
+                $this->itemInPackagesScheduledForDeletion = clone $this->collItemInPackages;
+                $this->itemInPackagesScheduledForDeletion->clear();
+            }
+            $this->itemInPackagesScheduledForDeletion[]= clone $itemInPackage;
+            $itemInPackage->setItem(null);
+        }
+
+        return $this;
+    }
+
+
+    /**
+     * If this collection has already been initialized with
+     * an identical criteria, it returns the collection.
+     * Otherwise if this Item is new, it will return
+     * an empty collection; or if this Item has previously
+     * been saved, it will retrieve related ItemInPackages from storage.
+     *
+     * This method is protected by default in order to keep the public
+     * api reasonable.  You can provide public methods for those you
+     * actually need in Item.
+     *
+     * @param      Criteria $criteria optional Criteria object to narrow the query
+     * @param      ConnectionInterface $con optional connection object
+     * @param      string $joinBehavior optional join type to use (defaults to Criteria::LEFT_JOIN)
+     * @return ObjectCollection|ChildItemInPackage[] List of ChildItemInPackage objects
+     */
+    public function getItemInPackagesJoinPackage(Criteria $criteria = null, ConnectionInterface $con = null, $joinBehavior = Criteria::LEFT_JOIN)
+    {
+        $query = ChildItemInPackageQuery::create(null, $criteria);
+        $query->joinWith('Package', $joinBehavior);
+
+        return $this->getItemInPackages($query, $con);
     }
 
     /**
@@ -1870,7 +2179,10 @@ abstract class Item implements ActiveRecordInterface
         $itemTypesToDelete = $this->getItemTypes(new Criteria(), $con)->diff($itemTypes);
 
 
-        $this->itemTypesScheduledForDeletion = $itemTypesToDelete;
+        //since at least one column in the foreign key is at the same time a PK
+        //we can not just set a PK to NULL in the lines below. We have to store
+        //a backup of all values, so we are able to manipulate these items based on the onDelete value later.
+        $this->itemTypesScheduledForDeletion = clone $itemTypesToDelete;
 
         foreach ($itemTypesToDelete as $itemTypeRemoved) {
             $itemTypeRemoved->setItem(null);
@@ -2033,6 +2345,11 @@ abstract class Item implements ActiveRecordInterface
     public function clearAllReferences($deep = false)
     {
         if ($deep) {
+            if ($this->collItemInPackages) {
+                foreach ($this->collItemInPackages as $o) {
+                    $o->clearAllReferences($deep);
+                }
+            }
             if ($this->collItemInCarts) {
                 foreach ($this->collItemInCarts as $o) {
                     $o->clearAllReferences($deep);
@@ -2045,6 +2362,7 @@ abstract class Item implements ActiveRecordInterface
             }
         } // if ($deep)
 
+        $this->collItemInPackages = null;
         $this->collItemInCarts = null;
         $this->collItemTypes = null;
     }

@@ -64,15 +64,15 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildUserQuery rightJoinWithCreditCard() Adds a RIGHT JOIN clause and with to the query using the CreditCard relation
  * @method     ChildUserQuery innerJoinWithCreditCard() Adds a INNER JOIN clause and with to the query using the CreditCard relation
  *
- * @method     ChildUserQuery leftJoinOrder($relationAlias = null) Adds a LEFT JOIN clause to the query using the Order relation
- * @method     ChildUserQuery rightJoinOrder($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Order relation
- * @method     ChildUserQuery innerJoinOrder($relationAlias = null) Adds a INNER JOIN clause to the query using the Order relation
+ * @method     ChildUserQuery leftJoinPackage($relationAlias = null) Adds a LEFT JOIN clause to the query using the Package relation
+ * @method     ChildUserQuery rightJoinPackage($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Package relation
+ * @method     ChildUserQuery innerJoinPackage($relationAlias = null) Adds a INNER JOIN clause to the query using the Package relation
  *
- * @method     ChildUserQuery joinWithOrder($joinType = Criteria::INNER_JOIN) Adds a join clause and with to the query using the Order relation
+ * @method     ChildUserQuery joinWithPackage($joinType = Criteria::INNER_JOIN) Adds a join clause and with to the query using the Package relation
  *
- * @method     ChildUserQuery leftJoinWithOrder() Adds a LEFT JOIN clause and with to the query using the Order relation
- * @method     ChildUserQuery rightJoinWithOrder() Adds a RIGHT JOIN clause and with to the query using the Order relation
- * @method     ChildUserQuery innerJoinWithOrder() Adds a INNER JOIN clause and with to the query using the Order relation
+ * @method     ChildUserQuery leftJoinWithPackage() Adds a LEFT JOIN clause and with to the query using the Package relation
+ * @method     ChildUserQuery rightJoinWithPackage() Adds a RIGHT JOIN clause and with to the query using the Package relation
+ * @method     ChildUserQuery innerJoinWithPackage() Adds a INNER JOIN clause and with to the query using the Package relation
  *
  * @method     ChildUserQuery leftJoinReview($relationAlias = null) Adds a LEFT JOIN clause to the query using the Review relation
  * @method     ChildUserQuery rightJoinReview($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Review relation
@@ -94,7 +94,7 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildUserQuery rightJoinWithCart() Adds a RIGHT JOIN clause and with to the query using the Cart relation
  * @method     ChildUserQuery innerJoinWithCart() Adds a INNER JOIN clause and with to the query using the Cart relation
  *
- * @method     \CreditCardQuery|\OrderQuery|\ReviewQuery|\CartQuery endUse() Finalizes a secondary criteria and merges it with its primary Criteria
+ * @method     \CreditCardQuery|\PackageQuery|\ReviewQuery|\CartQuery endUse() Finalizes a secondary criteria and merges it with its primary Criteria
  *
  * @method     ChildUser findOne(ConnectionInterface $con = null) Return the first ChildUser matching the query
  * @method     ChildUser findOneOrCreate(ConnectionInterface $con = null) Return the first ChildUser matching the query, or a new ChildUser object populated from the query conditions when no match is found
@@ -739,40 +739,40 @@ abstract class UserQuery extends ModelCriteria
     }
 
     /**
-     * Filter the query by a related \Order object
+     * Filter the query by a related \Package object
      *
-     * @param \Order|ObjectCollection $order the related object to use as filter
+     * @param \Package|ObjectCollection $package the related object to use as filter
      * @param string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return ChildUserQuery The current query, for fluid interface
      */
-    public function filterByOrder($order, $comparison = null)
+    public function filterByPackage($package, $comparison = null)
     {
-        if ($order instanceof \Order) {
+        if ($package instanceof \Package) {
             return $this
-                ->addUsingAlias(UserTableMap::COL_ID, $order->getUserid(), $comparison);
-        } elseif ($order instanceof ObjectCollection) {
+                ->addUsingAlias(UserTableMap::COL_ID, $package->getUserid(), $comparison);
+        } elseif ($package instanceof ObjectCollection) {
             return $this
-                ->useOrderQuery()
-                ->filterByPrimaryKeys($order->getPrimaryKeys())
+                ->usePackageQuery()
+                ->filterByPrimaryKeys($package->getPrimaryKeys())
                 ->endUse();
         } else {
-            throw new PropelException('filterByOrder() only accepts arguments of type \Order or Collection');
+            throw new PropelException('filterByPackage() only accepts arguments of type \Package or Collection');
         }
     }
 
     /**
-     * Adds a JOIN clause to the query using the Order relation
+     * Adds a JOIN clause to the query using the Package relation
      *
      * @param     string $relationAlias optional alias for the relation
      * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
      *
      * @return $this|ChildUserQuery The current query, for fluid interface
      */
-    public function joinOrder($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    public function joinPackage($relationAlias = null, $joinType = Criteria::INNER_JOIN)
     {
         $tableMap = $this->getTableMap();
-        $relationMap = $tableMap->getRelation('Order');
+        $relationMap = $tableMap->getRelation('Package');
 
         // create a ModelJoin object for this join
         $join = new ModelJoin();
@@ -787,14 +787,14 @@ abstract class UserQuery extends ModelCriteria
             $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
             $this->addJoinObject($join, $relationAlias);
         } else {
-            $this->addJoinObject($join, 'Order');
+            $this->addJoinObject($join, 'Package');
         }
 
         return $this;
     }
 
     /**
-     * Use the Order relation Order object
+     * Use the Package relation Package object
      *
      * @see useQuery()
      *
@@ -802,13 +802,13 @@ abstract class UserQuery extends ModelCriteria
      *                                   to be used as main alias in the secondary query
      * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
      *
-     * @return \OrderQuery A secondary query class using the current class as primary query
+     * @return \PackageQuery A secondary query class using the current class as primary query
      */
-    public function useOrderQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    public function usePackageQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
     {
         return $this
-            ->joinOrder($relationAlias, $joinType)
-            ->useQuery($relationAlias ? $relationAlias : 'Order', '\OrderQuery');
+            ->joinPackage($relationAlias, $joinType)
+            ->useQuery($relationAlias ? $relationAlias : 'Package', '\PackageQuery');
     }
 
     /**

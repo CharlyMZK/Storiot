@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-12-08 03:00:08
+/* Smarty version 3.1.31, created on 2017-12-10 11:00:59
   from "/home/ubuntu/workspace/templates/Layouts/navbar.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5a2a00389cac13_34763405',
+  'unifunc' => 'content_5a2d13eba32396_14123795',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'fdb4e3a378d48f4f46de07b85d47f354a3bc2ae7' => 
     array (
       0 => '/home/ubuntu/workspace/templates/Layouts/navbar.tpl',
-      1 => 1512702006,
+      1 => 1512903616,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a2a00389cac13_34763405 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a2d13eba32396_14123795 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <nav>
   <div class="nav-wrapper">
@@ -33,7 +33,8 @@ function content_5a2a00389cac13_34763405 (Smarty_Internal_Template $_smarty_tpl)
               <div class="input-field col s6 s12">
                 <form id="signInForm" action="/index.php?module=mainItem&action=sendForm" method="post">
                   <i class="material-icons prefix">search</i>
-                  <input class="autocomplete red-text search" name="search" type="text" placeholder="search">
+                  <input class="autocomplete red-text search" name="search" type="text" placeholder="search" value=<?php echo $_smarty_tpl->tpl_vars['search']->value;?>
+>
                 </form>
               </div>
             </div>

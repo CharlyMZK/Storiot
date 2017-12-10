@@ -77,14 +77,20 @@
             }
         }
         
-        public function mergeSessionAndUserCarts($cart,$itemsInCart){
+        public function mergeSessionAndUserCarts($cart){
+                           
+                $itemsInCart =  ItemInCartQuery::create()->findByCartid($cart->getId());
+            echo "!MERGING!";
             if($_SESSION['objectsInCart'] != null){
                foreach ($_SESSION['objectsInCart']  as &$objectInSessionCart) {
+                   echo "!FOREACH!";
                 $isTheObjectInUserCart = false;
                 foreach ($itemsInCart  as &$objectInCart) {
                         if($objectInCart->getItem()->getId() == $objectInSessionCart->getItem()->getId()){
+                            echo "!OK!";
                             $objectInCart->setQuantity($objectInCart->getQuantity() + $objectInSessionCart->getQuantity());
                             $objectInCart->save();
+                             echo "!SAVED!";
                             $isTheObjectInUserCart = true;
                         }
                 }
@@ -92,6 +98,7 @@
                     $cart->addItemInCart($objectInSessionCart);
                     $objectInSessionCart->setCart($cart);
                     $objectInSessionCart->save();
+                      echo "!NOT IN CART SO SAVED!";
                 }
                 
             }
@@ -103,11 +110,34 @@
             $itemsInCart = $this->getItemsInCart();
             foreach ($itemsInCart  as &$objectInCart) {
                 if($objectInCart->getItem()->getId() == $item){
+                    echo "SET QUANTITY";
                     $objectInCart->setQuantity($quantity);
+                    if(cartController::isUserConnected()){
+                        $objectInCart->save();
+                    }
                 }
                 
             }
         }
+        
+        public static function createOrderFromCart(){
+             if(cartController::isUserConnected()){
+                $package = new Package();
+                $itemsInCart = cartController::getItemsInUserConnectedCart();
+                $user = UserQuery::create()->findOneById($_SESSION['userId']);
+                $package->setUser($user);
+                $package->setSendDate(date("d/m/Y"));
+                $package->save();
+                foreach ($itemsInCart  as &$objectInCart) {
+                    $itemInPackage = new ItemInPackage();
+                    $itemInPackage->setItem($objectInCart->getItem());
+                    $itemInPackage->setPackage($package);
+                    $itemInPackage->setQuantity($objectInCart->getQuantity());
+                    $itemInPackage->save();                    
+                }
+             }
+        }
+        
         
         public static function getItemsInUserConnectedCart(){
             if(cartController::isUserConnected()){
@@ -119,9 +149,9 @@
         
         public function getItemsInCart(){
             if(cartController::isUserConnected()){
-                $cart = CartQuery::create()->findOneByUserId($_SESSION['userId']);
-                $itemsInCart =  ItemInCartQuery::create()->findByCartid($cart->getId());
-                $this->mergeSessionAndUserCarts($cart,$itemsInCart);
+                 $cart = CartQuery::create()->findOneByUserId($_SESSION['userId']);
+                $this->mergeSessionAndUserCarts($cart);
+                $itemsInCart =  ItemInCartQuery::create()->findByCartid($cart->getId()); // Refresh the items
             }else{
                 $itemsInCart = $_SESSION['objectsInCart'];
             }
@@ -167,34 +197,38 @@
              
         public function getNoTaxAmount($itemsInCart){
             $total = 0;
-            foreach ($itemsInCart  as &$objectInCart) {
-                $total += $objectInCart->getItem()->getPrice() * $objectInCart->getQuantity();
+            if($itemsInCart != NULL){
+                foreach ($itemsInCart  as &$objectInCart) {
+                    $total += $objectInCart->getItem()->getPrice() * $objectInCart->getQuantity();
+                } 
             }
+       
             return $total;
         }
         
         public function getAmountWithTax($itemsInCart){
             $total = 0;
-            
-            foreach ($itemsInCart  as &$objectInCart) {
-                $itemTypes = ItemTypeQuery::create()->findByItemId($objectInCart->getItem()->getId());
-                $itemPrice = $objectInCart->getItem()->getPrice();
-                foreach ($itemTypes  as &$itemType) {    
-                 $type = $itemType->getType()->getName();
-                 switch ($type) {
-                    case "TVA_20":
-                        $itemPrice = $itemPrice * 1.2;
-                        break;
-                    case "TVA_10":
-                        $itemPrice = $itemPrice * 1.1;
-                        break;
-                    case "TVA_5_5":
-                        $itemPrice = $itemPrice * 1.055;
-                        break;
+            if($itemsInCart != NULL){
+                foreach ($itemsInCart  as &$objectInCart) {
+                    $itemTypes = ItemTypeQuery::create()->findByItemId($objectInCart->getItem()->getId());
+                    $itemPrice = $objectInCart->getItem()->getPrice();
+                    foreach ($itemTypes  as &$itemType) {    
+                     $type = $itemType->getType()->getName();
+                     switch ($type) {
+                        case "TVA_20":
+                            $itemPrice = $itemPrice * 1.2;
+                            break;
+                        case "TVA_10":
+                            $itemPrice = $itemPrice * 1.1;
+                            break;
+                        case "TVA_5_5":
+                            $itemPrice = $itemPrice * 1.055;
+                            break;
+                    }
+    
+                    }
+                    $total += $itemPrice * $objectInCart->getQuantity();
                 }
-
-                }
-                $total += $itemPrice * $objectInCart->getQuantity();
             }
             return $total;
         }
@@ -209,6 +243,7 @@
                     return $this->response;
                 }else if ($this->request->action == 'setQuantity'){
                     $state = 'Quantité augementée';
+                    echo $_POST['item']." - ".$_POST['quantity'];
                     $this->setItemInCartQuantity($_POST['item'],$_POST['quantity']);
                     $this->response->getContent()->assign('state', $state);
                     $this->response->setTemplate('addedToCartResponse.tpl');

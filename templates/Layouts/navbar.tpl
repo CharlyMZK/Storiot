@@ -9,7 +9,7 @@
               <div class="input-field col s6 s12">
                 <form id="signInForm" action="/index.php?module=mainItem&action=sendForm" method="post">
                   <i class="material-icons prefix">search</i>
-                  <input class="autocomplete red-text search" name="search" type="text" placeholder="search">
+                  <input class="autocomplete red-text search" name="search" type="text" placeholder="search" value={$search}>
                 </form>
               </div>
             </div>

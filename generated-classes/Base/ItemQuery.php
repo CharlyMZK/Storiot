@@ -46,6 +46,16 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildItemQuery rightJoinWith($relation) Adds a RIGHT JOIN clause and with to the query
  * @method     ChildItemQuery innerJoinWith($relation) Adds a INNER JOIN clause and with to the query
  *
+ * @method     ChildItemQuery leftJoinItemInPackage($relationAlias = null) Adds a LEFT JOIN clause to the query using the ItemInPackage relation
+ * @method     ChildItemQuery rightJoinItemInPackage($relationAlias = null) Adds a RIGHT JOIN clause to the query using the ItemInPackage relation
+ * @method     ChildItemQuery innerJoinItemInPackage($relationAlias = null) Adds a INNER JOIN clause to the query using the ItemInPackage relation
+ *
+ * @method     ChildItemQuery joinWithItemInPackage($joinType = Criteria::INNER_JOIN) Adds a join clause and with to the query using the ItemInPackage relation
+ *
+ * @method     ChildItemQuery leftJoinWithItemInPackage() Adds a LEFT JOIN clause and with to the query using the ItemInPackage relation
+ * @method     ChildItemQuery rightJoinWithItemInPackage() Adds a RIGHT JOIN clause and with to the query using the ItemInPackage relation
+ * @method     ChildItemQuery innerJoinWithItemInPackage() Adds a INNER JOIN clause and with to the query using the ItemInPackage relation
+ *
  * @method     ChildItemQuery leftJoinItemInCart($relationAlias = null) Adds a LEFT JOIN clause to the query using the ItemInCart relation
  * @method     ChildItemQuery rightJoinItemInCart($relationAlias = null) Adds a RIGHT JOIN clause to the query using the ItemInCart relation
  * @method     ChildItemQuery innerJoinItemInCart($relationAlias = null) Adds a INNER JOIN clause to the query using the ItemInCart relation
@@ -66,7 +76,7 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildItemQuery rightJoinWithItemType() Adds a RIGHT JOIN clause and with to the query using the ItemType relation
  * @method     ChildItemQuery innerJoinWithItemType() Adds a INNER JOIN clause and with to the query using the ItemType relation
  *
- * @method     \ItemInCartQuery|\ItemTypeQuery endUse() Finalizes a secondary criteria and merges it with its primary Criteria
+ * @method     \ItemInPackageQuery|\ItemInCartQuery|\ItemTypeQuery endUse() Finalizes a secondary criteria and merges it with its primary Criteria
  *
  * @method     ChildItem findOne(ConnectionInterface $con = null) Return the first ChildItem matching the query
  * @method     ChildItem findOneOrCreate(ConnectionInterface $con = null) Return the first ChildItem matching the query, or a new ChildItem object populated from the query conditions when no match is found
@@ -569,6 +579,79 @@ abstract class ItemQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(ItemTableMap::COL_WEIGHT, $weight, $comparison);
+    }
+
+    /**
+     * Filter the query by a related \ItemInPackage object
+     *
+     * @param \ItemInPackage|ObjectCollection $itemInPackage the related object to use as filter
+     * @param string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return ChildItemQuery The current query, for fluid interface
+     */
+    public function filterByItemInPackage($itemInPackage, $comparison = null)
+    {
+        if ($itemInPackage instanceof \ItemInPackage) {
+            return $this
+                ->addUsingAlias(ItemTableMap::COL_ID, $itemInPackage->getItemid(), $comparison);
+        } elseif ($itemInPackage instanceof ObjectCollection) {
+            return $this
+                ->useItemInPackageQuery()
+                ->filterByPrimaryKeys($itemInPackage->getPrimaryKeys())
+                ->endUse();
+        } else {
+            throw new PropelException('filterByItemInPackage() only accepts arguments of type \ItemInPackage or Collection');
+        }
+    }
+
+    /**
+     * Adds a JOIN clause to the query using the ItemInPackage relation
+     *
+     * @param     string $relationAlias optional alias for the relation
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return $this|ChildItemQuery The current query, for fluid interface
+     */
+    public function joinItemInPackage($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    {
+        $tableMap = $this->getTableMap();
+        $relationMap = $tableMap->getRelation('ItemInPackage');
+
+        // create a ModelJoin object for this join
+        $join = new ModelJoin();
+        $join->setJoinType($joinType);
+        $join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
+        if ($previousJoin = $this->getPreviousJoin()) {
+            $join->setPreviousJoin($previousJoin);
+        }
+
+        // add the ModelJoin to the current object
+        if ($relationAlias) {
+            $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
+            $this->addJoinObject($join, $relationAlias);
+        } else {
+            $this->addJoinObject($join, 'ItemInPackage');
+        }
+
+        return $this;
+    }
+
+    /**
+     * Use the ItemInPackage relation ItemInPackage object
+     *
+     * @see useQuery()
+     *
+     * @param     string $relationAlias optional alias for the relation,
+     *                                   to be used as main alias in the secondary query
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return \ItemInPackageQuery A secondary query class using the current class as primary query
+     */
+    public function useItemInPackageQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    {
+        return $this
+            ->joinItemInPackage($relationAlias, $joinType)
+            ->useQuery($relationAlias ? $relationAlias : 'ItemInPackage', '\ItemInPackageQuery');
     }
 
     /**

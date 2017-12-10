@@ -21,7 +21,9 @@
         function findItems() {
             $search = $_POST['search'];
             $typeString = $this->request->action;
-
+            
+            $this->response->getContent()->assign('search', $search);
+            
             if(!empty($typeString) && $typeString != "none" && $typeString != "sendForm") {
                 $type = TypeQuery::create()->findOneByName($typeString);
                 if($type) {
@@ -36,7 +38,7 @@
                     }
                 }
             } else if ($this->request->action == 'sendForm' && $search != null) {
-                $search = '%'.ucfirst($search).'%';
+                $search = '%'.$search.'%';
                 $items = ItemQuery::create()->where('Item.name LIKE ?', $search)->find();
             } else {
                 $items = ItemQuery::create()->find();

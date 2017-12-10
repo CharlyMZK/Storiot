@@ -34,13 +34,25 @@
         <column name="message" type="varchar" size="10000" required="true" />
         <column name="sendingDate" type="timestamp" />
     </table>
-    <table name="order" phpName="Order">
+    <table name="package" phpName="Package">
         <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
         <column name="reference" type="varchar" size="255" required="true" />
         <column name="sendDate" type="timestamp" />
         <column name="userId" type="integer" required="true" />
         <foreign-key foreignTable="user" onDelete="CASCADE" skipSql="true">
             <reference local="userId" foreign="id" />
+        </foreign-key>
+    </table>
+    <table name="itemInPackage" phpName="ItemInPackage">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+        <column name="packageId" type="integer" required="true" />
+        <column name="itemId" type="integer" required="true" />
+        <column name="quantity" type="integer" size="10" />
+        <foreign-key foreignTable="package" onDelete="CASCADE" skipSql="true">
+            <reference local="packageId" foreign="id" />
+        </foreign-key>
+        <foreign-key foreignTable="item" onDelete="CASCADE" skipSql="true">
+            <reference local="itemId" foreign="id" />
         </foreign-key>
     </table>
     <table name="review" phpName="Review">

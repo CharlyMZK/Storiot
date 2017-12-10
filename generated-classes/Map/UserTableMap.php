@@ -207,13 +207,13 @@ class UserTableMap extends TableMap
     1 => ':id',
   ),
 ), 'CASCADE', null, 'CreditCards', false);
-        $this->addRelation('Order', '\\Order', RelationMap::ONE_TO_MANY, array (
+        $this->addRelation('Package', '\\Package', RelationMap::ONE_TO_MANY, array (
   0 =>
   array (
     0 => ':userId',
     1 => ':id',
   ),
-), 'CASCADE', null, 'Orders', false);
+), 'CASCADE', null, 'Packages', false);
         $this->addRelation('Review', '\\Review', RelationMap::ONE_TO_MANY, array (
   0 =>
   array (
@@ -237,7 +237,7 @@ class UserTableMap extends TableMap
         // Invalidate objects in related instance pools,
         // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
         CreditCardTableMap::clearInstancePool();
-        OrderTableMap::clearInstancePool();
+        PackageTableMap::clearInstancePool();
         ReviewTableMap::clearInstancePool();
         CartTableMap::clearInstancePool();
     }

@@ -176,6 +176,13 @@ class ItemTableMap extends TableMap
      */
     public function buildRelations()
     {
+        $this->addRelation('ItemInPackage', '\\ItemInPackage', RelationMap::ONE_TO_MANY, array (
+  0 =>
+  array (
+    0 => ':itemId',
+    1 => ':id',
+  ),
+), 'CASCADE', null, 'ItemInPackages', false);
         $this->addRelation('ItemInCart', '\\ItemInCart', RelationMap::ONE_TO_MANY, array (
   0 =>
   array (
@@ -198,6 +205,7 @@ class ItemTableMap extends TableMap
     {
         // Invalidate objects in related instance pools,
         // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
+        ItemInPackageTableMap::clearInstancePool();
         ItemInCartTableMap::clearInstancePool();
         ItemTypeTableMap::clearInstancePool();
     }

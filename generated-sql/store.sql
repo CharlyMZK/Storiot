@@ -63,19 +63,36 @@ CREATE TABLE `contact`
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
--- order
+-- package
 -- ---------------------------------------------------------------------
 
-DROP TABLE IF EXISTS `order`;
+DROP TABLE IF EXISTS `package`;
 
-CREATE TABLE `order`
+CREATE TABLE `package`
 (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `reference` VARCHAR(255) NOT NULL,
     `sendDate` DATETIME,
     `userId` INTEGER NOT NULL,
     PRIMARY KEY (`id`),
-    INDEX `order_fi_f4311f` (`userId`)
+    INDEX `package_fi_f4311f` (`userId`)
+) ENGINE=InnoDB;
+
+-- ---------------------------------------------------------------------
+-- itemInPackage
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `itemInPackage`;
+
+CREATE TABLE `itemInPackage`
+(
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `packageId` INTEGER NOT NULL,
+    `itemId` INTEGER NOT NULL,
+    `quantity` INTEGER(10),
+    PRIMARY KEY (`id`),
+    INDEX `itemInPackage_fi_f161e3` (`packageId`),
+    INDEX `itemInPackage_fi_3cbf97` (`itemId`)
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
@@ -152,11 +169,9 @@ DROP TABLE IF EXISTS `itemType`;
 
 CREATE TABLE `itemType`
 (
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
     `itemId` INTEGER NOT NULL,
     `typeId` INTEGER NOT NULL,
-    PRIMARY KEY (`id`),
-    INDEX `itemType_fi_3cbf97` (`itemId`),
+    PRIMARY KEY (`itemId`,`typeId`),
     INDEX `itemType_fi_af1a2f` (`typeId`)
 ) ENGINE=InnoDB;
 

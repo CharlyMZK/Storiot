@@ -6,8 +6,8 @@ use \Cart as ChildCart;
 use \CartQuery as ChildCartQuery;
 use \CreditCard as ChildCreditCard;
 use \CreditCardQuery as ChildCreditCardQuery;
-use \Order as ChildOrder;
-use \OrderQuery as ChildOrderQuery;
+use \Package as ChildPackage;
+use \PackageQuery as ChildPackageQuery;
 use \Review as ChildReview;
 use \ReviewQuery as ChildReviewQuery;
 use \User as ChildUser;
@@ -17,7 +17,7 @@ use \Exception;
 use \PDO;
 use Map\CartTableMap;
 use Map\CreditCardTableMap;
-use Map\OrderTableMap;
+use Map\PackageTableMap;
 use Map\ReviewTableMap;
 use Map\UserTableMap;
 use Propel\Runtime\Propel;
@@ -167,10 +167,10 @@ abstract class User implements ActiveRecordInterface
     protected $collCreditCardsPartial;
 
     /**
-     * @var        ObjectCollection|ChildOrder[] Collection to store aggregation of ChildOrder objects.
+     * @var        ObjectCollection|ChildPackage[] Collection to store aggregation of ChildPackage objects.
      */
-    protected $collOrders;
-    protected $collOrdersPartial;
+    protected $collPackages;
+    protected $collPackagesPartial;
 
     /**
      * @var        ObjectCollection|ChildReview[] Collection to store aggregation of ChildReview objects.
@@ -200,9 +200,9 @@ abstract class User implements ActiveRecordInterface
 
     /**
      * An array of objects scheduled for deletion.
-     * @var ObjectCollection|ChildOrder[]
+     * @var ObjectCollection|ChildPackage[]
      */
-    protected $ordersScheduledForDeletion = null;
+    protected $packagesScheduledForDeletion = null;
 
     /**
      * An array of objects scheduled for deletion.
@@ -991,7 +991,7 @@ abstract class User implements ActiveRecordInterface
 
             $this->collCreditCards = null;
 
-            $this->collOrders = null;
+            $this->collPackages = null;
 
             $this->collReviews = null;
 
@@ -1128,17 +1128,17 @@ abstract class User implements ActiveRecordInterface
                 }
             }
 
-            if ($this->ordersScheduledForDeletion !== null) {
-                if (!$this->ordersScheduledForDeletion->isEmpty()) {
-                    \OrderQuery::create()
-                        ->filterByPrimaryKeys($this->ordersScheduledForDeletion->getPrimaryKeys(false))
+            if ($this->packagesScheduledForDeletion !== null) {
+                if (!$this->packagesScheduledForDeletion->isEmpty()) {
+                    \PackageQuery::create()
+                        ->filterByPrimaryKeys($this->packagesScheduledForDeletion->getPrimaryKeys(false))
                         ->delete($con);
-                    $this->ordersScheduledForDeletion = null;
+                    $this->packagesScheduledForDeletion = null;
                 }
             }
 
-            if ($this->collOrders !== null) {
-                foreach ($this->collOrders as $referrerFK) {
+            if ($this->collPackages !== null) {
+                foreach ($this->collPackages as $referrerFK) {
                     if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
                         $affectedRows += $referrerFK->save($con);
                     }
@@ -1454,20 +1454,20 @@ abstract class User implements ActiveRecordInterface
 
                 $result[$key] = $this->collCreditCards->toArray(null, false, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
             }
-            if (null !== $this->collOrders) {
+            if (null !== $this->collPackages) {
 
                 switch ($keyType) {
                     case TableMap::TYPE_CAMELNAME:
-                        $key = 'orders';
+                        $key = 'packages';
                         break;
                     case TableMap::TYPE_FIELDNAME:
-                        $key = 'orders';
+                        $key = 'packages';
                         break;
                     default:
-                        $key = 'Orders';
+                        $key = 'Packages';
                 }
 
-                $result[$key] = $this->collOrders->toArray(null, false, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
+                $result[$key] = $this->collPackages->toArray(null, false, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
             }
             if (null !== $this->collReviews) {
 
@@ -1817,9 +1817,9 @@ abstract class User implements ActiveRecordInterface
                 }
             }
 
-            foreach ($this->getOrders() as $relObj) {
+            foreach ($this->getPackages() as $relObj) {
                 if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
-                    $copyObj->addOrder($relObj->copy($deepCopy));
+                    $copyObj->addPackage($relObj->copy($deepCopy));
                 }
             }
 
@@ -1880,8 +1880,8 @@ abstract class User implements ActiveRecordInterface
             $this->initCreditCards();
             return;
         }
-        if ('Order' == $relationName) {
-            $this->initOrders();
+        if ('Package' == $relationName) {
+            $this->initPackages();
             return;
         }
         if ('Review' == $relationName) {
@@ -2120,31 +2120,31 @@ abstract class User implements ActiveRecordInterface
     }
 
     /**
-     * Clears out the collOrders collection
+     * Clears out the collPackages collection
      *
      * This does not modify the database; however, it will remove any associated objects, causing
      * them to be refetched by subsequent calls to accessor method.
      *
      * @return void
-     * @see        addOrders()
+     * @see        addPackages()
      */
-    public function clearOrders()
+    public function clearPackages()
     {
-        $this->collOrders = null; // important to set this to NULL since that means it is uninitialized
+        $this->collPackages = null; // important to set this to NULL since that means it is uninitialized
     }
 
     /**
-     * Reset is the collOrders collection loaded partially.
+     * Reset is the collPackages collection loaded partially.
      */
-    public function resetPartialOrders($v = true)
+    public function resetPartialPackages($v = true)
     {
-        $this->collOrdersPartial = $v;
+        $this->collPackagesPartial = $v;
     }
 
     /**
-     * Initializes the collOrders collection.
+     * Initializes the collPackages collection.
      *
-     * By default this just sets the collOrders collection to an empty array (like clearcollOrders());
+     * By default this just sets the collPackages collection to an empty array (like clearcollPackages());
      * however, you may wish to override this method in your stub class to provide setting appropriate
      * to your application -- for example, setting the initial array to the values stored in database.
      *
@@ -2153,20 +2153,20 @@ abstract class User implements ActiveRecordInterface
      *
      * @return void
      */
-    public function initOrders($overrideExisting = true)
+    public function initPackages($overrideExisting = true)
     {
-        if (null !== $this->collOrders && !$overrideExisting) {
+        if (null !== $this->collPackages && !$overrideExisting) {
             return;
         }
 
-        $collectionClassName = OrderTableMap::getTableMap()->getCollectionClassName();
+        $collectionClassName = PackageTableMap::getTableMap()->getCollectionClassName();
 
-        $this->collOrders = new $collectionClassName;
-        $this->collOrders->setModel('\Order');
+        $this->collPackages = new $collectionClassName;
+        $this->collPackages->setModel('\Package');
     }
 
     /**
-     * Gets an array of ChildOrder objects which contain a foreign key that references this object.
+     * Gets an array of ChildPackage objects which contain a foreign key that references this object.
      *
      * If the $criteria is not null, it is used to always fetch the results from the database.
      * Otherwise the results are fetched from the database the first time, then cached.
@@ -2176,108 +2176,108 @@ abstract class User implements ActiveRecordInterface
      *
      * @param      Criteria $criteria optional Criteria object to narrow the query
      * @param      ConnectionInterface $con optional connection object
-     * @return ObjectCollection|ChildOrder[] List of ChildOrder objects
+     * @return ObjectCollection|ChildPackage[] List of ChildPackage objects
      * @throws PropelException
      */
-    public function getOrders(Criteria $criteria = null, ConnectionInterface $con = null)
+    public function getPackages(Criteria $criteria = null, ConnectionInterface $con = null)
     {
-        $partial = $this->collOrdersPartial && !$this->isNew();
-        if (null === $this->collOrders || null !== $criteria  || $partial) {
-            if ($this->isNew() && null === $this->collOrders) {
+        $partial = $this->collPackagesPartial && !$this->isNew();
+        if (null === $this->collPackages || null !== $criteria  || $partial) {
+            if ($this->isNew() && null === $this->collPackages) {
                 // return empty collection
-                $this->initOrders();
+                $this->initPackages();
             } else {
-                $collOrders = ChildOrderQuery::create(null, $criteria)
+                $collPackages = ChildPackageQuery::create(null, $criteria)
                     ->filterByUser($this)
                     ->find($con);
 
                 if (null !== $criteria) {
-                    if (false !== $this->collOrdersPartial && count($collOrders)) {
-                        $this->initOrders(false);
+                    if (false !== $this->collPackagesPartial && count($collPackages)) {
+                        $this->initPackages(false);
 
-                        foreach ($collOrders as $obj) {
-                            if (false == $this->collOrders->contains($obj)) {
-                                $this->collOrders->append($obj);
+                        foreach ($collPackages as $obj) {
+                            if (false == $this->collPackages->contains($obj)) {
+                                $this->collPackages->append($obj);
                             }
                         }
 
-                        $this->collOrdersPartial = true;
+                        $this->collPackagesPartial = true;
                     }
 
-                    return $collOrders;
+                    return $collPackages;
                 }
 
-                if ($partial && $this->collOrders) {
-                    foreach ($this->collOrders as $obj) {
+                if ($partial && $this->collPackages) {
+                    foreach ($this->collPackages as $obj) {
                         if ($obj->isNew()) {
-                            $collOrders[] = $obj;
+                            $collPackages[] = $obj;
                         }
                     }
                 }
 
-                $this->collOrders = $collOrders;
-                $this->collOrdersPartial = false;
+                $this->collPackages = $collPackages;
+                $this->collPackagesPartial = false;
             }
         }
 
-        return $this->collOrders;
+        return $this->collPackages;
     }
 
     /**
-     * Sets a collection of ChildOrder objects related by a one-to-many relationship
+     * Sets a collection of ChildPackage objects related by a one-to-many relationship
      * to the current object.
      * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
      * and new objects from the given Propel collection.
      *
-     * @param      Collection $orders A Propel collection.
+     * @param      Collection $packages A Propel collection.
      * @param      ConnectionInterface $con Optional connection object
      * @return $this|ChildUser The current object (for fluent API support)
      */
-    public function setOrders(Collection $orders, ConnectionInterface $con = null)
+    public function setPackages(Collection $packages, ConnectionInterface $con = null)
     {
-        /** @var ChildOrder[] $ordersToDelete */
-        $ordersToDelete = $this->getOrders(new Criteria(), $con)->diff($orders);
+        /** @var ChildPackage[] $packagesToDelete */
+        $packagesToDelete = $this->getPackages(new Criteria(), $con)->diff($packages);
 
 
-        $this->ordersScheduledForDeletion = $ordersToDelete;
+        $this->packagesScheduledForDeletion = $packagesToDelete;
 
-        foreach ($ordersToDelete as $orderRemoved) {
-            $orderRemoved->setUser(null);
+        foreach ($packagesToDelete as $packageRemoved) {
+            $packageRemoved->setUser(null);
         }
 
-        $this->collOrders = null;
-        foreach ($orders as $order) {
-            $this->addOrder($order);
+        $this->collPackages = null;
+        foreach ($packages as $package) {
+            $this->addPackage($package);
         }
 
-        $this->collOrders = $orders;
-        $this->collOrdersPartial = false;
+        $this->collPackages = $packages;
+        $this->collPackagesPartial = false;
 
         return $this;
     }
 
     /**
-     * Returns the number of related Order objects.
+     * Returns the number of related Package objects.
      *
      * @param      Criteria $criteria
      * @param      boolean $distinct
      * @param      ConnectionInterface $con
-     * @return int             Count of related Order objects.
+     * @return int             Count of related Package objects.
      * @throws PropelException
      */
-    public function countOrders(Criteria $criteria = null, $distinct = false, ConnectionInterface $con = null)
+    public function countPackages(Criteria $criteria = null, $distinct = false, ConnectionInterface $con = null)
     {
-        $partial = $this->collOrdersPartial && !$this->isNew();
-        if (null === $this->collOrders || null !== $criteria || $partial) {
-            if ($this->isNew() && null === $this->collOrders) {
+        $partial = $this->collPackagesPartial && !$this->isNew();
+        if (null === $this->collPackages || null !== $criteria || $partial) {
+            if ($this->isNew() && null === $this->collPackages) {
                 return 0;
             }
 
             if ($partial && !$criteria) {
-                return count($this->getOrders());
+                return count($this->getPackages());
             }
 
-            $query = ChildOrderQuery::create(null, $criteria);
+            $query = ChildPackageQuery::create(null, $criteria);
             if ($distinct) {
                 $query->distinct();
             }
@@ -2287,28 +2287,28 @@ abstract class User implements ActiveRecordInterface
                 ->count($con);
         }
 
-        return count($this->collOrders);
+        return count($this->collPackages);
     }
 
     /**
-     * Method called to associate a ChildOrder object to this object
-     * through the ChildOrder foreign key attribute.
+     * Method called to associate a ChildPackage object to this object
+     * through the ChildPackage foreign key attribute.
      *
-     * @param  ChildOrder $l ChildOrder
+     * @param  ChildPackage $l ChildPackage
      * @return $this|\User The current object (for fluent API support)
      */
-    public function addOrder(ChildOrder $l)
+    public function addPackage(ChildPackage $l)
     {
-        if ($this->collOrders === null) {
-            $this->initOrders();
-            $this->collOrdersPartial = true;
+        if ($this->collPackages === null) {
+            $this->initPackages();
+            $this->collPackagesPartial = true;
         }
 
-        if (!$this->collOrders->contains($l)) {
-            $this->doAddOrder($l);
+        if (!$this->collPackages->contains($l)) {
+            $this->doAddPackage($l);
 
-            if ($this->ordersScheduledForDeletion and $this->ordersScheduledForDeletion->contains($l)) {
-                $this->ordersScheduledForDeletion->remove($this->ordersScheduledForDeletion->search($l));
+            if ($this->packagesScheduledForDeletion and $this->packagesScheduledForDeletion->contains($l)) {
+                $this->packagesScheduledForDeletion->remove($this->packagesScheduledForDeletion->search($l));
             }
         }
 
@@ -2316,29 +2316,29 @@ abstract class User implements ActiveRecordInterface
     }
 
     /**
-     * @param ChildOrder $order The ChildOrder object to add.
+     * @param ChildPackage $package The ChildPackage object to add.
      */
-    protected function doAddOrder(ChildOrder $order)
+    protected function doAddPackage(ChildPackage $package)
     {
-        $this->collOrders[]= $order;
-        $order->setUser($this);
+        $this->collPackages[]= $package;
+        $package->setUser($this);
     }
 
     /**
-     * @param  ChildOrder $order The ChildOrder object to remove.
+     * @param  ChildPackage $package The ChildPackage object to remove.
      * @return $this|ChildUser The current object (for fluent API support)
      */
-    public function removeOrder(ChildOrder $order)
+    public function removePackage(ChildPackage $package)
     {
-        if ($this->getOrders()->contains($order)) {
-            $pos = $this->collOrders->search($order);
-            $this->collOrders->remove($pos);
-            if (null === $this->ordersScheduledForDeletion) {
-                $this->ordersScheduledForDeletion = clone $this->collOrders;
-                $this->ordersScheduledForDeletion->clear();
+        if ($this->getPackages()->contains($package)) {
+            $pos = $this->collPackages->search($package);
+            $this->collPackages->remove($pos);
+            if (null === $this->packagesScheduledForDeletion) {
+                $this->packagesScheduledForDeletion = clone $this->collPackages;
+                $this->packagesScheduledForDeletion->clear();
             }
-            $this->ordersScheduledForDeletion[]= clone $order;
-            $order->setUser(null);
+            $this->packagesScheduledForDeletion[]= clone $package;
+            $package->setUser(null);
         }
 
         return $this;
@@ -2837,8 +2837,8 @@ abstract class User implements ActiveRecordInterface
                     $o->clearAllReferences($deep);
                 }
             }
-            if ($this->collOrders) {
-                foreach ($this->collOrders as $o) {
+            if ($this->collPackages) {
+                foreach ($this->collPackages as $o) {
                     $o->clearAllReferences($deep);
                 }
             }
@@ -2855,7 +2855,7 @@ abstract class User implements ActiveRecordInterface
         } // if ($deep)
 
         $this->collCreditCards = null;
-        $this->collOrders = null;
+        $this->collPackages = null;
         $this->collReviews = null;
         $this->collCarts = null;
     }
