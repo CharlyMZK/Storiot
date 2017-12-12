@@ -13,24 +13,26 @@
         
         function launch(){
             $user = UserQuery::create()->findOneById($_SESSION['userId']);
-            $creditCards = CreditCardQuery::create()->filterByUserId($_SESSION['userId']);
-            $orders = $this->getUserConnectedOrders();
-            if($this->request->action == 'updateInformation'){
-                $this->updateUserInformation($user);
-                $this->updateSessionUserFirstName($user);
-            } else if ($this->request->action == 'updatePassword') {
-                $this->updateUserPassword($user);
-            } else if ($this->request->action == 'updateAddress') {
-                $this->updateUserAddress($user);
-            } else if ($this->request->action == 'sendForm') {
-                $this->addUserPayment($user);
-            } else if($this->request->action == 'deletePayment') {
-                $this->deleteUserPayment();
+            if($user) {
+                $creditCards = CreditCardQuery::create()->filterByUserId($_SESSION['userId']);
+                $orders = $this->getUserConnectedOrders();
+                if($this->request->action == 'updateInformation'){
+                    $this->updateUserInformation($user);
+                    $this->updateSessionUserFirstName($user);
+                } else if ($this->request->action == 'updatePassword') {
+                    $this->updateUserPassword($user);
+                } else if ($this->request->action == 'updateAddress') {
+                    $this->updateUserAddress($user);
+                } else if ($this->request->action == 'sendForm') {
+                    $this->addUserPayment($user);
+                } else if($this->request->action == 'deletePayment') {
+                    $this->deleteUserPayment();
+                }
+                
+                $this->response->getContent()->assign('user', $user);
+                $this->response->getContent()->assign('orders', $orders);
+                $this->response->getContent()->assign('creditCards', $creditCards);
             }
-            
-            $this->response->getContent()->assign('user', $user);
-            $this->response->getContent()->assign('orders', $orders);
-            $this->response->getContent()->assign('creditCards', $creditCards);
             $this->response->setTemplate('manageAccount.tpl');
             
             return $this->response;

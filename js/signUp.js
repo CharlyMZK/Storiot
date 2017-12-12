@@ -10,6 +10,7 @@ $('#signUpForm').submit(function(event) {
     
     if(!regExEmail.test($('#email').val())){
         alert('L\'email n\'est pas valide');
+        $('#email').addClass('custom-error');
         event.preventDefault(); 
     }
     if(!regExPassword.test($('#password').val())){

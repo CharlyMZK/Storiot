@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-12-10 17:32:33
+/* Smarty version 3.1.31, created on 2017-12-11 15:20:53
   from "/home/ubuntu/workspace/templates/signUp.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5a2d6fb116d0f5_61546982',
+  'unifunc' => 'content_5a2ea2550aca02_61675424',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '78e2a357a54ca4dfb611fb28fcacdc6bcbb7c0af' => 
     array (
       0 => '/home/ubuntu/workspace/templates/signUp.tpl',
-      1 => 1512920610,
+      1 => 1513005650,
       2 => 'file',
     ),
   ),
@@ -20,21 +20,21 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a2d6fb116d0f5_61546982 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a2ea2550aca02_61675424 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
  <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_16231415385a2d6fb115ab88_43340075', "body");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_13875491935a2ea25508f316_94599052', "body");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "Layouts/layout.tpl");
 }
 /* {block "body"} */
-class Block_16231415385a2d6fb115ab88_43340075 extends Smarty_Internal_Block
+class Block_13875491935a2ea25508f316_94599052 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_16231415385a2d6fb115ab88_43340075',
+    0 => 'Block_13875491935a2ea25508f316_94599052',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -67,7 +67,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
               <?php }?>
               <div class="col offset-s1 s10">
                 <div class="input-field col s12">
-                  <input class="validate" id="email" name="email" type="email" pattern="^[A-z0-9._%+-]+@[A-z0-9.-]+\.[A-z]{2,4}$">
+                  <input class="" id="email" name="email" type="text" >
                   <label for="email" data-error="L'email n'est pas valide" data-success="ok">Email</label>
                 </div>
               </div>
@@ -108,8 +108,8 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
               </div>
               <div class="col offset-s1 s10">
                 <div class="input-field col s12">
-                  <input class="validate datepicker" id="birthDate" name="birthDate" type="text" pattern=".{8,}"/>
-                  <label class="active" for="birthDate" data-error="La date de naissance n'est pas valide" data-success="ok">Date de naissance</label>
+                  <input class="datepicker" id="birthDate" name="birthDate" type="text"/>
+                  <label class="active" for="birthDate">Date de naissance</label>
                 </div>
               </div>
               <div class="col offset-s1 s10">

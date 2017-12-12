@@ -78,19 +78,14 @@
         }
         
         public function mergeSessionAndUserCarts($cart){
-                           
-                $itemsInCart =  ItemInCartQuery::create()->findByCartid($cart->getId());
-            echo "!MERGING!";
+            $itemsInCart =  ItemInCartQuery::create()->findByCartid($cart->getId());
             if($_SESSION['objectsInCart'] != null){
                foreach ($_SESSION['objectsInCart']  as &$objectInSessionCart) {
-                   echo "!FOREACH!";
                 $isTheObjectInUserCart = false;
                 foreach ($itemsInCart  as &$objectInCart) {
                         if($objectInCart->getItem()->getId() == $objectInSessionCart->getItem()->getId()){
-                            echo "!OK!";
                             $objectInCart->setQuantity($objectInCart->getQuantity() + $objectInSessionCart->getQuantity());
                             $objectInCart->save();
-                             echo "!SAVED!";
                             $isTheObjectInUserCart = true;
                         }
                 }
@@ -98,7 +93,6 @@
                     $cart->addItemInCart($objectInSessionCart);
                     $objectInSessionCart->setCart($cart);
                     $objectInSessionCart->save();
-                      echo "!NOT IN CART SO SAVED!";
                 }
                 
             }
@@ -110,7 +104,6 @@
             $itemsInCart = $this->getItemsInCart();
             foreach ($itemsInCart  as &$objectInCart) {
                 if($objectInCart->getItem()->getId() == $item){
-                    echo "SET QUANTITY";
                     $objectInCart->setQuantity($quantity);
                     if(cartController::isUserConnected()){
                         $objectInCart->save();

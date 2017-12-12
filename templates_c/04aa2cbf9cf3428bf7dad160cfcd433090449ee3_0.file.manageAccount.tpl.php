@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-12-10 16:26:24
+/* Smarty version 3.1.31, created on 2017-12-11 15:15:40
   from "/home/ubuntu/workspace/templates/manageAccount.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5a2d6030e15658_43373737',
+  'unifunc' => 'content_5a2ea11cd489a3_27916353',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '04aa2cbf9cf3428bf7dad160cfcd433090449ee3' => 
     array (
       0 => '/home/ubuntu/workspace/templates/manageAccount.tpl',
-      1 => 1512923183,
+      1 => 1513005338,
       2 => 'file',
     ),
   ),
@@ -20,24 +20,24 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a2d6030e15658_43373737 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a2ea11cd489a3_27916353 (Smarty_Internal_Template $_smarty_tpl) {
 if (!is_callable('smarty_modifier_date_format')) require_once '/home/ubuntu/workspace/vendor/smarty/smarty/libs/plugins/modifier.date_format.php';
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
  <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_20316480975a2d6030dd7775_24312063', "body");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_10303133035a2ea11cd0a552_86481194', "body");
 ?>
 
 <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "Layouts/layout.tpl");
 }
 /* {block "body"} */
-class Block_20316480975a2d6030dd7775_24312063 extends Smarty_Internal_Block
+class Block_10303133035a2ea11cd0a552_86481194 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_20316480975a2d6030dd7775_24312063',
+    0 => 'Block_10303133035a2ea11cd0a552_86481194',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -48,6 +48,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
     <h4 class="header" id="header-main">Gestion du compte</h4>
   </div>
 </div>
+<?php if ($_smarty_tpl->tpl_vars['user']->value) {?>
 <div class="card dark">
   <div class="card-tabs indicator blue">
     <ul class="tabs tabs-fixed-width">
@@ -257,75 +258,75 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);
     </div>
   </div>
 </div>
- <?php
+<?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['orders']->value, 'order');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['order']->value) {
 ?>
-   <div class="page-header">
-    <h4 class="header" id="header-main">Commande du <?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['order']->value->getSendDate(),"%d/%m/%Y");?>
-</-></h4>
-  </div>
-  <div class="col m12 offset-m1 s12 l12 offset-l1">
+<div class="page-header">
+  <h4 class="header" id="header-main">Commande du <?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['order']->value->getSendDate(),"%d/%m/%Y");?>
+</->
+  </h4>
+</div>
+<div class="col m12 offset-m1 s12 l12 offset-l1">
   <div class="row">
     <div class="col s12">
       <div class="card blue-grey darken-1">
         <div class="card-content black-text">
-            <table class="striped highlight centered responsive-table">
-              <thead>
-                <tr>
-                  <th>Article</th>
-                  <th>Prix</th>
-                  <th>Poids</th>
-                  <th>Taille</th>
-                  <th>Quantité</th>
-                  <th/>
-                </tr>
-              </thead>
-              <tbody class="cart" id="paymentCardTable">.
-                <?php
+          <table class="striped highlight centered responsive-table">
+            <thead>
+              <tr>
+                <th>Article</th>
+                <th>Prix</th>
+                <th>Poids</th>
+                <th>Taille</th>
+                <th>Quantité</th>
+                <th/>
+              </tr>
+            </thead>
+            <tbody class="cart" id="paymentCardTable">. <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['order']->value->getItemInPackages(), 'item');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['item']->value) {
 ?>
-                <tr>
-                  <td>
-                    <a href="#"><?php echo $_smarty_tpl->tpl_vars['item']->value->getItem()->getName();?>
+              <tr>
+                <td>
+                  <a href="#"><?php echo $_smarty_tpl->tpl_vars['item']->value->getItem()->getName();?>
 </a>
-                  </td>
-                  <td>
-                    <?php echo $_smarty_tpl->tpl_vars['item']->value->getItem()->getPrice();?>
+                </td>
+                <td>
+                  <?php echo $_smarty_tpl->tpl_vars['item']->value->getItem()->getPrice();?>
  €
-                  </td>
-                  <td>
-                    <?php echo $_smarty_tpl->tpl_vars['item']->value->getItem()->getWeight();?>
+                </td>
+                <td>
+                  <?php echo $_smarty_tpl->tpl_vars['item']->value->getItem()->getWeight();?>
  g.
-                  </td>
-                  <td>
-                    <?php echo $_smarty_tpl->tpl_vars['item']->value->getItem()->getSize();?>
+                </td>
+                <td>
+                  <?php echo $_smarty_tpl->tpl_vars['item']->value->getItem()->getSize();?>
  cm
-                  </td>
-                  <td>
-                    <?php echo $_smarty_tpl->tpl_vars['item']->value->getQuantity();?>
+                </td>
+                <td>
+                  <?php echo $_smarty_tpl->tpl_vars['item']->value->getQuantity();?>
 
-                  </td>
-                </tr>
-                <?php
+                </td>
+              </tr>
+              <?php
 }
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);
 ?>
 
-                </tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                </tr>
-              </tbody>
-            </table>
-          
+              </tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              </tr>
+            </tbody>
+          </table>
+
           <br/>
           <div class="center">
             <button class="btn waves-effect waves-light" type="submit">Telecharger la facture</button>
@@ -336,15 +337,22 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);
     </div>
   </div>
 </div>
- 
-    <?php
+<?php
 }
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);
 ?>
-
-  
-<?php echo '<script'; ?>
+ 
+<?php } else { ?>
+<div class="col offset-s1 s10">
+  <div class="input-field col s12">
+    <div class="card-panel red">
+      <p class="center-align white-text">Veuillez vous connecter pour accéder à cette page</p>
+    </div>
+  </div>
+</div>
+<?php }
+echo '<script'; ?>
  type="text/javascript" src="js/manageAccount.js"><?php echo '</script'; ?>
 >
 <?php

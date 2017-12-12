@@ -66,8 +66,8 @@
               </div>
               <div class="col offset-s1 s10">
                 <div class="input-field col s12">
-                  <input class="validate datepicker" id="birthDate" name="birthDate" type="text" pattern="{literal}.{8,}{/literal}"/>
-                  <label class="active" for="birthDate" data-error="La date de naissance n'est pas valide" data-success="ok">Date de naissance</label>
+                  <input class="datepicker" id="birthDate" name="birthDate" type="text"/>
+                  <label class="active" for="birthDate">Date de naissance</label>
                 </div>
               </div>
               <div class="col offset-s1 s10">

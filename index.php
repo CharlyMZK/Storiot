@@ -1,5 +1,5 @@
 <?php
-	// LIBS
+	// Libs
 	require 'vendor/autoload.php';
 	require 'controllers/FrontController.php';
 	require 'controllers/ActionController.php';
