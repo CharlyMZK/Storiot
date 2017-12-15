@@ -6,6 +6,8 @@ class Response
 
     private $_content;
     private $_template;
+    private $_message;
+    private $_code;
 
     /**
      * Response constructor.
@@ -68,10 +70,46 @@ class Response
     {
         $this->_response = $response;
     }
-
-    function display(){
-       $this->_content->display($this->getTemplate());
+    
+    /**
+     * @return mixed
+     */
+    public function getMessage()
+    {
+        return $this->_message;
     }
-        
+
+    /**
+     * @param mixed $message
+     */
+    public function setMessage($message)
+    {
+        $this->_message = $message;
+    }
+    
+ /**
+     * @return mixed
+     */
+    public function getCode()
+    {
+        return $this->_code;
+    }
+
+    /**
+     * @param mixed $message
+     */
+    public function setCode($code)
+    {
+        $this->_code = $code;
+    }
+    
+    function display(){
+        if($this->getTemplate() != NULL){
+            $this->_content->display($this->getTemplate());
+        }else{
+            echo JSONHandler::json_response($this->getMessage(),$this->getCode());
+        }
+       
+    }
 }
 ?>

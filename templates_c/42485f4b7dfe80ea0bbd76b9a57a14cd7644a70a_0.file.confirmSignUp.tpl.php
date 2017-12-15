@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-12-10 11:44:52
+/* Smarty version 3.1.31, created on 2017-12-12 20:17:16
   from "/home/ubuntu/workspace/templates/confirmSignUp.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5a2d1e34b289d7_47288840',
+  'unifunc' => 'content_5a30394c39ee92_67695962',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '42485f4b7dfe80ea0bbd76b9a57a14cd7644a70a' => 
     array (
       0 => '/home/ubuntu/workspace/templates/confirmSignUp.tpl',
-      1 => 1512906290,
+      1 => 1513004209,
       2 => 'file',
     ),
   ),
@@ -20,22 +20,22 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a2d1e34b289d7_47288840 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a30394c39ee92_67695962 (Smarty_Internal_Template $_smarty_tpl) {
 if (!is_callable('smarty_modifier_date_format')) require_once '/home/ubuntu/workspace/vendor/smarty/smarty/libs/plugins/modifier.date_format.php';
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
  <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_2770947015a2d1e34b06c97_26484594', "body");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_20682996125a30394c379dc7_51429450', "body");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "Layouts/layout.tpl");
 }
 /* {block "body"} */
-class Block_2770947015a2d1e34b06c97_26484594 extends Smarty_Internal_Block
+class Block_20682996125a30394c379dc7_51429450 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_2770947015a2d1e34b06c97_26484594',
+    0 => 'Block_20682996125a30394c379dc7_51429450',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -87,7 +87,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
             <div class="col offset-s1 s10">
               <div class="input-field col s12">
                 <p>
-                  <p>Mot de passe : <?php echo $_smarty_tpl->tpl_vars['user']->value->getPassword();?>
+                  <p>Mot de passe (haché) : <?php echo $_smarty_tpl->tpl_vars['user']->value->getPassword();?>
 </p>
                 </p>
               </div>

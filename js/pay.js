@@ -4,9 +4,12 @@ function launchPayment() {
         type: 'GET',
         url: rootURL+"/payOrder/1",   
         success: function(data) {
-            $('.orderfinished').css("display","block");
+            var jsonResponse = JSON.parse(data);
+            if(jsonResponse.status == true){
+                $('.orderfinished').css("display","block");
+            }
             $('.preloader-wrapper').css('display','none');
-            $('.payment h5').text("Le paiement a été accepté, merci !");
+            $('.payment h5').text(jsonResponse.message);
         }
     });
 }

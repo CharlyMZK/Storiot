@@ -11,22 +11,33 @@ $('.addToCart').click(function() {
     $.ajax({
         url: '/index.php?module=cart&action=addToCart',
         type: 'POST',
+        dataType: "json",
         data: { item: $('.item-' + id).attr('name') },
-        context: document.body
-    }).done(function(data) {
-        Materialize.toast('Produit ajouté au panier', 2000, 'green');
+        success: function( response ) 
+      { 
+          Materialize.toast(response.message, 2000, 'green');
+      },  error: function( error )
+      {
+          Materialize.toast(response.message, 2000, 'red');
+      }
     });
 });
+
 $(".input-quantity").on('change', function postinput(){
     var id = this.id;
     $.ajax({
         url: '/index.php?module=cart&action=setQuantity',
         type: 'POST',
+        dataType: "json",
         data: { item: $('.item-' + id + '-quantity').attr('name'),  quantity: $('.item-' + id + '-quantity').val() },
-        context: document.body
-    }).done(function(data) {
-       location.reload();
-    }); 
+        success: function( response ) 
+      { 
+          location.reload();
+      },  error: function( error )
+      {
+          Materialize.toast(response.message, 2000, 'red');
+      }
+    });; 
 });
 
 $('.remove-item').click(function() {
@@ -34,11 +45,16 @@ $('.remove-item').click(function() {
         $.ajax({
         url: '/index.php?module=cart&action=removeItem',
         type: 'POST',
+        dataType: "json",
         data: { item: $('.item-' + id).attr('name') },
-        context: document.body
-    }).done(function(data) {
-        location.reload();
-    });
+        success: function( response ) 
+      { 
+          location.reload();
+      },  error: function( error )
+      {
+          Materialize.toast(response.message, 2000, 'red');
+      }
+    });; 
 });
 
 $('#cancel').click(function() {

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-12-08 08:35:18
+/* Smarty version 3.1.31, created on 2017-12-12 20:43:56
   from "/home/ubuntu/workspace/templates/Layouts/header.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5a2a4ec63fc343_59590631',
+  'unifunc' => 'content_5a303f8c3325a9_63451779',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b467e21a25cc6ed33953166309252a208b11072b' => 
     array (
       0 => '/home/ubuntu/workspace/templates/Layouts/header.tpl',
-      1 => 1512722099,
+      1 => 1513111238,
       2 => 'file',
     ),
   ),
@@ -20,9 +20,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a2a4ec63fc343_59590631 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a303f8c3325a9_63451779 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
-
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -33,7 +32,8 @@ function content_5a2a4ec63fc343_59590631 (Smarty_Internal_Template $_smarty_tpl)
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!--Import materialize.css-->
   <link rel="stylesheet" href="css/materialize.min.css" type="text/css" media="screen,projection" />
-  <link rel="stylesheet" href="css/custom.css"  type="text/css">
+  <link rel="stylesheet" href="css/main.css" type="text/css">
+  <link rel="stylesheet" href="css/carousel.css" type="text/css">
   <link rel="stylesheet" href="css/font-awesome.css" type="text/css">
   <!--Let browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />

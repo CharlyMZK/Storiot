@@ -56,6 +56,7 @@
                 $itemInCart->setQuantity($itemInCart->getQuantity() + 1);
                 $itemInCart->save();
             }
+            return $isRequestOk;
         }
         
          public static function removeItemsInUserCart(){
@@ -69,12 +70,17 @@
         
         public function addItemInCart($item){
             $item =  ItemQuery::create()->findOneById($_POST['item']);
+            $isRequestOk = false;
             if(cartController::isUserConnected()){
                 $cart = CartQuery::create()->findOneByUserId($_SESSION['userId']);
                 $this->addItemInConnectedCart($cart,$item);
+                $isRequestOk = true;
             }else{
                 $this->addItemInNotConnectedCart($item);
+                $isRequestOk = true;
             }
+            
+            return $isRequestOk;
         }
         
         public function mergeSessionAndUserCarts($cart){
@@ -101,16 +107,18 @@
         }
         
         public function setItemInCartQuantity($item, $quantity){
+            $isRequestOk = false;
             $itemsInCart = $this->getItemsInCart();
             foreach ($itemsInCart  as &$objectInCart) {
                 if($objectInCart->getItem()->getId() == $item){
                     $objectInCart->setQuantity($quantity);
                     if(cartController::isUserConnected()){
                         $objectInCart->save();
+                        $isRequestOk = true;
                     }
                 }
-                
             }
+            return $isRequestOk;
         }
         
         public static function createOrderFromCart(){
@@ -152,14 +160,16 @@
         }
         
          public function removeItemFromCart($itemId){
+             $isRequestOk = false;
              $itemsInCart = $this->getItemsInCart();
             if(cartController::isUserConnected()){
-                 $index = 0;
+            $index = 0;
              $indexToRemove = NULL;
              foreach ($itemsInCart  as &$objectInCart) {
 
                 if($objectInCart->getItem()->getId() == $itemId){
                    $objectInCart->delete();
+                   $isRequestOk = true;
                 }
 
             }
@@ -182,10 +192,12 @@
 
                     unset($itemsInCart[$indexToRemove]);
                     $itemsInCart = array_values($itemsInCart);
+                    $isRequestOk = true;
                 }
             
                 $_SESSION['objectsInCart'] = $itemInCart;
             }
+            return $isRequestOk;
          }
              
         public function getNoTaxAmount($itemsInCart){
@@ -228,34 +240,44 @@
                     
                     
         function launch(){
-                if($this->request->action == 'addToCart'){
-                    $state = 'Item ajouté';
-                    $this->addItemInCart($item);
-                    $this->response->getContent()->assign('state', $state);
-                    $this->response->setTemplate('addedToCartResponse.tpl');
-                    return $this->response;
-                }else if ($this->request->action == 'setQuantity'){
-                    $state = 'Quantité augementée';
-                    echo $_POST['item']." - ".$_POST['quantity'];
-                    $this->setItemInCartQuantity($_POST['item'],$_POST['quantity']);
-                    $this->response->getContent()->assign('state', $state);
-                    $this->response->setTemplate('addedToCartResponse.tpl');
-                    return $this->response;
-                }else if ($this->request->action == 'removeItem'){
-                    $state = 'Item removed';
-                    $this->removeItemFromCart($_POST['item']);
-                    $this->response->getContent()->assign('state', $state);
-                    $this->response->setTemplate('addedToCartResponse.tpl');
+            $ERROR_CODE = 500;
+            $OK_CODE = 200;
+            $isRequestInError = false;
+            
+            if($this->request->action == 'addToCart'){
+                if($this->addItemInCart($item)){
+                    $this->response->setMessage("L'objet a bien été ajouté au panier");
+                    $this->response->setCode($OK_CODE);
                 }else{
-                    $itemsInCart = $this->getItemsInCart();
-                    $noTaxAmount = $this->getNoTaxAmount($itemsInCart);
-                    $amountWithTax = $this->getAmountWithTax($itemsInCart);
-                    $this->response->getContent()->assign('noTaxAmount', $noTaxAmount);
-                    $this->response->getContent()->assign('amountWithTax', $amountWithTax);
-                    $this->response->getContent()->assign('itemsInCart', $itemsInCart);
-                    $this->response->setTemplate('cart.tpl');
-                    
+                    $isRequestInError = true;
                 }
+                
+            }else if ($this->request->action == 'setQuantity'){
+                if($this->setItemInCartQuantity($_POST['item'],$_POST['quantity'])){
+                    $this->response->setCode($OK_CODE);
+                }else{
+                    $isRequestInError = true;
+                }
+            }else if ($this->request->action == 'removeItem'){
+                if($this->removeItemFromCart($_POST['item'])){
+                    $this->response->setCode($OK_CODE);
+                }else{
+                    $isRequestInError = true;
+                }
+            }else{
+                $itemsInCart = $this->getItemsInCart();
+                $noTaxAmount = $this->getNoTaxAmount($itemsInCart);
+                $amountWithTax = $this->getAmountWithTax($itemsInCart);
+                $this->response->getContent()->assign('noTaxAmount', $noTaxAmount);
+                $this->response->getContent()->assign('amountWithTax', $amountWithTax);
+                $this->response->getContent()->assign('itemsInCart', $itemsInCart);
+                $this->response->setTemplate('cart.tpl');
+            }
+                
+            if($isRequestInError){
+                $this->response->setMessage("Oups ! Un problème est survenu..");
+                $this->response->setCode($ERROR_CODE);
+            }
             return $this->response;
         }
         

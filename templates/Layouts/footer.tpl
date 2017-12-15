@@ -25,19 +25,19 @@
           <li><a class="grey-text text-lighten-3" href="index.php#header-best">Best sellers</a></li>
         </ul>
       </div>
-       <div class="col l3 s12">
+      <div class="col l3 s12">
         <h5 class="brown-text">Besoin d'aide?</h5>
         <ul>
-          <li><a class="grey-text text-lighten-3"  href="?module=help">FAQ</a></li>
-          <li><a class="grey-text text-lighten-3"  href="?module=help">Concept STORIOT</a></li>
-          <li><a class="grey-text text-lighten-3"  href="?module=help">Blog</a></li>
+          <li><a class="grey-text text-lighten-3" href="?module=help">FAQ</a></li>
+          <li><a class="grey-text text-lighten-3" href="?module=help">Concept STORIOT</a></li>
+          <li><a class="grey-text text-lighten-3" href="?module=help">Blog</a></li>
         </ul>
       </div>
     </div>
   </div>
   <div class="footer-cr">
     <div class="container">
-    © Copyright MRALED Industries - STORIOT # 2017 All right reserved
+      © Copyright MRALED Industries - STORIOT # 2017 All right reserved
     </div>
   </div>
 </footer>

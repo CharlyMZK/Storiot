@@ -6,7 +6,6 @@
 </div>
 <div class="row">
   <div class="col s12 m12 item-row">
-
     {foreach from=$newItems item=item} {if $smarty.foreach.item.index == 10} {break} {/if}
     <div class="col s4">
       <div class="card">
@@ -31,7 +30,6 @@
     <h4 class="header" id="header-promo">Promotions</h4>
   </div>
   <div class="col s12 m12 item-row">
-
     {foreach from=$promotedItems item=item} {if $smarty.foreach.item.index == 10} {break} {/if}
     <div class="col s4">
       <div class="card">
@@ -48,7 +46,6 @@
       </div>
     </div>
     {/foreach}
-
   </div>
   <div class="more-row center">
     <a href="?module=mainItem" class="btn waves-effect waves-light brown-background" type="submit">Voir plus</a>
@@ -57,7 +54,6 @@
     <h4 class="header" id="header-best">Best sellers</h4>
   </div>
   <div class="col s12 m12 item-row">
-
     {foreach from=$bestReviewItems item=item} {if $smarty.foreach.item.index == 10} {break} {/if}
     <div class="col s4">
       <div class="card">

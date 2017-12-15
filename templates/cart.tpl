@@ -24,33 +24,30 @@
               </thead>
               {if ($itemsInCart|@count) > 0}
               <tbody class="cart" id="paymentCardTable">
-                
-                  {foreach from=$itemsInCart item=item}
-                  <tr>
-                    <td>
-                      <a href="#">{$item->getItem()->getName()}</a>
-                    </td>
-                    <td>
-                      {$item->getItem()->getPrice()} €
-                    </td>
-                    <td>
-                      {$item->getItem()->getWeight()} g.
-                    </td>
-                    <td>
-                      {$item->getItem()->getSize()} cm
-                    </td>
-                    <td>
-                      <input id="{$item->getItem()->getId()}" name="{$item->getItem()->getId()}" type="number" value="{$item->getQuantity()}" class="input-quantity item-{$item->getItem()->getId()}-quantity">
-                    </td>
-                    <td>
-                      <a id="{$item->getItem()->getId()}" name="{$item->getItem()->getId()}" class="item-{$item->getItem()->getId()} remove-item btn-floating waves-effect waves-light red">
+                {foreach from=$itemsInCart item=item}
+                <tr>
+                  <td>
+                    <a href="#">{$item->getItem()->getName()}</a>
+                  </td>
+                  <td>
+                    {$item->getItem()->getPrice()} €
+                  </td>
+                  <td>
+                    {$item->getItem()->getWeight()} g.
+                  </td>
+                  <td>
+                    {$item->getItem()->getSize()} cm
+                  </td>
+                  <td>
+                    <input id="{$item->getItem()->getId()}" name="{$item->getItem()->getId()}" type="number" value="{$item->getQuantity()}" class="input-quantity item-{$item->getItem()->getId()}-quantity">
+                  </td>
+                  <td>
+                    <a id="{$item->getItem()->getId()}" name="{$item->getItem()->getId()}" class="item-{$item->getItem()->getId()} remove-item btn-floating waves-effect waves-light red">
                         <i class="material-icons">delete</i>
                       </a>
-                    </td>
-                  </tr>
-                  {/foreach}
-                
+                  </td>
                 </tr>
+                {/foreach}
                 <td></td>
                 <td></td>
                 <td></td>
@@ -60,18 +57,17 @@
                   <p class="recap">Total HT : {$noTaxAmount} €<br/> Total TTC : {$amountWithTax} €</p>
                 </td>
                 </tr>
-                 
+
               </tbody>
-                   {/if}
+              {/if}
             </table>
-          
-          <br/>
-           {if ($itemsInCart|@count) > 0}
-          <div class="center">
-            <button class="btn waves-effect waves-light" type="submit">Commander</button>
-            <button class="btn waves-effect waves-dark white black-text" id="cancel" type="reset">Retour</button>
-          </div>
-      {/if}
+
+            <br/> {if ($itemsInCart|@count) > 0}
+            <div class="center">
+              <button class="btn waves-effect waves-light" type="submit">Commander</button>
+              <button class="btn waves-effect waves-dark white black-text" id="cancel" type="reset">Retour</button>
+            </div>
+            {/if}
           </form>
         </div>
       </div>

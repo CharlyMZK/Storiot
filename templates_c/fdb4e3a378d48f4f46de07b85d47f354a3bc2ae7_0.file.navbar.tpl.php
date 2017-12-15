@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-12-10 11:00:59
+/* Smarty version 3.1.31, created on 2017-12-12 20:43:56
   from "/home/ubuntu/workspace/templates/Layouts/navbar.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5a2d13eba32396_14123795',
+  'unifunc' => 'content_5a303f8c349f53_42321045',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'fdb4e3a378d48f4f46de07b85d47f354a3bc2ae7' => 
     array (
       0 => '/home/ubuntu/workspace/templates/Layouts/navbar.tpl',
-      1 => 1512903616,
+      1 => 1513111273,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a2d13eba32396_14123795 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a303f8c349f53_42321045 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <nav>
   <div class="nav-wrapper">

@@ -1,4 +1,3 @@
-
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +8,8 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!--Import materialize.css-->
   <link rel="stylesheet" href="css/materialize.min.css" type="text/css" media="screen,projection" />
-  <link rel="stylesheet" href="css/custom.css"  type="text/css">
+  <link rel="stylesheet" href="css/main.css" type="text/css">
+  <link rel="stylesheet" href="css/carousel.css" type="text/css">
   <link rel="stylesheet" href="css/font-awesome.css" type="text/css">
   <!--Let browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />

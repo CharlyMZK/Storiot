@@ -26,13 +26,7 @@
       </div>
       {/foreach}
     </div>
-
-
   </div>
-</div>
-
-
-
 </div>
 <script type="text/javascript" src="js/cart.js"></script>
 {/block}
