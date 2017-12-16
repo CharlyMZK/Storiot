@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-12-08 10:57:18
+/* Smarty version 3.1.31, created on 2017-12-15 16:02:05
   from "/home/ubuntu/workspace/templates/home.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5a2a700ec7f219_37369921',
+  'unifunc' => 'content_5a33f1fd7d2231_70761531',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'eba264161d2565d2c55e33eefa2d9323ccb052f0' => 
     array (
       0 => '/home/ubuntu/workspace/templates/home.tpl',
-      1 => 1512730420,
+      1 => 1513353453,
       2 => 'file',
     ),
   ),
@@ -20,23 +20,23 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a2a700ec7f219_37369921 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a33f1fd7d2231_70761531 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
  <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_9694227035a2a700ec515a3_61203441', "body");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_15019421465a33f1fd79cca8_04955698', "body");
 ?>
 
 <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "Layouts/layout.tpl");
 }
 /* {block "body"} */
-class Block_9694227035a2a700ec515a3_61203441 extends Smarty_Internal_Block
+class Block_15019421465a33f1fd79cca8_04955698 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_9694227035a2a700ec515a3_61203441',
+    0 => 'Block_15019421465a33f1fd79cca8_04955698',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -49,7 +49,6 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 </div>
 <div class="row">
   <div class="col s12 m12 item-row">
-
     <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['newItems']->value, 'item');
 if ($_from !== null) {
@@ -88,7 +87,6 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);
     <h4 class="header" id="header-promo">Promotions</h4>
   </div>
   <div class="col s12 m12 item-row">
-
     <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['promotedItems']->value, 'item');
 if ($_from !== null) {
@@ -119,7 +117,6 @@ break 1;?> <?php }?>
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);
 ?>
 
-
   </div>
   <div class="more-row center">
     <a href="?module=mainItem" class="btn waves-effect waves-light brown-background" type="submit">Voir plus</a>
@@ -128,7 +125,6 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);
     <h4 class="header" id="header-best">Best sellers</h4>
   </div>
   <div class="col s12 m12 item-row">
-
     <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['bestReviewItems']->value, 'item');
 if ($_from !== null) {

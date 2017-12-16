@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-12-12 20:25:57
+/* Smarty version 3.1.31, created on 2017-12-15 17:58:44
   from "/home/ubuntu/workspace/templates/pay.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5a303b55672c62_50169139',
+  'unifunc' => 'content_5a340d54bd43c8_80121022',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9b83498b7d43cb397f9b47b1226980f4ecd18099' => 
     array (
       0 => '/home/ubuntu/workspace/templates/pay.tpl',
-      1 => 1513110354,
+      1 => 1513353347,
       2 => 'file',
     ),
   ),
@@ -20,28 +20,27 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a303b55672c62_50169139 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a340d54bd43c8_80121022 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
  <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_6254827735a303b5566c609_02497351', "body");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_783241605a340d54bcdd61_31628042', "body");
 ?>
 
 <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "Layouts/layout.tpl");
 }
 /* {block "body"} */
-class Block_6254827735a303b5566c609_02497351 extends Smarty_Internal_Block
+class Block_783241605a340d54bcdd61_31628042 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_6254827735a303b5566c609_02497351',
+    0 => 'Block_783241605a340d54bcdd61_31628042',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 ?>
-
 
 <div class="col s12">
   <div class="page-header">
@@ -91,8 +90,6 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
     </div>
   </div>
 </div>
-
-
 <?php echo '<script'; ?>
  type="text/javascript" src="js/pay.js"><?php echo '</script'; ?>
 >

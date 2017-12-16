@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-12-15 15:59:45
+/* Smarty version 3.1.31, created on 2017-12-15 16:02:54
   from "/home/ubuntu/workspace/templates/cart.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5a33f1712db0b7_30423601',
+  'unifunc' => 'content_5a33f22ea0e2f1_08447770',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f02c0238916691175678e058dafde2add92ecacd' => 
     array (
       0 => '/home/ubuntu/workspace/templates/cart.tpl',
-      1 => 1513353579,
+      1 => 1513353601,
       2 => 'file',
     ),
   ),
@@ -20,21 +20,21 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a33f1712db0b7_30423601 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a33f22ea0e2f1_08447770 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
  <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_18999138075a33f171283be9_95229776', "body");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_608990255a33f22e9e3594_72389373', "body");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "Layouts/layout.tpl");
 }
 /* {block "body"} */
-class Block_18999138075a33f171283be9_95229776 extends Smarty_Internal_Block
+class Block_608990255a33f22e9e3594_72389373 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_18999138075a33f171283be9_95229776',
+    0 => 'Block_608990255a33f22e9e3594_72389373',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -109,6 +109,11 @@ foreach ($_from as $_smarty_tpl->tpl_vars['item']->value) {
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);
 ?>
 
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
                 <td>
                   <p class="recap">Total HT : <?php echo $_smarty_tpl->tpl_vars['noTaxAmount']->value;?>
  €<br/> Total TTC : <?php echo $_smarty_tpl->tpl_vars['amountWithTax']->value;?>
