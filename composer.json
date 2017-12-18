@@ -8,6 +8,6 @@
     "autoload":
         {
         "classmap":
-        ["generated-classes/","controllers/","exceptions/"]
+        ["generated-classes/","controllers/","exceptions/","libs/"]
         }
 }

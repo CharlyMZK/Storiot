@@ -12,7 +12,7 @@
           <div class="card-content black-text">
             <div class="row">
               <div class="col offset-s1 s10 ">
-                <img class="profile-img" src="https://colerisetemp2.files.wordpress.com/2009/11/dock-icon-flat.png" alt="">
+                <img class="profile-img" src="https://colerisetemp2.files.wordpress.com/2009/11/dock-icon-flat.png" alt="logo storiot">
                 <div class="faq">
                   <h5>Questions :</h5>
                   <p>Informations générales

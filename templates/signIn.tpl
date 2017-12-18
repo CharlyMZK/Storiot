@@ -13,7 +13,7 @@
             <form id="signInForm" action="/index.php?module=signIn&action=sendForm" method="post">
               <div class="row">
                 <div class="col offset-s1 s10">
-                  <img class="profile-img" src="https://colerisetemp2.files.wordpress.com/2009/11/dock-icon-flat.png" alt="">
+                  <img class="profile-img" src="https://colerisetemp2.files.wordpress.com/2009/11/dock-icon-flat.png" alt="logo storiot">
                 </div>
                 {if $errorMessage}
                 <div class="col offset-s1 s10">
@@ -53,5 +53,5 @@
     </div>
   </div>
 </div>
-<script type="text/javascript" src="js/signIn.js"></script>
+<script src="js/signIn.js"></script>
 {/block}

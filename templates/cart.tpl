@@ -9,7 +9,7 @@
     <div class="col s11 m11">
       <div class="card blue-grey darken-1">
         <div class="card-content black-text">
-          <form action="?module=pay&action=pay" method="POST">
+          <form action="?module=pay&action=chooseCreditCard" method="POST">
             <table class="striped highlight centered responsive-table">
               <thead>
                 <tr>
@@ -74,5 +74,5 @@
     </div>
   </div>
 </div>
-<script type="text/javascript" src="js/cart.js"></script>
+<script src="js/cart.js"></script>
 {/block}

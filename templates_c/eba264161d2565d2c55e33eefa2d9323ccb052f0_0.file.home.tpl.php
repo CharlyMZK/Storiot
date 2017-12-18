@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-12-15 16:02:05
+/* Smarty version 3.1.31, created on 2017-12-17 15:25:25
   from "/home/ubuntu/workspace/templates/home.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5a33f1fd7d2231_70761531',
+  'unifunc' => 'content_5a368c65520741_19387163',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'eba264161d2565d2c55e33eefa2d9323ccb052f0' => 
     array (
       0 => '/home/ubuntu/workspace/templates/home.tpl',
-      1 => 1513353453,
+      1 => 1513522949,
       2 => 'file',
     ),
   ),
@@ -20,23 +20,23 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a33f1fd7d2231_70761531 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a368c65520741_19387163 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
  <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_15019421465a33f1fd79cca8_04955698', "body");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_13520105005a368c654db7e0_02481254', "body");
 ?>
 
 <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "Layouts/layout.tpl");
 }
 /* {block "body"} */
-class Block_15019421465a33f1fd79cca8_04955698 extends Smarty_Internal_Block
+class Block_13520105005a368c654db7e0_02481254 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_15019421465a33f1fd79cca8_04955698',
+    0 => 'Block_13520105005a368c654db7e0_02481254',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -162,10 +162,10 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);
 </div>
 </div>
 <?php echo '<script'; ?>
- type="text/javascript" src="js/cart.js"><?php echo '</script'; ?>
+ src="js/cart.js"><?php echo '</script'; ?>
 >
 <?php echo '<script'; ?>
- type="text/javascript" src="js/home.js"><?php echo '</script'; ?>
+ src="js/home.js"><?php echo '</script'; ?>
 >
 <?php
 }

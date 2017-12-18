@@ -12,7 +12,7 @@
           <form name="contactForm" action="/index.php?module=contact&action=sendForm" method="post">
             <div class="row">
               <div class="col offset-s1 s10">
-                <img class="profile-img" src="https://colerisetemp2.files.wordpress.com/2009/11/dock-icon-flat.png" alt="">
+                <img class="profile-img" src="https://colerisetemp2.files.wordpress.com/2009/11/dock-icon-flat.png" alt="logo storiot">
               </div>
               <div class="col offset-s1 s10">
                 <div class="input-field col s12">
@@ -54,5 +54,5 @@
     </div>
   </div>
 </div>
-<script type="text/javascript" src="js/contact.js"></script>
+<script src="js/contact.js"></script>
 {/block}

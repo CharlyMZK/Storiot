@@ -11,7 +11,7 @@
         <div class="card-content black-text">
           <div class="row">
             <div class="col offset-s1 s10">
-              <img class="profile-img" src="https://colerisetemp2.files.wordpress.com/2009/11/dock-icon-flat.png">
+              <img class="profile-img" src="https://colerisetemp2.files.wordpress.com/2009/11/dock-icon-flat.png" alt="logo storiot">
             </div>
             {if $errorMessage}
             <div class="col offset-s1 s10">
@@ -85,5 +85,5 @@
     </div>
   </div>
 </div>
-<script type="text/javascript" src="js/confirmSignUp.js"></script>
+<script src="js/confirmSignUp.js"></script>
 {/block}

@@ -28,5 +28,5 @@
     </div>
   </div>
 </div>
-<script type="text/javascript" src="js/cart.js"></script>
+<script src="js/cart.js"></script>
 {/block}

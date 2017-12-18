@@ -99,6 +99,12 @@ nav {
     color: #1d7d74;
 }
 
+.title{
+    margin-top: 1em;
+    margin-bottom: 1em;
+    color: #1d7d74;
+}
+
 card a {
     color: #26a69a !important;
 }
@@ -337,12 +343,14 @@ nav {
     text-align: center;
 }
 
-.custom-error {
-    background-color: red;
+.radio-text-color {
+    color: grey !important;
 }
 
-
-
+.custom-error{
+    color: #F44336 !important;
+    font-size: 1rem;
+}
 .bg-overlay {
     height: 4em;
     background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url('https://static.pexels.com/photos/220118/pexels-photo-220118.jpeg') center center no-repeat scroll;

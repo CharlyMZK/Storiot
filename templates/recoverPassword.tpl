@@ -13,7 +13,7 @@
             <form id="recoverPasswordForm" action="/index.php?module=recoverPassword&action=sendForm" method="post">
               <div class="row">
                 <div class="col offset-s1 s10">
-                  <img class="profile-img" src="https://colerisetemp2.files.wordpress.com/2009/11/dock-icon-flat.png" alt="">
+                  <img class="profile-img" src="https://colerisetemp2.files.wordpress.com/2009/11/dock-icon-flat.png" alt="logo storiot">
                 </div>
                 <div class="col offset-s1 s10">
                   <div class="input-field col s12">
@@ -38,5 +38,5 @@
     </div>
   </div>
 </div>
-<script type="text/javascript" src="js/recoverPassword.js"></script>
+<script src="js/recoverPassword.js"></script>
 {/block}

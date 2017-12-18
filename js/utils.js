@@ -8,13 +8,13 @@
             alignment: 'right' // Displays dropdown with edge aligned to the left of button
         });
 
-       /* $('.search').on("keypress", function(e) {
-            if (e.keyCode == 13) {
-                $.post('/index.php?module=mainItem', {
-                    filter: $(this).val()
-                });
-            }
-        });*/
+        /* $('.search').on("keypress", function(e) {
+             if (e.keyCode == 13) {
+                 $.post('/index.php?module=mainItem', {
+                     filter: $(this).val()
+                 });
+             }
+         });*/
     }); // End Document Ready
 })(jQuery); // End of jQuery name space
 

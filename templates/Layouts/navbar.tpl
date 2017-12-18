@@ -1,6 +1,6 @@
 <nav>
   <div class="nav-wrapper">
-    <a href="#" class="brand-logo"> <a href="../" class="navbar-brand"><i class="fa fa-rocket" aria-hidden="true"></i>&nbsp;STORIOT</a></a>
+    <a href="#" class="brand-logo"></a> <a href="../" class="navbar-brand"><i class="fa fa-rocket" aria-hidden="true"></i>&nbsp;STORIOT</a>
     <ul class="hide-on-med-and-down right">
       <li>
         <div class="center">
@@ -9,7 +9,7 @@
               <div class="input-field col s6 s12">
                 <form id="signInForm" action="/index.php?module=mainItem&action=sendForm" method="post">
                   <i class="material-icons prefix">search</i>
-                  <input class="autocomplete red-text search" name="search" type="text" placeholder="search" value={$search}>
+                  <input class="autocomplete red-text search" name="search" type="text" placeholder="search"{if $search}value={$search}{/if}>
                 </form>
               </div>
             </div>
@@ -33,7 +33,6 @@
     </ul>
   </div>
 </nav>
-</ul>
 
 <ul id="dropdownCategories" class="dropdown-content">
   <li><a href="?module=mainItem">Toutes</a></li>

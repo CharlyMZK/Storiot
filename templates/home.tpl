@@ -76,6 +76,6 @@
   </div>
 </div>
 </div>
-<script type="text/javascript" src="js/cart.js"></script>
-<script type="text/javascript" src="js/home.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/home.js"></script>
 {/block}

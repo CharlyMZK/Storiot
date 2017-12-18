@@ -2,41 +2,16 @@
 require '../vendor/autoload.php';
 $app = new \Slim\App;
 
-function json_response($message = null, $code = 200)
-{
-    // clear the old headers
-    header_remove();
-    // set the actual code
-    http_response_code($code);
-    // set the header to make sure cache is forced
-    header("Cache-Control: no-transform,public,max-age=300,s-maxage=900");
-    // treat this as json
-    header('Content-Type: application/json');
-    $status = array(
-        200 => '200 OK',
-        400 => '400 Bad Request',
-        422 => 'Unprocessable Entity',
-        500 => '500 Internal Server Error'
-        );
-    // ok, validation error, or failure
-    header('Status: '.$status[$code]);
-    // return the encoded json
-    return json_encode(array(
-        'status' => $code < 300, // success or not?
-        'message' => $message
-        ));
-}
-
 function runPayment(){
     sleep(1);
     return true;
 }
 
-$app->get('/payOrder/{id}',function ($resquest,$response,$args) {
+$app->post('/payOrder/{id}',function ($resquest,$response,$args) {
     if(runPayment()){
-        return $response->write(json_response('Le paiement a bien eu lieu, merci !',200));     
+        return $response->write(JSONHandler::json_response('Le paiement a bien eu lieu, merci !',200));     
     }else{
-        return $response->write(json_response('Oups ! Un problème est survenu ..',500));    
+        return $response->write(JSONHandler::json_response('Oups ! Un problème est survenu ..',500));    
     }
     
 });

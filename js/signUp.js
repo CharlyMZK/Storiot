@@ -7,47 +7,88 @@ $('#signUpForm').submit(function(event) {
     var regExZipCode = /[0-9]{5}/;
     var regExCity = /[a-z -]{1,30}/i;
     var regExPhone = /[0-9]{10}/;
-    
-    if(!regExEmail.test($('#email').val())){
-        alert('L\'email n\'est pas valide');
-        $('#email').addClass('custom-error');
-        event.preventDefault(); 
+
+    var error = false;
+
+    if (!regExEmail.test($('#email').val())) {
+        $('label[for="email"]').removeClass().addClass('active');
+        $('label[for="email"]').attr('data-error', 'L\'email n\'est pas valide');
+        $('#email').addClass('invalid');
+        error = true;
     }
-    if(!regExPassword.test($('#password').val())){
-        alert('Le mot de passe doit faire 6 caractères minimum');
-        event.preventDefault(); 
+    if (!regExPassword.test($('#password').val())) {
+        $('label[for="password"]').removeClass().addClass('active');
+        $('label[for="password"]').attr('data-error', 'Le mot de passe doit faire 6 caractères minimum');
+        $('#password').addClass('invalid');
+        error = true;
     }
-    if(!regExPassword.test($('#confirmPassword').val())){
-        alert('Le mot de passe de confirmation doit faire 6 caractères minimum');
-        event.preventDefault(); 
+    if (!regExPassword.test($('#confirmPassword').val())) {
+        $('label[for="confirmPassword"]').removeClass().addClass('active');
+        $('label[for="confirmPassword"]').attr('data-error', 'Le mot de passe de confirmation doit faire 6 caractères minimum');
+        $('#confirmPassword').addClass('invalid');
+        error = true;
     }
-    if(!regExName.test($('#lastName').val())){
-        alert('Le nom n\'est pas valide');
-        event.preventDefault(); 
+    if ($('input[name="gender"]:checked').length == 0) {
+        $('#radioBtnGender').append('<p class="custom-error">Veuillez selectionner une civilité</p>');
+        error = true;
     }
-    if(!regExName.test($('#firstName').val())){
-        alert('Le prénom n\'est pas valide');
-        event.preventDefault(); 
+    if (!regExName.test($('#lastName').val())) {
+        $('label[for="lastName"]').removeClass().addClass('active');
+        $('label[for="lastName"]').attr('data-error', 'Le nom n\'est pas valide');
+        $('#lastName').addClass('invalid');
+        error = true;
     }
-    if(!regExBithDate.test($('#birthDate').val())){
-        alert('La date de naissance n\'est pas valide');
-        event.preventDefault(); 
+    if (!regExName.test($('#firstName').val())) {
+        $('label[for="firstName"]').removeClass().addClass('active');
+        $('label[for="firstName"]').attr('data-error', 'Le prénom n\'est pas valide');
+        $('#firstName').addClass('invalid');
+        error = true;
     }
-    if(!regExAddress.test($('#address').val())){
-        alert('L\'adresse n\'est pas valide');
-        event.preventDefault(); 
+    if (!regExBithDate.test($('#birthDate').val())) {
+        $('label[for="birthDate"]').removeClass().addClass('active');
+        $('label[for="birthDate"]').attr('data-error', 'Champ invalide');
+        $('#birthDate').addClass('invalid');
+        error = true;
     }
-    if(!regExZipCode.test($('#zipCode').val())){
-        alert('Le code postal doit être composé de 5 chiffres');
-        event.preventDefault(); 
+    else {
+        $('#birthDate').addClass('valid');
     }
-    if(!regExCity.test($('#city').val())){
-        alert('La ville n\'est pas valide');
-        event.preventDefault(); 
+    if (!regExAddress.test($('#address').val())) {
+        $('label[for="address"]').removeClass().addClass('active');
+        $('label[for="address"]').attr('data-error', 'L\'adresse n\'est pas valide');
+        $('#address').addClass('invalid');
+        error = true;
     }
-    if(!regExPhone.test($('#phone').val())){
-        alert('Le numéro de téléphone doit être composé de 10 chiffres');
-        event.preventDefault(); 
+    if (!regExZipCode.test($('#zipCode').val())) {
+        $('label[for="zipCode"]').removeClass().addClass('active');
+        $('label[for="zipCode"]').attr('data-error', 'Le code postal doit être composé de 5 chiffres');
+        $('#zipCode').addClass('invalid');
+        error = true;
+    }
+    if (!regExCity.test($('#city').val())) {
+        $('label[for="city"]').removeClass().addClass('active');
+        $('label[for="city"]').attr('data-error', 'La ville n\'est pas valide');
+        $('#city').addClass('invalid');
+        error = true;
+    }
+    if (!regExPhone.test($('#phone').val())) {
+        $('label[for="phone"]').removeClass().addClass('active');
+        $('label[for="phone"]').attr('data-error', 'Le numéro de téléphone doit être composé de 10 chiffres');
+        $('#phone').addClass('invalid');
+        error = true;
+    }
+
+    if ($('#password').val() != $('#confirmPassword').val()) {
+        $('label[for="password"]').attr('data-error', 'Le mot de passe et le mot de passe de confirmation ne correspondent pas');
+        $('label[for="confirmPassword"]').attr('data-error', 'Le mot de passe et le mot de passe de confirmation ne correspondent pas');
+        $('#password').addClass('invalid');
+        $('#confirmPassword').addClass('invalid');
+        error = true;
+    }
+
+    if (error) {
+        Materialize.toast('Il y a des erreurs dans le formulaire, veuillez les corriger !', 4000, 'red');
+        event.preventDefault();
     }
 });
 
@@ -57,25 +98,25 @@ $('.datepicker').pickadate({
     monthsShort: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jui', 'Jui', 'Aoû', 'Sep', 'Oct', 'Nov', 'Dec'],
     weekdaysFull: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
     weekdaysShort: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
-    
-    selectMonths: true, 
+
+    selectMonths: true,
     selectYears: 200,
     firstDay: 1,
-    min: new Date(1920,1,1),
+    min: new Date(1920, 1, 1),
     max: Date.now(),
     format: 'dd/mm/yyyy',
-    
+
     // Boutons 
     today: '',
     clear: 'Effacer',
     close: 'Ok',
-    
-    
+
+
     // Accessibilité
     labelMonthNext: 'Mois suivant',
     labelMonthPrev: 'Mois précédent',
     labelMonthSelect: 'Sélectionner un mois',
     labelYearSelect: 'Sélectionner une année',
-    
+
     closeOnSelect: false
 });

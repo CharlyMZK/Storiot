@@ -132,11 +132,9 @@
           <tr>
             <td>
               <p>{$creditCard->getReference()}</p>
-
             </td>
             <td colspan="3">
               <p>{$creditCard->getExpireMonth()}/{$creditCard->getExpireYear()}</p>
-
             </td>
             <td>
               <p>{$creditCard->getHolder()}</p>
@@ -262,5 +260,5 @@
   </div>
 </div>
 {/if}
-<script type="text/javascript" src="js/manageAccount.js"></script>
+<script src="js/manageAccount.js"></script>
 {/block}
