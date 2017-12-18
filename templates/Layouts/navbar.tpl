@@ -7,9 +7,9 @@
           <div class="col s12 ">
             <div id="topbarsearch">
               <div class="input-field col s6 s12">
-                <form id="signInForm" action="/index.php?module=mainItem&action=sendForm" method="post">
+                <form id="searchForm" action="/index.php?module=mainItem&action=sendForm" method="post">
                   <i class="material-icons prefix">search</i>
-                  <input class="autocomplete red-text search" name="search" type="text" placeholder="search"{if $search}value={$search}{/if}>
+                  <input class="autocomplete red-text search" name="search" type="text" placeholder="search" {if $search}value={$search}{/if}>
                 </form>
               </div>
             </div>
@@ -28,12 +28,10 @@
       <li><a id="manageAccount" href="?module=manageAccount">{$smarty.session.userFirstName}</a></li>
       <li><a href="?module=home&action=signOut">Deconnexion</a></li>
       {/if}
-
       <li><a class="dropdown-button" href="#!" data-activates="dropdownDummies">Dummies<i class="material-icons right">arrow_drop_down</i></a></li>
     </ul>
   </div>
 </nav>
-
 <ul id="dropdownCategories" class="dropdown-content">
   <li><a href="?module=mainItem">Toutes</a></li>
   <li><a href="?module=mainItem&action=it">It</a></li>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-12-18 07:57:35
+/* Smarty version 3.1.31, created on 2017-12-18 10:28:07
   from "/home/ubuntu/workspace/templates/signUp.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5a3774ef331765_85371391',
+  'unifunc' => 'content_5a379837746d09_32421688',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '78e2a357a54ca4dfb611fb28fcacdc6bcbb7c0af' => 
     array (
       0 => '/home/ubuntu/workspace/templates/signUp.tpl',
-      1 => 1513583852,
+      1 => 1513590709,
       2 => 'file',
     ),
   ),
@@ -20,31 +20,33 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a3774ef331765_85371391 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a379837746d09_32421688 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
  <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_17102916555a3774ef31c4a5_86449558', "body");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_10683242685a379837730ec1_94485588', "body");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "Layouts/layout.tpl");
 }
 /* {block "body"} */
-class Block_17102916555a3774ef31c4a5_86449558 extends Smarty_Internal_Block
+class Block_10683242685a379837730ec1_94485588 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_17102916555a3774ef31c4a5_86449558',
+    0 => 'Block_10683242685a379837730ec1_94485588',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
-<div class="col s12">
-  <div class="page-header">
-    <h4 class="header" id="header-main">Inscription</h4>
+<header>
+  <div class="col s12">
+    <div class="page-header">
+      <h4 class="header" id="header-main">Inscription</h4>
+    </div>
   </div>
-</div>
+</header>
 <div class="col m10 offset-m1 s12 l10 offset-l1">
   <div class="row">
     <div class="col s11 m11">
@@ -53,7 +55,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
           <form id="signUpForm" action="/index.php?module=signUp&action=sendForm" method="post">
             <div class="row">
               <div class="col offset-s1 s10">
-                <img class="profile-img" src="https://colerisetemp2.files.wordpress.com/2009/11/dock-icon-flat.png" alt="logo storiot">
+                <img class="profile-img" src="img/logo.png" alt="logo storiot">
               </div>
               <?php if ($_smarty_tpl->tpl_vars['errorMessage']->value) {?>
               <div class="col offset-s1 s10">
@@ -85,7 +87,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
               </div>
               <div class="col offset-s1 s10">
                 <div class="col s12" id="radioBtnGender">
-                  <p class="radio-text-color">Civilité :</p>
+                  <span class="radio-text-color">Civilité :</span>
                   <p>
                     <input class="with-gap" id="male" name="gender" type="radio" value="m" />
                     <label for="male">Monsieur</label>
@@ -110,7 +112,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
               </div>
               <div class="col offset-s1 s10">
                 <div class="input-field col s12">
-                  <input class="datepicker" id="birthDate" name="birthDate" type="text" />
+                  <input class="datepicker" id="birthDate" name="birthDate" type="text"/>
                   <label class="active" for="birthDate">Date de naissance</label>
                 </div>
               </div>

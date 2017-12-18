@@ -1,9 +1,11 @@
 {extends file="Layouts/layout.tpl"} {block "body"}
-<div class="col s12">
-  <div class="page-header">
-    <h4 class="header" id="header-main">Inscription</h4>
+<header>
+  <div class="col s12">
+    <div class="page-header">
+      <h4 class="header" id="header-main">Inscription</h4>
+    </div>
   </div>
-</div>
+</header>
 <div class="col m10 offset-m1 s12 l10 offset-l1">
   <div class="row">
     <div class="col s11 m11">
@@ -12,7 +14,7 @@
           <form id="signUpForm" action="/index.php?module=signUp&action=sendForm" method="post">
             <div class="row">
               <div class="col offset-s1 s10">
-                <img class="profile-img" src="https://colerisetemp2.files.wordpress.com/2009/11/dock-icon-flat.png" alt="logo storiot">
+                <img class="profile-img" src="img/logo.png" alt="logo storiot">
               </div>
               {if $errorMessage}
               <div class="col offset-s1 s10">
@@ -43,7 +45,7 @@
               </div>
               <div class="col offset-s1 s10">
                 <div class="col s12" id="radioBtnGender">
-                  <p class="radio-text-color">Civilité :</p>
+                  <span class="radio-text-color">Civilité :</span>
                   <p>
                     <input class="with-gap" id="male" name="gender" type="radio" value="m" />
                     <label for="male">Monsieur</label>
@@ -68,7 +70,7 @@
               </div>
               <div class="col offset-s1 s10">
                 <div class="input-field col s12">
-                  <input class="datepicker" id="birthDate" name="birthDate" type="text" />
+                  <input class="datepicker" id="birthDate" name="birthDate" type="text"/>
                   <label class="active" for="birthDate">Date de naissance</label>
                 </div>
               </div>

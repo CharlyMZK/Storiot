@@ -29,7 +29,7 @@ $('#signUpForm').submit(function(event) {
         error = true;
     }
     if ($('input[name="gender"]:checked').length == 0) {
-        $('#radioBtnGender').append('<p class="custom-error">Veuillez selectionner une civilité</p>');
+        $('#radioBtnGender').append('<span class="custom-error">Veuillez selectionner une civilité</span>');
         error = true;
     }
     if (!regExName.test($('#lastName').val())) {

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-12-11 15:15:40
+/* Smarty version 3.1.31, created on 2017-12-18 09:48:20
   from "/home/ubuntu/workspace/templates/manageAccount.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5a2ea11cd489a3_27916353',
+  'unifunc' => 'content_5a378ee4848841_78404917',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '04aa2cbf9cf3428bf7dad160cfcd433090449ee3' => 
     array (
       0 => '/home/ubuntu/workspace/templates/manageAccount.tpl',
-      1 => 1513005338,
+      1 => 1513590494,
       2 => 'file',
     ),
   ),
@@ -20,34 +20,36 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a2ea11cd489a3_27916353 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a378ee4848841_78404917 (Smarty_Internal_Template $_smarty_tpl) {
 if (!is_callable('smarty_modifier_date_format')) require_once '/home/ubuntu/workspace/vendor/smarty/smarty/libs/plugins/modifier.date_format.php';
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
  <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_10303133035a2ea11cd0a552_86481194', "body");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_13367327295a378ee47e4719_34715555', "body");
 ?>
 
 <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "Layouts/layout.tpl");
 }
 /* {block "body"} */
-class Block_10303133035a2ea11cd0a552_86481194 extends Smarty_Internal_Block
+class Block_13367327295a378ee47e4719_34715555 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_10303133035a2ea11cd0a552_86481194',
+    0 => 'Block_13367327295a378ee47e4719_34715555',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
-<div class="col s12">
-  <div class="page-header">
-    <h4 class="header" id="header-main">Gestion du compte</h4>
+<header>
+  <div class="col s12">
+    <div class="page-header">
+      <h4 class="header" id="header-main">Gestion du compte</h4>
+    </div>
   </div>
-</div>
+</header>
 <?php if ($_smarty_tpl->tpl_vars['user']->value) {?>
 <div class="card dark">
   <div class="card-tabs indicator blue">
@@ -64,7 +66,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
         <div class="input-field col s12">
           <input id="email" type="email" value=<?php echo $_smarty_tpl->tpl_vars['user']->value->getEmail();?>
 >
-          <label for="email data-error=" erreur="" data-success="ok">Email</label>
+          <label for="email">Email</label>
         </div>
       </div>
       <div class="col offset-s1 s10" style="color:grey;">
@@ -80,22 +82,22 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
       </div>
       <div class="col offset-s1 s10">
         <div class="input-field col s12">
-          <input type="text" id="lastName" pattern="/^[a-Z ,.'-]+$/i" value=<?php echo $_smarty_tpl->tpl_vars['user']->value->getLastName();?>
->
+          <input type="text" id="lastName" pattern="[A-z ,.'-]+$" value="<?php echo $_smarty_tpl->tpl_vars['user']->value->getLastName();?>
+">
           <label for="lastName">Nom</label>
         </div>
       </div>
       <div class="col offset-s1 s10">
         <div class="input-field col s12">
-          <input id="firstName" type="text" pattern="/^[a-Z ,.'-]+$/i" value=<?php echo $_smarty_tpl->tpl_vars['user']->value->getFirstName();?>
->
+          <input id="firstName" type="text" pattern="[A-z ,.'-]+$" value="<?php echo $_smarty_tpl->tpl_vars['user']->value->getFirstName();?>
+">
           <label for="firstName">Prenom</label>
         </div>
       </div>
       <div class="col offset-s1 s10">
         <div class="input-field col s12">
-          <input class="datepicker" id="birthDate" type="time" data-value=<?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['user']->value->getBirthDate(),"%d/%m/%Y");?>
-/>
+          <input class="datepicker" id="birthDate" type="text" data-value="<?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['user']->value->getBirthDate(),"%d/%m/%Y");?>
+"/>
           <label class="active" for="birthDate">Date de naissance</label>
         </div>
       </div>
@@ -133,8 +135,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
     <div id="addressCard">
       <div class="col offset-s1 s10">
         <div class="input-field col s12">
-          <input id="address" type="text" value=<?php echo $_smarty_tpl->tpl_vars['user']->value->getAddress();?>
->
+          <input id="address" type="text" value={$user->getAddress()}>
           <label for="address">Adresse postale</label>
         </div>
       </div>
@@ -176,7 +177,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
             <th colspan="3">Expiration</th>
             <th>Titulaire</th>
             <th>Supprimer</th>
-            <th/>
+            <th></th>
           </tr>
         </thead>
         <tbody id="paymentCardTable">
@@ -189,13 +190,11 @@ foreach ($_from as $_smarty_tpl->tpl_vars['creditCard']->value) {
             <td>
               <p><?php echo $_smarty_tpl->tpl_vars['creditCard']->value->getReference();?>
 </p>
-
             </td>
             <td colspan="3">
               <p><?php echo $_smarty_tpl->tpl_vars['creditCard']->value->getExpireMonth();?>
 /<?php echo $_smarty_tpl->tpl_vars['creditCard']->value->getExpireYear();?>
 </p>
-
             </td>
             <td>
               <p><?php echo $_smarty_tpl->tpl_vars['creditCard']->value->getHolder();?>
@@ -284,7 +283,8 @@ foreach ($_from as $_smarty_tpl->tpl_vars['order']->value) {
                 <th/>
               </tr>
             </thead>
-            <tbody class="cart" id="paymentCardTable">. <?php
+            <tbody class="cart" id="packageTable">
+            <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['order']->value->getItemInPackages(), 'item');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['item']->value) {
@@ -317,16 +317,8 @@ foreach ($_from as $_smarty_tpl->tpl_vars['item']->value) {
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);
 ?>
 
-              </tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              </tr>
             </tbody>
           </table>
-
           <br/>
           <div class="center">
             <button class="btn waves-effect waves-light" type="submit">Telecharger la facture</button>
@@ -342,8 +334,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);
 ?>
- 
-<?php } else { ?>
+ <?php } else { ?>
 <div class="col offset-s1 s10">
   <div class="input-field col s12">
     <div class="card-panel red">
@@ -353,7 +344,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);
 </div>
 <?php }
 echo '<script'; ?>
- type="text/javascript" src="js/manageAccount.js"><?php echo '</script'; ?>
+ src="js/manageAccount.js"><?php echo '</script'; ?>
 >
 <?php
 }

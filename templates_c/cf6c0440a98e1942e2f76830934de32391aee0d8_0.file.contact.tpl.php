@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-12-07 10:22:20
+/* Smarty version 3.1.31, created on 2017-12-18 08:35:37
   from "/home/ubuntu/workspace/templates/contact.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5a29165cd56713_88467131',
+  'unifunc' => 'content_5a377dd96375a6_19862222',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'cf6c0440a98e1942e2f76830934de32391aee0d8' => 
     array (
       0 => '/home/ubuntu/workspace/templates/contact.tpl',
-      1 => 1512642139,
+      1 => 1513523696,
       2 => 'file',
     ),
   ),
@@ -20,21 +20,21 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a29165cd56713_88467131 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a377dd96375a6_19862222 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
  <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_18488052735a29165cd4f6c0_36641111', "body");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_4037619815a377dd9630bc5_62294682', "body");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "Layouts/layout.tpl");
 }
 /* {block "body"} */
-class Block_18488052735a29165cd4f6c0_36641111 extends Smarty_Internal_Block
+class Block_4037619815a377dd9630bc5_62294682 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_18488052735a29165cd4f6c0_36641111',
+    0 => 'Block_4037619815a377dd9630bc5_62294682',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -53,7 +53,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
           <form name="contactForm" action="/index.php?module=contact&action=sendForm" method="post">
             <div class="row">
               <div class="col offset-s1 s10">
-                <img class="profile-img" src="https://colerisetemp2.files.wordpress.com/2009/11/dock-icon-flat.png" alt="">
+                <img class="profile-img" src="https://colerisetemp2.files.wordpress.com/2009/11/dock-icon-flat.png" alt="logo storiot">
               </div>
               <div class="col offset-s1 s10">
                 <div class="input-field col s12">
@@ -96,7 +96,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
   </div>
 </div>
 <?php echo '<script'; ?>
- type="text/javascript" src="js/contact.js"><?php echo '</script'; ?>
+ src="js/contact.js"><?php echo '</script'; ?>
 >
 <?php
 }

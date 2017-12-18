@@ -1,10 +1,11 @@
 {extends file="Layouts/layout.tpl"} {block "body"}
-<div class="col s12">
-  <div class="page-header">
-    <h4 class="header" id="header-main">Paiement</h4>
+<header>
+  <div class="col s12">
+    <div class="page-header">
+      <h4 class="header" id="header-main">Paiement</h4>
+    </div>
   </div>
-</div>
-
+</header>
 <div class="row hide-on-small-only hero-home">
   <div class="col m10 offset-m1 s12 l10 offset-l1">
     <div class="row">
@@ -50,7 +51,7 @@
             <div class="card-content black-text">
               <div class="row">
                 <div class="col offset-s1 s10 ">
-                  <img class="profile-img" src="https://colerisetemp2.files.wordpress.com/2009/11/dock-icon-flat.png" alt="logo storiot">
+                  <img class="profile-img" src="img/logo.png" alt="logo storiot">
                   <div class="payment">
                     <h5>Nous procedons au paiement..</h5>
                     <div class="row">

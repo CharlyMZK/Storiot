@@ -1,9 +1,11 @@
 {extends file="Layouts/layout.tpl"} {block "body"}
-<div class="col s12">
-  <div class="page-header">
-    <h4 class="header" id="header-main">Confirmation d'inscription</h4>
+<header>
+  <div class="col s12">
+    <div class="page-header">
+      <h4 class="header" id="header-main">Confirmation d'inscription</h4>
+    </div>
   </div>
-</div>
+</header>
 <div class="col m10 offset-m1 s12 l10 offset-l1">
   <div class="row">
     <div class="col s11 m11">
@@ -11,7 +13,7 @@
         <div class="card-content black-text">
           <div class="row">
             <div class="col offset-s1 s10">
-              <img class="profile-img" src="https://colerisetemp2.files.wordpress.com/2009/11/dock-icon-flat.png" alt="logo storiot">
+              <img class="profile-img" src="img/logo.png" alt="logo storiot">
             </div>
             {if $errorMessage}
             <div class="col offset-s1 s10">

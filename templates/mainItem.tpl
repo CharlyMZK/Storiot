@@ -1,9 +1,11 @@
 {extends file="Layouts/layout.tpl"} {block "body"}
-<div class="col s12">
-  <div class="page-header">
-    <h4 class="header" id="header-main">Nos articles</h4>
+<header>
+  <div class="col s12">
+    <div class="page-header">
+      <h4 class="header" id="header-main">Nos articles</h4>
+    </div>
   </div>
-</div>
+</header>
 <div class="row hide-on-small-only hero-home">
   <div class="row">
     <div class="col s12 m12 item-row">

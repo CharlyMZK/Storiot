@@ -1,9 +1,11 @@
 {extends file="Layouts/layout.tpl"} {block "body"}
-<div class="col s12">
-  <div class="page-header">
-    <h4 class="header" id="header-main">Gestion du compte</h4>
+<header>
+  <div class="col s12">
+    <div class="page-header">
+      <h4 class="header" id="header-main">Gestion du compte</h4>
+    </div>
   </div>
-</div>
+</header>
 {if $user}
 <div class="card dark">
   <div class="card-tabs indicator blue">
@@ -19,7 +21,7 @@
       <div class="col offset-s1 s10">
         <div class="input-field col s12">
           <input id="email" type="email" value={$user->getEmail()}>
-          <label for="email data-error=" erreur="" data-success="ok">Email</label>
+          <label for="email">Email</label>
         </div>
       </div>
       <div class="col offset-s1 s10" style="color:grey;">
@@ -35,19 +37,19 @@
       </div>
       <div class="col offset-s1 s10">
         <div class="input-field col s12">
-          <input type="text" id="lastName" pattern="/^[a-Z ,.'-]+$/i" value={$user->getLastName()}>
+          <input type="text" id="lastName" pattern="[A-z ,.'-]+$" value="{$user->getLastName()}">
           <label for="lastName">Nom</label>
         </div>
       </div>
       <div class="col offset-s1 s10">
         <div class="input-field col s12">
-          <input id="firstName" type="text" pattern="/^[a-Z ,.'-]+$/i" value={$user->getFirstName()}>
+          <input id="firstName" type="text" pattern="[A-z ,.'-]+$" value="{$user->getFirstName()}">
           <label for="firstName">Prenom</label>
         </div>
       </div>
       <div class="col offset-s1 s10">
         <div class="input-field col s12">
-          <input class="datepicker" id="birthDate" type="time" data-value={$user->getBirthDate()|date_format:"%d/%m/%Y"}/>
+          <input class="datepicker" id="birthDate" type="text" data-value="{$user->getBirthDate()|date_format:"%d/%m/%Y"}"/>
           <label class="active" for="birthDate">Date de naissance</label>
         </div>
       </div>
@@ -85,7 +87,7 @@
     <div id="addressCard">
       <div class="col offset-s1 s10">
         <div class="input-field col s12">
-          <input id="address" type="text" value={$user->getAddress()}>
+          <input id="address" type="text" value={literal}{$user->getAddress()}{/literal}>
           <label for="address">Adresse postale</label>
         </div>
       </div>
@@ -124,7 +126,7 @@
             <th colspan="3">Expiration</th>
             <th>Titulaire</th>
             <th>Supprimer</th>
-            <th/>
+            <th></th>
           </tr>
         </thead>
         <tbody id="paymentCardTable">
@@ -211,7 +213,8 @@
                 <th/>
               </tr>
             </thead>
-            <tbody class="cart" id="paymentCardTable">. {foreach from=$order->getItemInPackages() item=item}
+            <tbody class="cart" id="packageTable">
+            {foreach from=$order->getItemInPackages() item=item}
               <tr>
                 <td>
                   <a href="#">{$item->getItem()->getName()}</a>
@@ -230,16 +233,8 @@
                 </td>
               </tr>
               {/foreach}
-              </tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              </tr>
             </tbody>
           </table>
-
           <br/>
           <div class="center">
             <button class="btn waves-effect waves-light" type="submit">Telecharger la facture</button>
@@ -250,8 +245,7 @@
     </div>
   </div>
 </div>
-{/foreach} 
-{else}
+{/foreach} {else}
 <div class="col offset-s1 s10">
   <div class="input-field col s12">
     <div class="card-panel red">

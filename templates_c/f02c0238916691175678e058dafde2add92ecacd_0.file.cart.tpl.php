@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-12-16 12:55:58
+/* Smarty version 3.1.31, created on 2017-12-18 10:00:53
   from "/home/ubuntu/workspace/templates/cart.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5a3517de162d27_38181655',
+  'unifunc' => 'content_5a3791d5cd8888_05663463',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f02c0238916691175678e058dafde2add92ecacd' => 
     array (
       0 => '/home/ubuntu/workspace/templates/cart.tpl',
-      1 => 1513428914,
+      1 => 1513586811,
       2 => 'file',
     ),
   ),
@@ -20,31 +20,35 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a3517de162d27_38181655 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a3791d5cd8888_05663463 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
  <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_13161235775a3517de135aa4_41461695', "body");
-$_smarty_tpl->inheritance->endChild($_smarty_tpl, "Layouts/layout.tpl");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_7064133785a3791d5c90f53_87014186', "body");
+?>
+
+<?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "Layouts/layout.tpl");
 }
 /* {block "body"} */
-class Block_13161235775a3517de135aa4_41461695 extends Smarty_Internal_Block
+class Block_7064133785a3791d5c90f53_87014186 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_13161235775a3517de135aa4_41461695',
+    0 => 'Block_7064133785a3791d5c90f53_87014186',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
-<div class="col s12">
-  <div class="page-header">
-    <h4 class="header" id="header-main">Panier</h4>
+<header>
+  <div class="col s12">
+    <div class="page-header">
+      <h4 class="header" id="header-main">Panier</h4>
+    </div>
   </div>
-</div>
+</header>
 <div class="col m10 offset-m1 s12 l10 offset-l1">
   <div class="row">
     <div class="col s11 m11">
@@ -138,7 +142,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);
   </div>
 </div>
 <?php echo '<script'; ?>
- type="text/javascript" src="js/cart.js"><?php echo '</script'; ?>
+ src="js/cart.js"><?php echo '</script'; ?>
 >
 <?php
 }

@@ -1,9 +1,11 @@
 {extends file="Layouts/layout.tpl"} {block "body"}
-<div class="col s12">
-    <div class="page-header">
-        <h4 class="header" id="header-main">Paiement</h4>
+<header>
+    <div class="col s12">
+        <div class="page-header">
+            <h4 class="header" id="header-main">Paiement</h4>
+        </div>
     </div>
-</div>
+</header>
 <form id="chooseCreditCard" action="/index.php?module=pay&action=pay" method="post">
     {if ($creditCards|@count) > 0}
     <table class="highlight centered responsive-table">
@@ -61,7 +63,7 @@
                     <div class="card-content black-text">
                         <div class="row">
                             <div class="col offset-s1 s10 ">
-                                <img class="profile-img" src="https://colerisetemp2.files.wordpress.com/2009/11/dock-icon-flat.png" alt="logo storiot">
+                                <img class="profile-img" src="img/logo.png" alt="logo storiot">
                                 <div class="faq">
                                     <h5>Vous n'avez aucune carte de crédit, veuillez en ajouter sur votre profil</h5>
                                 </div>

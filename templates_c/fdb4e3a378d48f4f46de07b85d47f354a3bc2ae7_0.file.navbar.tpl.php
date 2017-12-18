@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-12-17 15:12:04
+/* Smarty version 3.1.31, created on 2017-12-18 09:33:03
   from "/home/ubuntu/workspace/templates/Layouts/navbar.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5a368944254725_42229903',
+  'unifunc' => 'content_5a378b4f9c7f82_96865070',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'fdb4e3a378d48f4f46de07b85d47f354a3bc2ae7' => 
     array (
       0 => '/home/ubuntu/workspace/templates/Layouts/navbar.tpl',
-      1 => 1513523419,
+      1 => 1513589504,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a368944254725_42229903 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a378b4f9c7f82_96865070 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <nav>
   <div class="nav-wrapper">
@@ -31,9 +31,9 @@ function content_5a368944254725_42229903 (Smarty_Internal_Template $_smarty_tpl)
           <div class="col s12 ">
             <div id="topbarsearch">
               <div class="input-field col s6 s12">
-                <form id="signInForm" action="/index.php?module=mainItem&action=sendForm" method="post">
+                <form id="searchForm" action="/index.php?module=mainItem&action=sendForm" method="post">
                   <i class="material-icons prefix">search</i>
-                  <input class="autocomplete red-text search" name="search" type="text" placeholder="search"<?php if ($_smarty_tpl->tpl_vars['search']->value) {?>value=<?php echo $_smarty_tpl->tpl_vars['search']->value;
+                  <input class="autocomplete red-text search" name="search" type="text" placeholder="search" <?php if ($_smarty_tpl->tpl_vars['search']->value) {?>value=<?php echo $_smarty_tpl->tpl_vars['search']->value;
 }?>>
                 </form>
               </div>
@@ -54,12 +54,10 @@ function content_5a368944254725_42229903 (Smarty_Internal_Template $_smarty_tpl)
 </a></li>
       <li><a href="?module=home&action=signOut">Deconnexion</a></li>
       <?php }?>
-
       <li><a class="dropdown-button" href="#!" data-activates="dropdownDummies">Dummies<i class="material-icons right">arrow_drop_down</i></a></li>
     </ul>
   </div>
 </nav>
-
 <ul id="dropdownCategories" class="dropdown-content">
   <li><a href="?module=mainItem">Toutes</a></li>
   <li><a href="?module=mainItem&action=it">It</a></li>

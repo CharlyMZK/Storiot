@@ -1,9 +1,11 @@
 {extends file="Layouts/layout.tpl"} {block "body"}
-<div class="col s12">
-  <div class="page-header">
-    <h4 class="header" id="header-main">Connexion</h4>
+<header>
+  <div class="col s12">
+    <div class="page-header">
+      <h4 class="header" id="header-main">Connexion</h4>
+    </div>
   </div>
-</div>
+</header>
 <div class="row hide-on-small-only hero-home">
   <div class="col m10 offset-m1 s12 l10 offset-l1">
     <div class="row">
@@ -13,26 +15,26 @@
             <form id="signInForm" action="/index.php?module=signIn&action=sendForm" method="post">
               <div class="row">
                 <div class="col offset-s1 s10">
-                  <img class="profile-img" src="https://colerisetemp2.files.wordpress.com/2009/11/dock-icon-flat.png" alt="logo storiot">
+                  <img class="profile-img" src="img/logo.png" alt="logo storiot">
                 </div>
                 {if $errorMessage}
                 <div class="col offset-s1 s10">
                   <div class="input-field col s12">
                     <div class="card-panel red">
-                        <p class="center-align white-text">{$errorMessage}</p>
+                      <p class="center-align white-text">{$errorMessage}</p>
                     </div>
                   </div>
                 </div>
                 {/if}
                 <div class="col offset-s1 s10">
                   <div class="input-field col s12">
-                    <input class="validate" name="email" type="email" value={$email}>
+                    <input class="validate" id="email" name="email" type="email" {if $email}value={$email}{/if}>
                     <label for="email" data-error="erreur" data-success="ok">Email</label>
                   </div>
                 </div>
                 <div class="col offset-s1 s10">
                   <div class="input-field col s12">
-                    <input class="validate" name="password" type="password">
+                    <input class="validate" id="password" name="password" type="password">
                     <label for="password" data-error="erreur" data-success="ok">Mot de passe</label>
                   </div>
                 </div>
