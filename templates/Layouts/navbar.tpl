@@ -15,18 +15,18 @@
           </div>
         </div>
       </li>
-      <li><a href="/home.html">Accueil</a></li>
+      <li><a href="/home">Accueil</a></li>
       <li><a class="dropdown-button" href="#!" data-activates="dropdownCategories">Categories<i class="material-icons right">arrow_drop_down</i></a></li>
-      <li><a href="/catalogue.html">Voir articles</a></li>
-      <li><a href="/cart.html">Panier</a></li>
-      <li><a href="/contact.html">Contact</a></li>
+      <li><a href="/catalogue">Voir articles</a></li>
+      <li><a href="/cart">Panier</a></li>
+      <li><a href="/contact">Contact</a></li>
       {if $smarty.session.userId == 0}
-      <li><a href="/signUp.html">Inscription</a></li>
-      <li><a href="/signIn.html">Connexion</a></li>
+      <li><a href="/signUp">Inscription</a></li>
+      <li><a href="/signIn">Connexion</a></li>
       {else}
-      <li><a href="/order.html">Commandes</a></li>
-      <li><a id="manageAccount" href="/manageAccount.html">{$smarty.session.userFirstName}</a></li>
-      <li><a href="/home.html/signOut">Deconnexion</a></li>
+      <li><a href="/order">Commandes</a></li>
+      <li><a id="manageAccount" href="/manageAccount">{$smarty.session.userFirstName}</a></li>
+      <li><a href="/home/signOut">Deconnexion</a></li>
       {/if}
     </ul>
     <ul class="side-nav" id="mobile-demo">

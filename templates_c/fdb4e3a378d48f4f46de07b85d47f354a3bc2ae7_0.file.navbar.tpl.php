@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-12-19 19:42:56
+/* Smarty version 3.1.31, created on 2017-12-19 20:11:52
   from "/home/ubuntu/workspace/templates/Layouts/navbar.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5a396bc019be29_59323611',
+  'unifunc' => 'content_5a397288422b04_69223981',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'fdb4e3a378d48f4f46de07b85d47f354a3bc2ae7' => 
     array (
       0 => '/home/ubuntu/workspace/templates/Layouts/navbar.tpl',
-      1 => 1513712574,
+      1 => 1513714222,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a396bc019be29_59323611 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a397288422b04_69223981 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <nav>
   <div class="nav-wrapper">
@@ -40,19 +40,19 @@ function content_5a396bc019be29_59323611 (Smarty_Internal_Template $_smarty_tpl)
           </div>
         </div>
       </li>
-      <li><a href="/home.html">Accueil</a></li>
+      <li><a href="/home">Accueil</a></li>
       <li><a class="dropdown-button" href="#!" data-activates="dropdownCategories">Categories<i class="material-icons right">arrow_drop_down</i></a></li>
-      <li><a href="/catalogue.html">Voir articles</a></li>
-      <li><a href="/cart.html">Panier</a></li>
-      <li><a href="/contact.html">Contact</a></li>
+      <li><a href="/catalogue">Voir articles</a></li>
+      <li><a href="/cart">Panier</a></li>
+      <li><a href="/contact">Contact</a></li>
       <?php if ($_SESSION['userId'] == 0) {?>
-      <li><a href="/signUp.html">Inscription</a></li>
-      <li><a href="/signIn.html">Connexion</a></li>
+      <li><a href="/signUp">Inscription</a></li>
+      <li><a href="/signIn">Connexion</a></li>
       <?php } else { ?>
-      <li><a href="/order.html">Commandes</a></li>
-      <li><a id="manageAccount" href="/manageAccount.html"><?php echo $_SESSION['userFirstName'];?>
+      <li><a href="/order">Commandes</a></li>
+      <li><a id="manageAccount" href="/manageAccount"><?php echo $_SESSION['userFirstName'];?>
 </a></li>
-      <li><a href="/home.html/signOut">Deconnexion</a></li>
+      <li><a href="/home/signOut">Deconnexion</a></li>
       <?php }?>
     </ul>
     <ul class="side-nav" id="mobile-demo">
