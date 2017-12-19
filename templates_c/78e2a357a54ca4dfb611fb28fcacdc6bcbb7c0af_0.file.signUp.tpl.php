@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-12-18 10:28:07
+/* Smarty version 3.1.31, created on 2017-12-18 14:57:52
   from "/home/ubuntu/workspace/templates/signUp.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5a379837746d09_32421688',
+  'unifunc' => 'content_5a37d770d00b14_23180210',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '78e2a357a54ca4dfb611fb28fcacdc6bcbb7c0af' => 
     array (
       0 => '/home/ubuntu/workspace/templates/signUp.tpl',
-      1 => 1513590709,
+      1 => 1513608057,
       2 => 'file',
     ),
   ),
@@ -20,21 +20,21 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a379837746d09_32421688 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a37d770d00b14_23180210 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
  <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_10683242685a379837730ec1_94485588', "body");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_10403520005a37d770ce87f9_49219471', "body");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "Layouts/layout.tpl");
 }
 /* {block "body"} */
-class Block_10683242685a379837730ec1_94485588 extends Smarty_Internal_Block
+class Block_10403520005a37d770ce87f9_49219471 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_10683242685a379837730ec1_94485588',
+    0 => 'Block_10403520005a37d770ce87f9_49219471',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -69,7 +69,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
               <?php }?>
               <div class="col offset-s1 s10">
                 <div class="input-field col s12">
-                  <input class="validate" id="email" name="email" type="email" pattern="^[A-z0-9._%+-]+@[A-z0-9.-]+\.[A-z]{2,4}$">
+                  <input class="validate" id="email" name="email" type="email">
                   <label for="email" data-error="L'email n'est pas valide" data-success="ok">Email</label>
                 </div>
               </div>

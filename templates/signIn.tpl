@@ -28,7 +28,7 @@
                 {/if}
                 <div class="col offset-s1 s10">
                   <div class="input-field col s12">
-                    <input class="validate" id="email" name="email" type="email" {if $email}value={$email}{/if}>
+                    <input class="validate" id="email" name="email" type="email" {if $email}value="{$email}"{/if}>
                     <label for="email" data-error="erreur" data-success="ok">Email</label>
                   </div>
                 </div>
@@ -42,6 +42,7 @@
               <div class="col offset-s1 s10">
                 <div class="input-field col s12">
                   <p class="center-align">Pas encore inscrit ? <a href="/index.php?module=signUp">Inscrivez vous !</a> - <a href="/index.php?module=recoverPassword">Mot de passe oublié ?</a></p>
+                  <br/>
                 </div>
               </div>
               <div class="center">

@@ -11,31 +11,28 @@
     <div class="row">
       <div class="col s11 m11">
         <div class="card blue-grey darken-1">
-          <div class="card-content black-text">
-            <h5>Carte utilisée</h5>
+          <div class="card-content">
+            <h5 class="paymentcard">Carte utilisée</h5>
             <div class="row">
               <div class="col offset-s1 s10">
                 <table class="highlight centered responsive-table">
                   <thead>
                     <tr>
                       <th>Numero</th>
-                      <th colspan="3">Expiration</th>
+                      <th>Expiration</th>
                       <th>Titulaire</th>
-                      <th/>
                     </tr>
                   </thead>
                   <tbody id="paymentCardTable">
                     <tr>
                       <td>
-                        <p>{$creditCard->getReference()}</p>
-
-                      </td>
-                      <td colspan="3">
-                        <p>{$creditCard->getExpireMonth()}/{$creditCard->getExpireYear()}</p>
-
+                        <p id="reference">{$creditCard->getReference()}</p>
                       </td>
                       <td>
-                        <p>{$creditCard->getHolder()}</p>
+                        <span id="expireMonth">{$creditCard->getExpireMonth()}</span>/<span id="expireYear">{$creditCard->getExpireYear()}</span>
+                      </td>
+                      <td>
+                        <p id="holder">{$creditCard->getHolder()}</p>
                       </td>
                     </tr>
                   </tbody>
@@ -53,7 +50,8 @@
                 <div class="col offset-s1 s10 ">
                   <img class="profile-img" src="img/logo.png" alt="logo storiot">
                   <div class="payment">
-                    <h5>Nous procedons au paiement..</h5>
+                    <p class="payment-title">Nous procedons au paiement..</h5>
+                    <p class="payment-subtitle"></p>
                     <div class="row">
                       <div class="col offset-s5 s1">
                         <div class="preloader-wrapper big active">
@@ -86,5 +84,6 @@
       </div>
     </div>
   </div>
-  <script src="js/pay.js"></script>
-  {/block}
+</div>
+<script src="js/pay.js"></script>
+{/block}

@@ -15,7 +15,7 @@
             <div class="row">
               <div class="col offset-s1 s10 ">
                 <img class="profile-img" src="img/dead-logo.png" alt="logo storiot">
-                <h5 class="center-align not-found-color">Désolé la page n'a pas été trouvée...</h5>
+                <h5 class="center-align dark-grey-color">Désolé la page n'a pas été trouvée...</h5>
               </div>
             </div>
           </div>

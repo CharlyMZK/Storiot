@@ -15,7 +15,6 @@
                 <th colspan="3">Expiration</th>
                 <th>Titulaire</th>
                 <th>Choix</th>
-                <th/>
             </tr>
         </thead>
         <tbody id="paymentCardTable">
@@ -27,7 +26,6 @@
                 </td>
                 <td colspan="3">
                     <p>{$creditCard->getExpireMonth()}/{$creditCard->getExpireYear()}</p>
-
                 </td>
                 <td>
                     <p>{$creditCard->getHolder()}</p>

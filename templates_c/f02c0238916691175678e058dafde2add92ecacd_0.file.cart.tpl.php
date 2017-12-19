@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-12-18 10:00:53
+/* Smarty version 3.1.31, created on 2017-12-18 16:04:24
   from "/home/ubuntu/workspace/templates/cart.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5a3791d5cd8888_05663463',
+  'unifunc' => 'content_5a37e70820c6f9_59394916',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f02c0238916691175678e058dafde2add92ecacd' => 
     array (
       0 => '/home/ubuntu/workspace/templates/cart.tpl',
-      1 => 1513586811,
+      1 => 1513612962,
       2 => 'file',
     ),
   ),
@@ -20,23 +20,23 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a3791d5cd8888_05663463 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a37e70820c6f9_59394916 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
  <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_7064133785a3791d5c90f53_87014186', "body");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_16210549475a37e7081debf5_29922227', "body");
 ?>
 
 <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "Layouts/layout.tpl");
 }
 /* {block "body"} */
-class Block_7064133785a3791d5c90f53_87014186 extends Smarty_Internal_Block
+class Block_16210549475a37e7081debf5_29922227 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_7064133785a3791d5c90f53_87014186',
+    0 => 'Block_16210549475a37e7081debf5_29922227',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -59,12 +59,11 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
               <thead>
                 <tr>
                   <th>Article</th>
-                  <th>Prix</th>
-                  <th>Poids</th>
                   <th>Taille</th>
+                  <th>Poids</th>
+                  <th>Prix</th>
                   <th>Quantité</th>
                   <th>Supprimer</th>
-                  <th/>
                 </tr>
               </thead>
               <?php if ((count($_smarty_tpl->tpl_vars['itemsInCart']->value)) > 0) {?>
@@ -80,29 +79,27 @@ foreach ($_from as $_smarty_tpl->tpl_vars['item']->value) {
 </a>
                   </td>
                   <td>
-                    <?php echo $_smarty_tpl->tpl_vars['item']->value->getItem()->getPrice();?>
- €
-                  </td>
-                  <td>
-                    <?php echo $_smarty_tpl->tpl_vars['item']->value->getItem()->getWeight();?>
- g.
-                  </td>
-                  <td>
                     <?php echo $_smarty_tpl->tpl_vars['item']->value->getItem()->getSize();?>
  cm
                   </td>
                   <td>
-                    <input id="<?php echo $_smarty_tpl->tpl_vars['item']->value->getItem()->getId();?>
-" name="<?php echo $_smarty_tpl->tpl_vars['item']->value->getItem()->getId();?>
-" type="number" value="<?php echo $_smarty_tpl->tpl_vars['item']->value->getQuantity();?>
-" class="input-quantity item-<?php echo $_smarty_tpl->tpl_vars['item']->value->getItem()->getId();?>
--quantity">
+                    <?php echo $_smarty_tpl->tpl_vars['item']->value->getItem()->getWeight();?>
+ g
                   </td>
                   <td>
-                    <a id="<?php echo $_smarty_tpl->tpl_vars['item']->value->getItem()->getId();?>
-" name="<?php echo $_smarty_tpl->tpl_vars['item']->value->getItem()->getId();?>
-" class="item-<?php echo $_smarty_tpl->tpl_vars['item']->value->getItem()->getId();?>
- remove-item btn-floating waves-effect waves-light red">
+                    <?php echo $_smarty_tpl->tpl_vars['item']->value->getItem()->getPrice();?>
+ €
+                  </td>
+                  <td>
+                    <input class="input-quantity item-<?php echo $_smarty_tpl->tpl_vars['item']->value->getItem()->getId();?>
+-quantity" id="<?php echo $_smarty_tpl->tpl_vars['item']->value->getItem()->getId();?>
+" type="number" value="<?php echo $_smarty_tpl->tpl_vars['item']->value->getQuantity();?>
+">
+                  </td>
+                  <td>
+                    <a class="item-<?php echo $_smarty_tpl->tpl_vars['item']->value->getItem()->getId();?>
+ remove-item btn-floating waves-effect waves-light red" id="remove-<?php echo $_smarty_tpl->tpl_vars['item']->value->getItem()->getId();?>
+" >
                         <i class="material-icons">delete</i>
                       </a>
                   </td>
@@ -113,18 +110,14 @@ foreach ($_from as $_smarty_tpl->tpl_vars['item']->value) {
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);
 ?>
 
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>
-                  <p class="recap">Total HT : <?php echo $_smarty_tpl->tpl_vars['noTaxAmount']->value;?>
+                <tr>
+                  <td colspan=5></td>
+                  <td>
+                    <p class="recap">Total HT : <?php echo $_smarty_tpl->tpl_vars['noTaxAmount']->value;?>
  €<br/> Total TTC : <?php echo $_smarty_tpl->tpl_vars['amountWithTax']->value;?>
  €</p>
-                </td>
+                  </td>
                 </tr>
-
               </tbody>
               <?php }?>
             </table>

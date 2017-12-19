@@ -1,28 +1,29 @@
 <?php
     class RecoverPasswordController extends DomainController{
+        private $email;
         
         function launch(){
             if($this->request->action == 'sendForm') {
+                $this->email = $_POST['email'];
+                $this->response->getContent()->assign('email', $email);
                 $user = $this->getUser();
                 if($user) {
+                    $this->response->getContent()->assign('successMessage', 'Le nouveau mot de passe est 000000');
                     $this->resetPassword($user);
-                } 
-                // On redirige toujours sur la page d'accueil pour pas donner d'indice sur les emails connus
-                $this->response->setTemplate('home.tpl');
-            } else {
-                $this->response->setTemplate('recoverPassword.tpl');
-            }
-            
+                } else {
+                    $this->response->getContent()->assign('errorMessage', 'L\'adresse email est inconnue');
+                }
+            } 
+            $this->response->setTemplate('recoverPassword.tpl');
             return $this->response;
         }
         
         function getUser() {
-            $email = $_POST['email'];
-            return $user = UserQuery::create()->findOneByEmail($email);
+            return $user = UserQuery::create()->findOneByEmail($this->email);
         }
         
         function resetPassword($user) {
-            $user->setPassword("0000");
+            $user->setPassword(password_hash("000000", PASSWORD_DEFAULT));
             $user->save();
         }
     }

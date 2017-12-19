@@ -5,7 +5,6 @@
             $user = UserQuery::create()->findOneById($_SESSION['userId']);
             if($user) {
                 $creditCards = CreditCardQuery::create()->filterByUserId($_SESSION['userId']);
-                $orders = $this->getUserConnectedOrders();
                 if($this->request->action == 'updateInformation'){
                     $this->updateUserInformation($user);
                     $this->updateSessionUserFirstName($user);
@@ -20,7 +19,6 @@
                 }
                 
                 $this->response->getContent()->assign('user', $user);
-                $this->response->getContent()->assign('orders', $orders);
                 $this->response->getContent()->assign('creditCards', $creditCards);
             }
             $this->response->setTemplate('manageAccount.tpl');
@@ -28,10 +26,6 @@
             return $this->response;
         }
         
-        function getUserConnectedOrders(){
-            return PackageQuery::create()->findByUserId($_SESSION['userId']);
-        }
-     
         function updateUserInformation($user){
             $email = $_POST['email'];
             $gender = $_POST['gender'];

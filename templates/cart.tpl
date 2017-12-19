@@ -16,12 +16,11 @@
               <thead>
                 <tr>
                   <th>Article</th>
-                  <th>Prix</th>
-                  <th>Poids</th>
                   <th>Taille</th>
+                  <th>Poids</th>
+                  <th>Prix</th>
                   <th>Quantité</th>
                   <th>Supprimer</th>
-                  <th/>
                 </tr>
               </thead>
               {if ($itemsInCart|@count) > 0}
@@ -32,34 +31,30 @@
                     <a href="#">{$item->getItem()->getName()}</a>
                   </td>
                   <td>
-                    {$item->getItem()->getPrice()} €
-                  </td>
-                  <td>
-                    {$item->getItem()->getWeight()} g.
-                  </td>
-                  <td>
                     {$item->getItem()->getSize()} cm
                   </td>
                   <td>
-                    <input id="{$item->getItem()->getId()}" name="{$item->getItem()->getId()}" type="number" value="{$item->getQuantity()}" class="input-quantity item-{$item->getItem()->getId()}-quantity">
+                    {$item->getItem()->getWeight()} g
                   </td>
                   <td>
-                    <a id="{$item->getItem()->getId()}" name="{$item->getItem()->getId()}" class="item-{$item->getItem()->getId()} remove-item btn-floating waves-effect waves-light red">
+                    {$item->getItem()->getPrice()} €
+                  </td>
+                  <td>
+                    <input class="input-quantity item-{$item->getItem()->getId()}-quantity" id="{$item->getItem()->getId()}" type="number" value="{$item->getQuantity()}">
+                  </td>
+                  <td>
+                    <a class="item-{$item->getItem()->getId()} remove-item btn-floating waves-effect waves-light red" id="remove-{$item->getItem()->getId()}" >
                         <i class="material-icons">delete</i>
                       </a>
                   </td>
                 </tr>
                 {/foreach}
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>
-                  <p class="recap">Total HT : {$noTaxAmount} €<br/> Total TTC : {$amountWithTax} €</p>
-                </td>
+                <tr>
+                  <td colspan=5></td>
+                  <td>
+                    <p class="recap">Total HT : {$noTaxAmount} €<br/> Total TTC : {$amountWithTax} €</p>
+                  </td>
                 </tr>
-
               </tbody>
               {/if}
             </table>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-12-18 09:03:45
+/* Smarty version 3.1.31, created on 2017-12-18 14:00:36
   from "/home/ubuntu/workspace/templates/mainItem.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5a378471173cf7_74478753',
+  'unifunc' => 'content_5a37ca04020401_07554103',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'de9dda2da7ac6611eb85e98dce89dd724d86acc8' => 
     array (
       0 => '/home/ubuntu/workspace/templates/mainItem.tpl',
-      1 => 1513586692,
+      1 => 1513605627,
       2 => 'file',
     ),
   ),
@@ -20,23 +20,23 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a378471173cf7_74478753 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a37ca04020401_07554103 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
  <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_5917234105a37847114b739_14898129', "body");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_9524046915a37ca040062c5_00760176', "body");
 ?>
 
 <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "Layouts/layout.tpl");
 }
 /* {block "body"} */
-class Block_5917234105a37847114b739_14898129 extends Smarty_Internal_Block
+class Block_9524046915a37ca040062c5_00760176 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_5917234105a37847114b739_14898129',
+    0 => 'Block_9524046915a37ca040062c5_00760176',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -61,15 +61,14 @@ foreach ($_from as $_smarty_tpl->tpl_vars['item']->value) {
         <div class="card">
           <div class="card-image">
             <img src=<?php echo $_smarty_tpl->tpl_vars['item']->value->getImage();?>
->
-            <button type="submit" class="btn-floating button-floating-2 waves-effect waves-light deep-purple darken-3 addToCart" id=<?php echo $_smarty_tpl->tpl_vars['item']->value->getId();?>
- ><i class="material-icons" >add_shopping_cart</i></button>
-            <!-- <a class="btn-floating button-floating-1 waves-effect waves-light deep-purple darken-3"><i class="material-icons" id="addToCard">add_shopping_cart</i></a> -->
-            <!--<a class="btn-floating button-floating-2 waves-effect waves-light deep-purple darken-3"><i class="material-icons">trending_up</i></a>-->
+ alt="<?php echo $_smarty_tpl->tpl_vars['item']->value->getName();?>
+">
+            <button class="btn-floating button-floating-2 waves-effect waves-light deep-purple darken-3 addToCart" id=<?php echo $_smarty_tpl->tpl_vars['item']->value->getId();?>
+ type="submit"><i class="material-icons" >add_shopping_cart</i></button>
           </div>
           <div class="card-content">
-            <span class="card-title"><a href="#"  name="<?php echo $_smarty_tpl->tpl_vars['item']->value->getId();?>
-" class = "item-<?php echo $_smarty_tpl->tpl_vars['item']->value->getId();?>
+            <span class="card-title"><a id="item-<?php echo $_smarty_tpl->tpl_vars['item']->value->getId();?>
+" href="/index.php?module=item&id=<?php echo $_smarty_tpl->tpl_vars['item']->value->getId();?>
 "><?php echo $_smarty_tpl->tpl_vars['item']->value->getName();?>
 </a></span>
             <p><?php echo $_smarty_tpl->tpl_vars['item']->value->getDescription();?>

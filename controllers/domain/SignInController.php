@@ -6,22 +6,11 @@
         
         function launch() {
             if($this->request->action == 'sendForm') {
+                $this->response->getContent()->assign('email', $_POST['email']); 
                 if(!$this->errorParameters()) {
                     if($this->testConnection()) {
-                        $newItems = ItemQuery::create()->find();
-                        $promotedItems = ItemQuery::create()->find();
-                        $bestReviewItems = ItemQuery::create()->find();
-                        
-                        $this->response->getContent()->assign('newItems', $newItems);
-                        $this->response->getContent()->assign('promotedItems', $promotedItems);
-                        $this->response->getContent()->assign('bestReviewItems', $bestReviewItems);
-                        
-                        
-                    	$this->response->getContent()->assign('page', 'home');
-                        $this->response->getContent()->assign('name', 'Nouveautés');
-                        $this->response->setTemplate('home.tpl');
+                        $this->response = $this->returnToHome();
                     } else {
-                        $this->response->getContent()->assign('email', $this->email); 
                         $this->response->getContent()->assign('errorMessage', 'L\'adresse email ou le mot de passe est incorrect');
                         $this->response->setTemplate('signIn.tpl');  
                     }

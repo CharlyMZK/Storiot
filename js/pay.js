@@ -10,7 +10,8 @@ function launchPayment() {
                 $('.orderfinished').css("display","block");
             }
             $('.preloader-wrapper').css('display','none');
-            $('.payment h5').text(jsonResponse.message);
+            $('.payment-title').text(jsonResponse.message);
+            $('.payment-subtitle').text("reference : "+jsonResponse.hashcode)
         }
     });
 }

@@ -1,18 +1,11 @@
-/*$('#addToCart').click(function(){
-    alert("ad");
-    $.post('/index.php?module=cart&action=addToCart',
-    {
-        item:  $('#item').val()
-    });
-});*/
-
 $('.addToCart').click(function() {
     var id = this.id;
+    var itemId = id.slice(-1);
     $.ajax({
         url: '/index.php?module=cart&action=addToCart',
         type: 'POST',
         dataType: "json",
-        data: { item: $('.item-' + id).attr('name') },
+        data: { item: itemId },
         success: function( response ) 
       { 
           Materialize.toast(response.message, 2000, 'green');
@@ -29,7 +22,7 @@ $(".input-quantity").on('change', function postinput(){
         url: '/index.php?module=cart&action=setQuantity',
         type: 'POST',
         dataType: "json",
-        data: { item: $('.item-' + id + '-quantity').attr('name'),  quantity: $('.item-' + id + '-quantity').val() },
+        data: { item: id,  quantity: $('.item-' + id + '-quantity').val() },
         success: function( response ) 
       { 
           location.reload();
@@ -42,11 +35,13 @@ $(".input-quantity").on('change', function postinput(){
 
 $('.remove-item').click(function() {
     var id = this.id;
+    var itemId = id.slice(-1);
+
         $.ajax({
         url: '/index.php?module=cart&action=removeItem',
         type: 'POST',
         dataType: "json",
-        data: { item: $('.item-' + id).attr('name') },
+        data: { item: itemId },
         success: function( response ) 
       { 
           location.reload();

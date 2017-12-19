@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-12-16 13:18:17
+/* Smarty version 3.1.31, created on 2017-12-18 16:10:29
   from "/home/ubuntu/workspace/templates/chooseCreditCard.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5a351d194d59e3_25983662',
+  'unifunc' => 'content_5a37e875348629_01505140',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '476719ae23217012dad63ddd31e5c180e941c07e' => 
     array (
       0 => '/home/ubuntu/workspace/templates/chooseCreditCard.tpl',
-      1 => 1513429800,
+      1 => 1513613423,
       2 => 'file',
     ),
   ),
@@ -20,33 +20,35 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a351d194d59e3_25983662 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a37e875348629_01505140 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
  <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_841340245a351d194b0477_16268345', "body");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_3767087225a37e87531e748_29211689', "body");
 ?>
 
 <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "Layouts/layout.tpl");
 }
 /* {block "body"} */
-class Block_841340245a351d194b0477_16268345 extends Smarty_Internal_Block
+class Block_3767087225a37e87531e748_29211689 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_841340245a351d194b0477_16268345',
+    0 => 'Block_3767087225a37e87531e748_29211689',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
-<div class="col s12">
-    <div class="page-header">
-        <h4 class="header" id="header-main">Paiement</h4>
+<header>
+    <div class="col s12">
+        <div class="page-header">
+            <h4 class="header" id="header-main">Paiement</h4>
+        </div>
     </div>
-</div>
+</header>
 <form id="chooseCreditCard" action="/index.php?module=pay&action=pay" method="post">
     <?php if ((count($_smarty_tpl->tpl_vars['creditCards']->value)) > 0) {?>
     <table class="highlight centered responsive-table">
@@ -56,7 +58,6 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
                 <th colspan="3">Expiration</th>
                 <th>Titulaire</th>
                 <th>Choix</th>
-                <th/>
             </tr>
         </thead>
         <tbody id="paymentCardTable">
@@ -78,7 +79,6 @@ $_smarty_tpl->tpl_vars['__smarty_foreach_creditCards']->value['index']++;
                     <p><?php echo $_smarty_tpl->tpl_vars['creditCard']->value->getExpireMonth();?>
 /<?php echo $_smarty_tpl->tpl_vars['creditCard']->value->getExpireYear();?>
 </p>
-
                 </td>
                 <td>
                     <p><?php echo $_smarty_tpl->tpl_vars['creditCard']->value->getHolder();?>
@@ -126,7 +126,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);
                     <div class="card-content black-text">
                         <div class="row">
                             <div class="col offset-s1 s10 ">
-                                <img class="profile-img" src="https://colerisetemp2.files.wordpress.com/2009/11/dock-icon-flat.png" alt="">
+                                <img class="profile-img" src="img/logo.png" alt="logo storiot">
                                 <div class="faq">
                                     <h5>Vous n'avez aucune carte de crédit, veuillez en ajouter sur votre profil</h5>
                                 </div>
@@ -140,7 +140,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);
 </div>
 <?php }
 echo '<script'; ?>
- type="text/javascript" src="js/pay.js"><?php echo '</script'; ?>
+ src="js/pay.js"><?php echo '</script'; ?>
 >
 <?php
 }

@@ -18,13 +18,13 @@
               </div>
               <div class="col offset-s1 s10">
                 <div class="input-field col s12">
-                  <input class="validate" name="email" type="email">
+                  <input class="validate" id="email" name="email" type="email">
                   <label for="email" data-error="erreur" data-success="ok">Email</label>
                 </div>
               </div>
               <div class="col offset-s1 s10">
                 <div class="input-field col s12">
-                  <select name="category">
+                  <select id="category" name="category">
                     <option value="" disabled selected>Choisir une catégorie</option>
                     <option value="information">Informations</option>
                     <option value="orders">Commandes</option>
@@ -35,13 +35,13 @@
               </div>
               <div class="col offset-s1 s10">
                 <div class="input-field col s12">
-                  <input class="validate" name="subject" type="text">
+                  <input class="validate" id="subject" name="subject" type="text">
                   <label for="subject" data-error="erreur" data-success="ok">Sujet</label>
                 </div>
               </div>
               <div class="col offset-s1 s10">
                 <div class="input-field col s12">
-                  <textarea class="materialize-textarea" name="message"></textarea>
+                  <textarea id="message" class="materialize-textarea" name="message"></textarea>
                   <label for="message">Message</label>
                 </div>
               </div>

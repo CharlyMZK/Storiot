@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-12-11 15:10:43
+/* Smarty version 3.1.31, created on 2017-12-18 13:22:54
   from "/home/ubuntu/workspace/templates/payementInformation.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5a2e9ff3a45e12_19603655',
+  'unifunc' => 'content_5a37c12e9bdd68_19889788',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '506272255d878c333a1a486ea3057d0092f9b4e1' => 
     array (
       0 => '/home/ubuntu/workspace/templates/payementInformation.tpl',
-      1 => 1512636097,
+      1 => 1513587420,
       2 => 'file',
     ),
   ),
@@ -20,33 +20,35 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a2e9ff3a45e12_19603655 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a37c12e9bdd68_19889788 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
  <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_17086480365a2e9ff3a40160_45030518', "body");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_814908295a37c12e9b8c51_76410232', "body");
 ?>
 
 <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "Layouts/layout.tpl");
 }
 /* {block "body"} */
-class Block_17086480365a2e9ff3a40160_45030518 extends Smarty_Internal_Block
+class Block_814908295a37c12e9b8c51_76410232 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_17086480365a2e9ff3a40160_45030518',
+    0 => 'Block_814908295a37c12e9b8c51_76410232',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
-<div class="col s12">
-        <div class="page-header">
-          <h4 class="header" id="header-main">Informations de paiement</h4>
-        </div>
-      </div>
+<header>
+  <div class="col s12">
+    <div class="page-header">
+      <h4 class="header" id="header-main">Informations de paiement</h4>
+    </div>
+  </div>
+</header>
 <div class="col m10 offset-m1 s12 l10 offset-l1">
   <div class="row">
     <div class="col s11 m11">
@@ -55,7 +57,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
           <form id="contactForm">
             <div class="row">
               <div class="col offset-s1 s10">
-                <img class="profile-img" src="https://colerisetemp2.files.wordpress.com/2009/11/dock-icon-flat.png" alt="">
+                <img class="profile-img" src="img/logo.png" alt="logo storiot">
               </div>
               <div class="col offset-s1 s10">
                 <div class="col offset-s1 s10" style="color:grey;">

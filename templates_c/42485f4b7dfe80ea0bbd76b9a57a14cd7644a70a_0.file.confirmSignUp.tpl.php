@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-12-12 20:17:16
+/* Smarty version 3.1.31, created on 2017-12-18 11:15:34
   from "/home/ubuntu/workspace/templates/confirmSignUp.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5a30394c39ee92_67695962',
+  'unifunc' => 'content_5a37a356644cb9_01369141',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '42485f4b7dfe80ea0bbd76b9a57a14cd7644a70a' => 
     array (
       0 => '/home/ubuntu/workspace/templates/confirmSignUp.tpl',
-      1 => 1513004209,
+      1 => 1513587420,
       2 => 'file',
     ),
   ),
@@ -20,32 +20,36 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a30394c39ee92_67695962 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a37a356644cb9_01369141 (Smarty_Internal_Template $_smarty_tpl) {
 if (!is_callable('smarty_modifier_date_format')) require_once '/home/ubuntu/workspace/vendor/smarty/smarty/libs/plugins/modifier.date_format.php';
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
  <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_20682996125a30394c379dc7_51429450', "body");
-$_smarty_tpl->inheritance->endChild($_smarty_tpl, "Layouts/layout.tpl");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_20449544245a37a3566154c5_16157064', "body");
+?>
+
+<?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "Layouts/layout.tpl");
 }
 /* {block "body"} */
-class Block_20682996125a30394c379dc7_51429450 extends Smarty_Internal_Block
+class Block_20449544245a37a3566154c5_16157064 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_20682996125a30394c379dc7_51429450',
+    0 => 'Block_20449544245a37a3566154c5_16157064',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
-<div class="col s12">
-  <div class="page-header">
-    <h4 class="header" id="header-main">Confirmation d'inscription</h4>
+<header>
+  <div class="col s12">
+    <div class="page-header">
+      <h4 class="header" id="header-main">Confirmation d'inscription</h4>
+    </div>
   </div>
-</div>
+</header>
 <div class="col m10 offset-m1 s12 l10 offset-l1">
   <div class="row">
     <div class="col s11 m11">
@@ -53,7 +57,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
         <div class="card-content black-text">
           <div class="row">
             <div class="col offset-s1 s10">
-              <img class="profile-img" src="https://colerisetemp2.files.wordpress.com/2009/11/dock-icon-flat.png">
+              <img class="profile-img" src="img/logo.png" alt="logo storiot">
             </div>
             <?php if ($_smarty_tpl->tpl_vars['errorMessage']->value) {?>
             <div class="col offset-s1 s10">
@@ -139,7 +143,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
   </div>
 </div>
 <?php echo '<script'; ?>
- type="text/javascript" src="js/confirmSignUp.js"><?php echo '</script'; ?>
+ src="js/confirmSignUp.js"><?php echo '</script'; ?>
 >
 <?php
 }

@@ -27,7 +27,7 @@
               {/if}
               <div class="col offset-s1 s10">
                 <div class="input-field col s12">
-                  <input class="validate" id="email" name="email" type="email" pattern="{literal}^[A-z0-9._%+-]+@[A-z0-9.-]+\.[A-z]{2,4}${/literal}">
+                  <input class="validate" id="email" name="email" type="email">
                   <label for="email" data-error="L'email n'est pas valide" data-success="ok">Email</label>
                 </div>
               </div>

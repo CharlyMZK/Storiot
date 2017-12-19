@@ -18,7 +18,9 @@
     }); // End Document Ready
 })(jQuery); // End of jQuery name space
 
-$('.button-collapse').sideNav();
+$( document ).ready(function(){
+    $('.button-collapse').sideNav();
+});
 
 $('#cancel').click(function() {
     window.location.replace('/index.php?module=home');

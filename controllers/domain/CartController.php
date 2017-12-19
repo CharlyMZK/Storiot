@@ -95,8 +95,8 @@
                     $objectInCart->setQuantity($quantity);
                     if(DomainController::isUserConnected()){
                         $objectInCart->save();
-                        $isRequestOk = true;
                     }
+                    $isRequestOk = true;
                 }
             }
             return $isRequestOk;
@@ -168,12 +168,11 @@
                 }
                 
                 if($indexToRemove !== NULL){
-
                     unset($itemsInCart[$indexToRemove]);
                     $itemsInCart = array_values($itemsInCart);
                     $isRequestOk = true;
                 }
-                $_SESSION['objectsInCart'] = $itemInCart;
+                $_SESSION['objectsInCart'] = $itemsInCart;
             }
             return $isRequestOk;
         }
@@ -217,6 +216,7 @@
                     
                     
         function launch(){
+            
             $isRequestInError = false;
             if($this->request->action == 'addToCart'){
                 if($this->addItemInCart($item)){
@@ -240,11 +240,13 @@
                 }
             }else{
                 $itemsInCart = $this->getItemsInCart();
-                $noTaxAmount = $this->getNoTaxAmount($itemsInCart);
-                $amountWithTax = $this->getAmountWithTax($itemsInCart);
-                $this->response->getContent()->assign('noTaxAmount', $noTaxAmount);
-                $this->response->getContent()->assign('amountWithTax', $amountWithTax);
-                $this->response->getContent()->assign('itemsInCart', $itemsInCart);
+                if($itemsInCart != NULL){
+                    $noTaxAmount = $this->getNoTaxAmount($itemsInCart);
+                    $amountWithTax = $this->getAmountWithTax($itemsInCart);
+                    $this->response->getContent()->assign('noTaxAmount', $noTaxAmount);
+                    $this->response->getContent()->assign('amountWithTax', $amountWithTax);
+                    $this->response->getContent()->assign('itemsInCart', $itemsInCart);    
+                }
                 $this->response->setTemplate('cart.tpl');
             }
                 

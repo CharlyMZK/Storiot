@@ -2,12 +2,18 @@
     class ItemController extends DomainController{
 
         function launch(){
-            $itemId = $_POST['id'];
-            $firstItem = ItemQuery::create()->findPK($itemId);
-            $name = 'Produit';
-            $this->response->getContent()->assign('name', $name);
-            $this->response->getContent()->assign('item', $firstItem);
-            $this->response->setTemplate('item.tpl');
+            
+            $itemId = $_GET['id'];
+            
+            $item = ItemQuery::create()->findOneById($itemId);
+            
+            if($item) {
+                $this->response->getContent()->assign('item', $item);
+                $this->response->setTemplate('item.tpl');
+            } else {
+                $this->response->setTemplate('404.tpl');
+            }
+            
             return $this->response;
         }
     }
