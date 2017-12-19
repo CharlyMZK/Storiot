@@ -14,6 +14,7 @@
         }
         
         public function returnToHome() {
+
             $newItems = ItemQuery::create()->filterById(array('min' => 1, 'max' => 2))->find();
             $promotedItems = ItemQuery::create()->filterById(array('min' => 3, 'max' => 4))->find();
             $bestReviewItems = ItemQuery::create()->filterById(5)->find();

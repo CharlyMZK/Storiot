@@ -4,6 +4,7 @@
         public static function dispatch(){
             $request = new Request();
             $response = new Response();
+            
             try{
             ActionController::process($request, $response)->display();
             }catch(Exception $e){

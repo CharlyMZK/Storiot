@@ -34,7 +34,7 @@ function content_59dddf8d61a348_33783151 (Smarty_Internal_Template $_smarty_tpl)
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="index.php">Accueil</a></li>
          <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Categories<i class="material-icons right">arrow_drop_down</i></a></li>
-        <li><a href="?page=mainItem">Voir articles</a></li>
+        <li><a href="?page=catalogue">Voir articles</a></li>
         <li><a href="?page=cart">Panier</a></li>
         <li><a href="?page=contact">Contact</a></li>
         <li><a href="?page=signUp">Inscription</a></li>

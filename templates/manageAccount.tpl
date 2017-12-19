@@ -87,7 +87,7 @@
     <div id="addressCard">
       <div class="col offset-s1 s10">
         <div class="input-field col s12">
-          <input id="address" type="text" value={literal}{$user->getAddress()}{/literal}>
+          <input id="address" type="text" value="{$user->getAddress()}">
           <label for="address">Adresse postale</label>
         </div>
       </div>
@@ -177,7 +177,6 @@
               <td>
                 <button class="btn waves-effect waves-light" id="addPayment" type="submit">Ajouter</button>
               </td>
-
             </tr>
           </tbody>
         </table>

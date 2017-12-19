@@ -1,6 +1,6 @@
 <?php
 /* Smarty version 3.1.31, created on 2017-12-18 14:00:36
-  from "/home/ubuntu/workspace/templates/mainItem.tpl" */
+  from "/home/ubuntu/workspace/templates/catalogue.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
@@ -11,7 +11,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
     'de9dda2da7ac6611eb85e98dce89dd724d86acc8' => 
     array (
-      0 => '/home/ubuntu/workspace/templates/mainItem.tpl',
+      0 => '/home/ubuntu/workspace/templates/catalogue.tpl',
       1 => 1513605627,
       2 => 'file',
     ),

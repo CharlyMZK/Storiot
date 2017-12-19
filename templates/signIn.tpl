@@ -56,5 +56,4 @@
     </div>
   </div>
 </div>
-<script src="js/signIn.js"></script>
 {/block}

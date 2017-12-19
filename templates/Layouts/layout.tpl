@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   {include file='Layouts/head.tpl'}
-
   <body>
     {include file='Layouts/navbar.tpl'} 
     

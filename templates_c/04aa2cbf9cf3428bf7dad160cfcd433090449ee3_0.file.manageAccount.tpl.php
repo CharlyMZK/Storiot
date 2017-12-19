@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-12-18 15:58:23
+/* Smarty version 3.1.31, created on 2017-12-19 19:32:06
   from "/home/ubuntu/workspace/templates/manageAccount.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5a37e59ff293d4_18544605',
+  'unifunc' => 'content_5a39693664b059_00843411',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '04aa2cbf9cf3428bf7dad160cfcd433090449ee3' => 
     array (
       0 => '/home/ubuntu/workspace/templates/manageAccount.tpl',
-      1 => 1513611631,
+      1 => 1513711734,
       2 => 'file',
     ),
   ),
@@ -20,24 +20,24 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a37e59ff293d4_18544605 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a39693664b059_00843411 (Smarty_Internal_Template $_smarty_tpl) {
 if (!is_callable('smarty_modifier_date_format')) require_once '/home/ubuntu/workspace/vendor/smarty/smarty/libs/plugins/modifier.date_format.php';
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
  <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_15711867035a37e59fee4c85_03615487', "body");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_3973024995a396936615179_18569486', "body");
 ?>
 
 <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "Layouts/layout.tpl");
 }
 /* {block "body"} */
-class Block_15711867035a37e59fee4c85_03615487 extends Smarty_Internal_Block
+class Block_3973024995a396936615179_18569486 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_15711867035a37e59fee4c85_03615487',
+    0 => 'Block_3973024995a396936615179_18569486',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -135,7 +135,8 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
     <div id="addressCard">
       <div class="col offset-s1 s10">
         <div class="input-field col s12">
-          <input id="address" type="text" value={$user->getAddress()}>
+          <input id="address" type="text" value="<?php echo $_smarty_tpl->tpl_vars['user']->value->getAddress();?>
+">
           <label for="address">Adresse postale</label>
         </div>
       </div>
@@ -242,7 +243,6 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);
               <td>
                 <button class="btn waves-effect waves-light" id="addPayment" type="submit">Ajouter</button>
               </td>
-
             </tr>
           </tbody>
         </table>

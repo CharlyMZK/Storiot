@@ -363,6 +363,10 @@ footer {
     text-align: center;
 }
 
+.btn-pay{
+    margin-bottom:1vh !important;
+}
+
 .radio-text-color {
     color: grey !important;
 }
@@ -380,6 +384,9 @@ footer {
     background-size: cover;
     -o-background-size: cover;
 
+}
+.bill-buttons .btn{
+    margin-bottom:1vh;
 }
 
 .tip-row p {

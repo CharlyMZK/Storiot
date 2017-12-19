@@ -6,10 +6,10 @@
     </div>
   </div>
 </header>
-<div class="row hide-on-small-only hero-home">
+<div class="row hero-home">
   <div class="col m10 offset-m1 s12 l10 offset-l1">
     <div class="row">
-      <div class="col s11 m11">
+      <div class="col s12 m11">
         <div class="card blue-grey darken-1">
           <div class="card-content">
             <h5 class="paymentcard">Carte utilisée</h5>
@@ -43,7 +43,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col s11 m11">
+        <div class="col s12 m11">
           <div class="card blue-grey darken-1">
             <div class="card-content black-text">
               <div class="row">
@@ -69,10 +69,10 @@
                         </div>
                       </div>
                     </div>
-                    <div class="row"><i class="col offset-s5 s1 orderfinished material-icons">thumb_up</i></div>
+                    <div class="row"><i class="col offset-m5 offset-s4 s1 orderfinished material-icons">thumb_up</i></div>
                     <br/>
                     <div class="row">
-                      <div class="bill-buttons"><a class="btn waves-effect waves-light" download="/bill.txt">Télécharger la facture</a>
+                      <div class="bill-buttons"><a class="btn-pay btn waves-effect waves-light" download="/bill.txt">Télécharger la facture</a>
                         <a href="index.php?module=home" class="btn waves-effect waves-dark white black-text" id="cancel">Retour</a></div>
                     </div>
                   </div>

@@ -13,7 +13,7 @@
     <p class="white-text">Only today</p>
   </div>
   <div class="carousel-item slide4 white-text" data-href="#four!">
-    <h2>STAY CONNECTED</h2>
+    <h2>STAY LINKED</h2>
     <p class="white-text">world is your</p>
   </div>
 </div>

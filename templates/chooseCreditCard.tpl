@@ -40,17 +40,10 @@
                 </td>
             </tr>
             {/foreach}
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><button class="btn waves-effect waves-light" id="submit" type="submit">Lancer la commande</button></td>
-                <td></td>
-                <td></td>
-            </tr>
         </tbody>
     </table>
-
+    <br/>
+    <div class="row"><div class="bill-buttons col m8 offset-m4 s8 offset-s4"><button class="btn-pay btn waves-effect waves-light" id="submit" type="submit">Lancer la commande</button></div></div>
 </form>
 {else}
 <div class="row hide-on-small-only hero-home">

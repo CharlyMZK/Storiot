@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-12-18 08:21:15
+/* Smarty version 3.1.31, created on 2017-12-19 19:48:04
   from "/home/ubuntu/workspace/templates/Layouts/head.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5a377a7b05b217_65613800',
+  'unifunc' => 'content_5a396cf4376bb9_48168175',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '21014e6dea86d141763e27a362f4c919d49cf79e' => 
     array (
       0 => '/home/ubuntu/workspace/templates/Layouts/head.tpl',
-      1 => 1513585256,
+      1 => 1513712848,
       2 => 'file',
     ),
   ),
@@ -20,31 +20,30 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a377a7b05b217_65613800 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a396cf4376bb9_48168175 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base href="/home/ubuntu/workspace/" />
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <title>STORIOT</title>
   <!--Import Google Icon Font-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <!--Import materialize.css-->
-  <link rel="stylesheet" href="css/materialize.min.css" type="text/css" media="screen" />
-  <link rel="stylesheet" href="css/main.css" type="text/css">
-  <link rel="stylesheet" href="css/carousel.css" type="text/css">
-  <link rel="stylesheet" href="css/font-awesome.css" type="text/css">
-  <!--Let browser know website is optimized for mobile-->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/materialize.min.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/css/carousel.css" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" type="text/css">
   <?php echo '<script'; ?>
  src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"><?php echo '</script'; ?>
 >
   <?php echo '<script'; ?>
- src="js/materialize.min.js"><?php echo '</script'; ?>
+ src="/js/materialize.min.js"><?php echo '</script'; ?>
 >
   <?php echo '<script'; ?>
- src="js/utils.js"><?php echo '</script'; ?>
+ src="/js/utils.js"><?php echo '</script'; ?>
 >
 </head><?php }
 }

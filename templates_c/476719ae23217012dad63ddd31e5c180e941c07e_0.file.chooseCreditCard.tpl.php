@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-12-18 16:10:29
+/* Smarty version 3.1.31, created on 2017-12-19 19:31:18
   from "/home/ubuntu/workspace/templates/chooseCreditCard.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5a37e875348629_01505140',
+  'unifunc' => 'content_5a396906c4c9f0_50533005',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '476719ae23217012dad63ddd31e5c180e941c07e' => 
     array (
       0 => '/home/ubuntu/workspace/templates/chooseCreditCard.tpl',
-      1 => 1513613423,
+      1 => 1513711874,
       2 => 'file',
     ),
   ),
@@ -20,23 +20,23 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a37e875348629_01505140 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a396906c4c9f0_50533005 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
  <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_3767087225a37e87531e748_29211689', "body");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_2032090785a396906c26608_02811910', "body");
 ?>
 
 <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "Layouts/layout.tpl");
 }
 /* {block "body"} */
-class Block_3767087225a37e87531e748_29211689 extends Smarty_Internal_Block
+class Block_2032090785a396906c26608_02811910 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_3767087225a37e87531e748_29211689',
+    0 => 'Block_2032090785a396906c26608_02811910',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -105,17 +105,10 @@ $_smarty_tpl->tpl_vars['__smarty_foreach_creditCards']->value['index']++;
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);
 ?>
 
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><button class="btn waves-effect waves-light" id="submit" type="submit">Lancer la commande</button></td>
-                <td></td>
-                <td></td>
-            </tr>
         </tbody>
     </table>
-
+    <br/>
+    <div class="row"><div class="bill-buttons col m8 offset-m4 s8 offset-s4"><button class="btn-pay btn waves-effect waves-light" id="submit" type="submit">Lancer la commande</button></div></div>
 </form>
 <?php } else { ?>
 <div class="row hide-on-small-only hero-home">
