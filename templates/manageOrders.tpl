@@ -52,7 +52,7 @@
           <br/>
           <div class="center">
             <button class="btn waves-effect waves-light" type="submit">Telecharger la facture</button>
-            <button class="btn waves-effect waves-dark white black-text" id="cancel" type="reset">Nous contacter</button>
+            <button class="btn waves-effect waves-dark white black-text" id="contact">Nous contacter</button>
           </div>
         </div>
       </div>

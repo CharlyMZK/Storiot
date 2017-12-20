@@ -12,9 +12,9 @@
                     $this->updateUserPassword($user);
                 } else if ($this->request->action == 'updateAddress') {
                     $this->updateUserAddress($user);
-                } else if ($this->request->action == 'sendForm') {
+                } else if ($this->request->action == 'addCreditCard') {
                     $this->addUserPayment($user);
-                } else if($this->request->action == 'deletePayment') {
+                } else if($this->request->action == 'deleteCreditCard') {
                     $this->deleteUserPayment();
                 }
                 

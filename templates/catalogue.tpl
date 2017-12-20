@@ -9,7 +9,7 @@
 <div class="row hero-home">
   <div class="row">
     <div class="col s12 m12 item-row">
-      {include file='Cards/itemCard.tpl' itemToDisplay=$items} 
+      {include file='Cards/itemCard.tpl' itemToDisplay=$items}
     </div>
   </div>
 </div>

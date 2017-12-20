@@ -2,7 +2,7 @@
     class ContactController extends DomainController{
         
         function launch(){
-            if($this->request->action == 'sendForm') { 
+            if($this->request->action == 'send') { 
                 $this->createContact();
                 $this->response->setTemplate('home.tpl');
             } else {

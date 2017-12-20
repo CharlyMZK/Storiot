@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-12-18 13:19:59
+/* Smarty version 3.1.31, created on 2017-12-20 08:17:34
   from "/home/ubuntu/workspace/templates/contact.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5a37c07f1131e8_98024801',
+  'unifunc' => 'content_5a3a1c9eef9605_82248524',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'cf6c0440a98e1942e2f76830934de32391aee0d8' => 
     array (
       0 => '/home/ubuntu/workspace/templates/contact.tpl',
-      1 => 1513603194,
+      1 => 1513756960,
       2 => 'file',
     ),
   ),
@@ -20,23 +20,23 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a37c07f1131e8_98024801 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a3a1c9eef9605_82248524 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
  <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_6531823475a37c07f10b2d9_49291040', "body");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_18786004325a3a1c9eef2ce8_74011618', "body");
 ?>
 
 <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "Layouts/layout.tpl");
 }
 /* {block "body"} */
-class Block_6531823475a37c07f10b2d9_49291040 extends Smarty_Internal_Block
+class Block_18786004325a3a1c9eef2ce8_74011618 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_6531823475a37c07f10b2d9_49291040',
+    0 => 'Block_18786004325a3a1c9eef2ce8_74011618',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -54,7 +54,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
     <div class="col s11 m11">
       <div class="card blue-grey darken-1">
         <div class="card-content black-text">
-          <form name="contactForm" action="/index.php?module=contact&action=sendForm" method="post">
+          <form name="contactForm" action="/contact/send" method="post">
             <div class="row">
               <div class="col offset-s1 s10">
                 <img class="profile-img" src="img/logo.png" alt="logo storiot">

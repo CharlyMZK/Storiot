@@ -53,5 +53,5 @@ $('.remove-item').click(function() {
 });
 
 $('#cancel').click(function() {
-    window.location.replace('/index.php?module=home');
+    window.location.replace('home');
 });

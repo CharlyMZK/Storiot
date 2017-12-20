@@ -51,30 +51,32 @@
                   <img class="profile-img" src="img/logo.png" alt="logo storiot">
                   <div class="payment">
                     <p class="payment-title">Nous procedons au paiement..</h5>
-                    <p class="payment-subtitle"></p>
-                    <div class="row">
-                      <div class="col offset-s5 s1">
-                        <div class="preloader-wrapper big active">
-                          <div class="spinner-layer spinner-blue-only">
-                            <div class="circle-clipper left">
-                              <div class="circle"></div>
-                            </div>
-                            <div class="gap-patch">
-                              <div class="circle"></div>
-                            </div>
-                            <div class="circle-clipper right">
-                              <div class="circle"></div>
+                      <p class="payment-subtitle"></p>
+                      <div class="row">
+                        <div class="col offset-s5 s1">
+                          <div class="preloader-wrapper big active">
+                            <div class="spinner-layer spinner-blue-only">
+                              <div class="circle-clipper left">
+                                <div class="circle"></div>
+                              </div>
+                              <div class="gap-patch">
+                                <div class="circle"></div>
+                              </div>
+                              <div class="circle-clipper right">
+                                <div class="circle"></div>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="row"><i class="col offset-m5 offset-s4 s1 orderfinished material-icons">thumb_up</i></div>
-                    <br/>
-                    <div class="row">
-                      <div class="bill-buttons"><a class="btn-pay btn waves-effect waves-light" download="/bill.txt">Télécharger la facture</a>
-                        <a href="index.php?module=home" class="btn waves-effect waves-dark white black-text" id="cancel">Retour</a></div>
-                    </div>
+                      <div class="row"><i class="col offset-m5 offset-s4 s1 orderfinished material-icons">thumb_up</i></div>
+                      <br/>
+                      <div class="row">
+                        <div class="bill-buttons">
+                          <button class="btn waves-effect waves-light btn-pay" download="/bill.txt">Télécharger la facture</button>
+                          <button class="btn waves-effect waves-dark white black-text" id="cancel">Retour</button>
+                        </div>
+                      </div>
                   </div>
                 </div>
               </div>

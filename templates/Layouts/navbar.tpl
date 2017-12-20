@@ -7,7 +7,7 @@
         <div class="center">
           <div class="col s12 ">
             <div class="input-field col s6 s12">
-              <form id="searchForm" action="/index.php?module=catalogue&action=sendForm" method="post">
+              <form id="searchForm" action="/catalogue/search" method="post">
                 <i class="material-icons prefix">search</i>
                 <input class="autocomplete red-text search" name="search" type="text" placeholder="rechercher" {if $search}value="{$search}" {/if}>
               </form>
@@ -15,18 +15,18 @@
           </div>
         </div>
       </li>
-      <li><a href="/home">Accueil</a></li>
-      <li><a class="dropdown-button" href="#!" data-activates="dropdownCategories">Categories<i class="material-icons right">arrow_drop_down</i></a></li>
-      <li><a href="/catalogue">Voir articles</a></li>
-      <li><a href="/cart">Panier</a></li>
-      <li><a href="/contact">Contact</a></li>
+      <li><a href="home">Accueil</a></li>
+      <li><a class="dropdown-button" href="#" data-activates="dropdownCategories">Categories <i class="material-icons right">arrow_drop_down</i></a></li>
+      <li><a href="catalogue">Voir articles</a></li>
+      <li><a href="cart">Panier</a></li>
+      <li><a href="contact">Contact</a></li>
       {if $smarty.session.userId == 0}
-      <li><a href="/signUp">Inscription</a></li>
-      <li><a href="/signIn">Connexion</a></li>
+      <li><a href="signUp">Inscription</a></li>
+      <li><a href="signIn">Connexion</a></li>
       {else}
-      <li><a href="/order">Commandes</a></li>
-      <li><a id="manageAccount" href="/manageAccount">{$smarty.session.userFirstName}</a></li>
-      <li><a href="/home/signOut">Deconnexion</a></li>
+      <li><a href="order">Commandes</a></li>
+      <li><a id="manageAccount" href="manageAccount">{$smarty.session.userFirstName}</a></li>
+      <li><a href="home/signOut">Deconnexion</a></li>
       {/if}
     </ul>
     <ul class="side-nav" id="mobile-demo">
@@ -34,7 +34,7 @@
         <div class="center">
           <div class="col s12 ">
             <div class="input-field col s6 s12">
-              <form id="searchFormMobile" action="/index.php?module=catalogue&action=sendForm" method="post">
+              <form id="searchFormMobile" action="/catalogue/search" method="post">
                 <i class="material-icons prefix">search</i>
                 <input class="autocomplete red-text search" name="search" type="text" placeholder="rechercher" {if $search}value="{$search}" {/if}>
               </form>
@@ -43,7 +43,7 @@
         </div>
       </li>
       <li><a href="index.php">Accueil</a></li>
-      <li><a class="dropdown-button" href="#!" data-activates="dropdownCategories">Categories<i class="material-icons right">arrow_drop_down</i></a></li>
+      <li><a class="dropdown-button" href="#" data-activates="dropdownCategoriesMobile">Categories<i class="material-icons right">arrow_drop_down</i></a></li>
       <li><a href="?module=catalogue">Voir articles</a></li>
       <li><a href="?module=cart">Panier</a></li>
       <li><a href="?module=contact">Contact</a></li>
@@ -55,14 +55,20 @@
       <li><a id="manageAccount" href="?module=manageAccount">{$smarty.session.userFirstName}</a></li>
       <li><a href="?module=home&action=signOut">Deconnexion</a></li>
       {/if}
-      <li><a class="dropdown-button" href="#!" data-activates="dropdownDummies">Dummies<i class="material-icons right">arrow_drop_down</i></a></li>
     </ul>
   </div>
 </nav>
-<ul id="dropdownCategories" class="dropdown-content">
-  <li><a href="?module=catalogue">Toutes</a></li>
-  <li><a href="?module=catalogue&action=it">It</a></li>
-  <li><a href="?module=catalogue&action=robot">Robot</a></li>
-  <li><a href="?module=catalogue&action=drone">Drone</a></li>
+<ul class="dropdown-content" id="dropdownCategories">
+  <li><a href="catalogue">Toutes</a></li>
   <li class="divider"></li>
+  <li><a href="catalogue/filter/it">It</a></li>
+  <li><a href="catalogue/filter/robot">Robot</a></li>
+  <li><a href="catalogue/filter/drone">Drone</a></li>
+</ul>
+<ul class="dropdown-content" id="dropdownCategoriesMobile">
+  <li><a href="catalogue">Toutes</a></li>
+  <li class="divider"></li>
+  <li><a href="catalogue/filter/it">It</a></li>
+  <li><a href="catalogue/filter/robot">Robot</a></li>
+  <li><a href="catalogue/filter/drone">Drone</a></li>
 </ul>

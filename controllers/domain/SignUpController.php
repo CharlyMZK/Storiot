@@ -20,7 +20,7 @@
         }
         
         function launch() {
-            if($this->request->action == 'sendForm') {
+            if($this->request->action == 'send') {
                 if(!$this->errorParameters()) {
                     if(!$this->userExist()) {
                         if($this->passwordMatchs()) {

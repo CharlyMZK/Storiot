@@ -40,15 +40,19 @@ $('#updateAddress').click(function() {
     });;
 });
 
-$('.deletePayment').click(function() {
-    $.post('/index.php?module=manageAccount&action=deletePayment', {
+$('#contact').click(function() {
+    window.location.replace('contact');
+});
+
+$('.deleteCreditCard').click(function() {
+    $.post('/index.php?module=manageAccount&action=deleteCreditCard', {
         idPayment: $(this).attr('value')
     });
     $(this).parent().parent().remove();
 });
 
 $('.cancel').click(function() {
-    window.location.replace('/index.php?module=home');
+    window.location.replace('home');
 });
 
 $('.datepicker').pickadate({

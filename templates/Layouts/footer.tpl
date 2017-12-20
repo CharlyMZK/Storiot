@@ -4,33 +4,33 @@
       <div class="col l3 s4">
         <h5 class="brown-text">Contact</h5>
         <ul>
-          <li><a class="grey-text text-lighten-3" href="?module=contact">Formulaire de contact</a></li>
+          <li><a class="grey-text text-lighten-3" href="contact">Formulaire de contact</a></li>
           <li><a class="grey-text text-lighten-3" href="https://www.facebook.com/CNAM-151575061562484/">Nous rencontrer</a></li>
-          <li><a class="grey-text text-lighten-3" href="?module=help">Informations</a></li>
+          <li><a class="grey-text text-lighten-3" href="help">Informations</a></li>
         </ul>
       </div>
       <div class="col l3 s4">
         <h5 class="brown-text">Categories</h5>
         <ul>
-          <li><a class="grey-text text-lighten-3" href="?module=catalogue&filter=TECH">Technologies</a></li>
-          <li><a class="grey-text text-lighten-3" href="?module=catalogue&filter=DRONES">Drones</a></li>
-          <li><a class="grey-text text-lighten-3" href="?module=catalogue&filter=ROBOTS">Robots</a></li>
+          <li><a class="grey-text text-lighten-3" href="catalogue/it">Technologies</a></li>
+          <li><a class="grey-text text-lighten-3" href="catalogue/drone">Drones</a></li>
+          <li><a class="grey-text text-lighten-3" href="catalogue/robot">Robots</a></li>
         </ul>
       </div>
       <div class="col l3 s4">
         <h5 class="brown-text">Nouveautés</h5>
         <ul>
-          <li><a class="grey-text text-lighten-3" href="index.php#header-main">Nouvelle collection</a></li>
-          <li><a class="grey-text text-lighten-3" href="index.php#header-promo">Promotions</a></li>
-          <li><a class="grey-text text-lighten-3" href="index.php#header-best">Best sellers</a></li>
+          <li><a class="grey-text text-lighten-3" href="#header-main">Nouvelle collection</a></li>
+          <li><a class="grey-text text-lighten-3" href="header-promo">Promotions</a></li>
+          <li><a class="grey-text text-lighten-3" href="header-best">Best sellers</a></li>
         </ul>
       </div>
       <div class="col l3 hide-on-small-only">
         <h5 class="brown-text">Besoin d'aide?</h5>
         <ul>
-          <li><a class="grey-text text-lighten-3" href="?module=help">FAQ</a></li>
-          <li><a class="grey-text text-lighten-3" href="?module=help">Concept STORIOT</a></li>
-          <li><a class="grey-text text-lighten-3" href="?module=help">Blog</a></li>
+          <li><a class="grey-text text-lighten-3" href="help">FAQ</a></li>
+          <li><a class="grey-text text-lighten-3" href="help">Concept STORIOT</a></li>
+          <li><a class="grey-text text-lighten-3" href="help">Blog</a></li>
         </ul>
       </div>
     </div>

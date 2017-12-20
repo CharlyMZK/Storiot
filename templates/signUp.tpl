@@ -11,7 +11,7 @@
     <div class="col s11 m11">
       <div class="card blue-grey darken-1">
         <div class="card-content black-text">
-          <form id="signUpForm" action="/index.php?module=signUp&action=sendForm" method="post">
+          <form id="signUpForm" action="/signUp/send" method="post">
             <div class="row">
               <div class="col offset-s1 s10">
                 <img class="profile-img" src="img/logo.png" alt="logo storiot">
@@ -70,7 +70,7 @@
               </div>
               <div class="col offset-s1 s10">
                 <div class="input-field col s12">
-                  <input class="datepicker" id="birthDate" name="birthDate" type="text"/>
+                  <input class="datepicker" id="birthDate" name="birthDate" type="text" />
                   <label class="active" for="birthDate">Date de naissance</label>
                 </div>
               </div>

@@ -12,7 +12,7 @@
       <div class="col s11 m11">
         <div class="card blue-grey darken-1">
           <div class="card-content black-text">
-            <form id="signInForm" action="/index.php?module=signIn&action=sendForm" method="post">
+            <form id="signInForm" action="/signIn/send" method="post">
               <div class="row">
                 <div class="col offset-s1 s10">
                   <img class="profile-img" src="img/logo.png" alt="logo storiot">
@@ -28,7 +28,7 @@
                 {/if}
                 <div class="col offset-s1 s10">
                   <div class="input-field col s12">
-                    <input class="validate" id="email" name="email" type="email" {if $email}value="{$email}"{/if}>
+                    <input class="validate" id="email" name="email" type="email" {if $email}value="{$email}" {/if}>
                     <label for="email" data-error="erreur" data-success="ok">Email</label>
                   </div>
                 </div>

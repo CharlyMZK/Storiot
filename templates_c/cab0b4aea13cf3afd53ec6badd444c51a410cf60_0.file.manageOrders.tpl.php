@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-12-18 16:03:51
+/* Smarty version 3.1.31, created on 2017-12-20 08:21:41
   from "/home/ubuntu/workspace/templates/manageOrders.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5a37e6e79f7a98_56642142',
+  'unifunc' => 'content_5a3a1d95e67fe5_97238959',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'cab0b4aea13cf3afd53ec6badd444c51a410cf60' => 
     array (
       0 => '/home/ubuntu/workspace/templates/manageOrders.tpl',
-      1 => 1513612914,
+      1 => 1513757988,
       2 => 'file',
     ),
   ),
@@ -20,24 +20,24 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a37e6e79f7a98_56642142 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a3a1d95e67fe5_97238959 (Smarty_Internal_Template $_smarty_tpl) {
 if (!is_callable('smarty_modifier_date_format')) require_once '/home/ubuntu/workspace/vendor/smarty/smarty/libs/plugins/modifier.date_format.php';
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
  <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_19270881685a37e6e79d4e89_76903199', "body");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_18167125785a3a1d95e3ea77_73132135', "body");
 ?>
 
 <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "Layouts/layout.tpl");
 }
 /* {block "body"} */
-class Block_19270881685a37e6e79d4e89_76903199 extends Smarty_Internal_Block
+class Block_18167125785a3a1d95e3ea77_73132135 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_19270881685a37e6e79d4e89_76903199',
+    0 => 'Block_18167125785a3a1d95e3ea77_73132135',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -115,7 +115,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);
           <br/>
           <div class="center">
             <button class="btn waves-effect waves-light" type="submit">Telecharger la facture</button>
-            <button class="btn waves-effect waves-dark white black-text" id="cancel" type="reset">Nous contacter</button>
+            <button class="btn waves-effect waves-dark white black-text" id="contact">Nous contacter</button>
           </div>
         </div>
       </div>

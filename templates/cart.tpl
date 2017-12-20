@@ -12,7 +12,7 @@
       {if ($itemsInCart|@count) > 0}
       <div class="card blue-grey darken-1">
         <div class="card-content black-text">
-          <form action="?module=pay&action=chooseCreditCard" method="POST">
+          <form action="/pay/chooseCreditCard" method="POST">
             <table class="striped highlight centered responsive-table">
               <thead>
                 <tr>
@@ -24,7 +24,7 @@
                   <th>Supprimer</th>
                 </tr>
               </thead>
-              
+
               <tbody class="cart" id="paymentCardTable">
                 {foreach from=$itemsInCart item=item}
                 <tr>
@@ -44,7 +44,7 @@
                     <input class="input-quantity item-{$item->getItem()->getId()}-quantity" id="{$item->getItem()->getId()}" type="number" value="{$item->getQuantity()}">
                   </td>
                   <td>
-                    <a class="item-{$item->getItem()->getId()} remove-item btn-floating waves-effect waves-light red" id="remove-{$item->getItem()->getId()}" >
+                    <a class="item-{$item->getItem()->getId()} remove-item btn-floating waves-effect waves-light red" id="remove-{$item->getItem()->getId()}">
                         <i class="material-icons">delete</i>
                       </a>
                   </td>
@@ -57,7 +57,7 @@
                   </td>
                 </tr>
               </tbody>
-             
+
             </table>
 
             <br/> {if ($itemsInCart|@count) > 0}
@@ -68,7 +68,7 @@
             {/if}
           </form>
         </div>
-         {/if}
+        {/if}
       </div>
     </div>
   </div>

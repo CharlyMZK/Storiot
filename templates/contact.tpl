@@ -11,7 +11,7 @@
     <div class="col s11 m11">
       <div class="card blue-grey darken-1">
         <div class="card-content black-text">
-          <form name="contactForm" action="/index.php?module=contact&action=sendForm" method="post">
+          <form name="contactForm" action="/contact/send" method="post">
             <div class="row">
               <div class="col offset-s1 s10">
                 <img class="profile-img" src="img/logo.png" alt="logo storiot">

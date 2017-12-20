@@ -119,7 +119,7 @@
       </div>
     </div>
     <div id="paymentCard">
-      <form id="manageAccountForm" action="/index.php?module=manageAccount&action=sendForm#paymentCard" method="post">
+      <form id="manageAccountForm" action="/manageAccount/addCreditCard" method="post">
         <table class="striped highlight centered responsive-table">
           <thead>
             <tr>
@@ -142,7 +142,7 @@
                 <p>{$creditCard->getHolder()}</p>
               </td>
               <td>
-                <a class="btn-floating waves-effect waves-light red deletePayment" id="{$creditCard->getId()}">
+                <a class="btn-floating waves-effect waves-light red deleteCreditCard" id="{$creditCard->getId()}">
                 <i class="material-icons">delete</i>
               </a>
               </td>

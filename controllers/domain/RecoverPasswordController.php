@@ -3,10 +3,13 @@
         private $email;
         
         function launch(){
-            if($this->request->action == 'sendForm') {
+            if($this->request->action == 'send') {
                 $this->email = $_POST['email'];
+                
                 $this->response->getContent()->assign('email', $email);
+                
                 $user = $this->getUser();
+                
                 if($user) {
                     $this->response->getContent()->assign('successMessage', 'Le nouveau mot de passe est 000000');
                     $this->resetPassword($user);
@@ -15,6 +18,7 @@
                 }
             } 
             $this->response->setTemplate('recoverPassword.tpl');
+            
             return $this->response;
         }
         

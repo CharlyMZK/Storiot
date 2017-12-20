@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-12-19 19:32:06
+/* Smarty version 3.1.31, created on 2017-12-20 08:15:32
   from "/home/ubuntu/workspace/templates/manageAccount.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5a39693664b059_00843411',
+  'unifunc' => 'content_5a3a1c24cb3430_33738736',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '04aa2cbf9cf3428bf7dad160cfcd433090449ee3' => 
     array (
       0 => '/home/ubuntu/workspace/templates/manageAccount.tpl',
-      1 => 1513711734,
+      1 => 1513757124,
       2 => 'file',
     ),
   ),
@@ -20,24 +20,24 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a39693664b059_00843411 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a3a1c24cb3430_33738736 (Smarty_Internal_Template $_smarty_tpl) {
 if (!is_callable('smarty_modifier_date_format')) require_once '/home/ubuntu/workspace/vendor/smarty/smarty/libs/plugins/modifier.date_format.php';
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
  <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_3973024995a396936615179_18569486', "body");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_21257646175a3a1c24c464f0_74942144', "body");
 ?>
 
 <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "Layouts/layout.tpl");
 }
 /* {block "body"} */
-class Block_3973024995a396936615179_18569486 extends Smarty_Internal_Block
+class Block_21257646175a3a1c24c464f0_74942144 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_3973024995a396936615179_18569486',
+    0 => 'Block_21257646175a3a1c24c464f0_74942144',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -171,7 +171,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
       </div>
     </div>
     <div id="paymentCard">
-      <form id="manageAccountForm" action="/index.php?module=manageAccount&action=sendForm#paymentCard" method="post">
+      <form id="manageAccountForm" action="/manageAccount/addCreditCard" method="post">
         <table class="striped highlight centered responsive-table">
           <thead>
             <tr>
@@ -202,7 +202,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['creditCard']->value) {
 </p>
               </td>
               <td>
-                <a class="btn-floating waves-effect waves-light red deletePayment" id="<?php echo $_smarty_tpl->tpl_vars['creditCard']->value->getId();?>
+                <a class="btn-floating waves-effect waves-light red deleteCreditCard" id="<?php echo $_smarty_tpl->tpl_vars['creditCard']->value->getId();?>
 ">
                 <i class="material-icons">delete</i>
               </a>

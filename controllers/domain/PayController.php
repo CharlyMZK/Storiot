@@ -2,7 +2,7 @@
     class PayController extends DomainController{
         
         function launch(){
-            if($this->request->action == 'pay'){
+            if($this->request->action == 'transaction'){
                 if(CartController::isUserConnected()){
                     CartController::createOrderFromCart();
                     CartController::removeItemsInUserCart();

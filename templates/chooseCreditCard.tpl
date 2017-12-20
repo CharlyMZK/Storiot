@@ -6,7 +6,7 @@
         </div>
     </div>
 </header>
-<form id="chooseCreditCard" action="/index.php?module=pay&action=pay" method="post">
+<form id="chooseCreditCard" action="/pay/transaction" method="post">
     {if ($creditCards|@count) > 0}
     <table class="highlight centered responsive-table">
         <thead>
@@ -43,7 +43,9 @@
         </tbody>
     </table>
     <br/>
-    <div class="row"><div class="bill-buttons col m8 offset-m4 s8 offset-s4"><button class="btn-pay btn waves-effect waves-light" id="submit" type="submit">Lancer la commande</button></div></div>
+    <div class="row">
+        <div class="bill-buttons col m8 offset-m4 s8 offset-s4"><button class="btn-pay btn waves-effect waves-light" id="submit" type="submit">Lancer la commande</button></div>
+    </div>
 </form>
 {else}
 <div class="row hide-on-small-only hero-home">

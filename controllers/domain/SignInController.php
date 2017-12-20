@@ -5,7 +5,7 @@
         private $password;
         
         function launch() {
-            if($this->request->action == 'sendForm') {
+            if($this->request->action == 'send') {
                 $this->response->getContent()->assign('email', $_POST['email']); 
                 if(!$this->errorParameters()) {
                     if($this->testConnection()) {
