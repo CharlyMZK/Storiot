@@ -27,7 +27,7 @@ class JSONHandler {
             ));
     }
     
-     public static function json_payment_response($message = null, $hashcode = null,$code = 200)
+     public static function json_payment_response($message = null, $hashcode = null, $pricePaid = null, $date = null, $code = 200)
     {
         // clear the old headers
         header_remove();
@@ -49,7 +49,9 @@ class JSONHandler {
         return json_encode(array(
             'status' => $code < 300, // success or not?
             'message' => $message,
-            'hashcode' => $hashcode
+            'hashcode' => $hashcode,
+            'pricePaid' => $pricePaid,
+            'date' => $date
             ));
     }
 }

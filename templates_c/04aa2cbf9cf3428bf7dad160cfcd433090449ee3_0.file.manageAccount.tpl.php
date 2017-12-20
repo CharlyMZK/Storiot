@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-12-20 08:15:32
+/* Smarty version 3.1.31, created on 2017-12-20 19:27:10
   from "/home/ubuntu/workspace/templates/manageAccount.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5a3a1c24cb3430_33738736',
+  'unifunc' => 'content_5a3ab98e9fd759_43805156',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '04aa2cbf9cf3428bf7dad160cfcd433090449ee3' => 
     array (
       0 => '/home/ubuntu/workspace/templates/manageAccount.tpl',
-      1 => 1513757124,
+      1 => 1513798023,
       2 => 'file',
     ),
   ),
@@ -20,24 +20,24 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a3a1c24cb3430_33738736 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a3ab98e9fd759_43805156 (Smarty_Internal_Template $_smarty_tpl) {
 if (!is_callable('smarty_modifier_date_format')) require_once '/home/ubuntu/workspace/vendor/smarty/smarty/libs/plugins/modifier.date_format.php';
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
  <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_21257646175a3a1c24c464f0_74942144', "body");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_52087185a3ab98e9c5c09_90341675', "body");
 ?>
 
 <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "Layouts/layout.tpl");
 }
 /* {block "body"} */
-class Block_21257646175a3a1c24c464f0_74942144 extends Smarty_Internal_Block
+class Block_52087185a3ab98e9c5c09_90341675 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_21257646175a3a1c24c464f0_74942144',
+    0 => 'Block_52087185a3ab98e9c5c09_90341675',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -204,8 +204,8 @@ foreach ($_from as $_smarty_tpl->tpl_vars['creditCard']->value) {
               <td>
                 <a class="btn-floating waves-effect waves-light red deleteCreditCard" id="<?php echo $_smarty_tpl->tpl_vars['creditCard']->value->getId();?>
 ">
-                <i class="material-icons">delete</i>
-              </a>
+                  <i class="material-icons">delete</i>
+                </a>
               </td>
             </tr>
             <?php

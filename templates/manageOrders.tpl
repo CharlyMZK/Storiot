@@ -2,14 +2,13 @@
 <header>
   <div class="col s12">
     <div class="page-header">
-      <h4 class="header" id="header-main">Gestion des commandes</h4>
+      <h4 class="header">Gestion des commandes</h4>
     </div>
   </div>
 </header>
 {foreach from=$orders item=order}
 <div class="page-header">
-  <h4 class="header" id="header-main">Commande du {$order->getSendDate()|date_format:"%d/%m/%Y"}</->
-  </h4>
+  <h4 class="header">Commande du {$order->getSendDate()|date_format:"%d/%m/%Y"}</h4>
 </div>
 <div class="col m12 offset-m1 s12 l12 offset-l1">
   <div class="row">
@@ -24,10 +23,9 @@
                 <th>Poids</th>
                 <th>Prix</th>
                 <th>Quantité</th>
-                <th/>
               </tr>
             </thead>
-            <tbody class="cart" id="packageTable">
+            <tbody class="cart">
               {foreach from=$order->getItemInPackages() item=item}
               <tr>
                 <td>
@@ -52,7 +50,6 @@
           <br/>
           <div class="center">
             <button class="btn waves-effect waves-light" type="submit">Telecharger la facture</button>
-            <button class="btn waves-effect waves-dark white black-text" id="contact">Nous contacter</button>
           </div>
         </div>
       </div>

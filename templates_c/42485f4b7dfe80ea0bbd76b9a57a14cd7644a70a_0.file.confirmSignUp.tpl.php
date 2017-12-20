@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-12-18 11:15:34
+/* Smarty version 3.1.31, created on 2017-12-20 12:28:57
   from "/home/ubuntu/workspace/templates/confirmSignUp.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5a37a356644cb9_01369141',
+  'unifunc' => 'content_5a3a5789af5a34_00591814',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '42485f4b7dfe80ea0bbd76b9a57a14cd7644a70a' => 
     array (
       0 => '/home/ubuntu/workspace/templates/confirmSignUp.tpl',
-      1 => 1513587420,
+      1 => 1513772839,
       2 => 'file',
     ),
   ),
@@ -20,24 +20,24 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a37a356644cb9_01369141 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a3a5789af5a34_00591814 (Smarty_Internal_Template $_smarty_tpl) {
 if (!is_callable('smarty_modifier_date_format')) require_once '/home/ubuntu/workspace/vendor/smarty/smarty/libs/plugins/modifier.date_format.php';
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
  <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_20449544245a37a3566154c5_16157064', "body");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_3432834845a3a5789ad47f0_22419859', "body");
 ?>
 
 <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "Layouts/layout.tpl");
 }
 /* {block "body"} */
-class Block_20449544245a37a3566154c5_16157064 extends Smarty_Internal_Block
+class Block_3432834845a3a5789ad47f0_22419859 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_20449544245a37a3566154c5_16157064',
+    0 => 'Block_3432834845a3a5789ad47f0_22419859',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -90,18 +90,14 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
             </div>
             <div class="col offset-s1 s10">
               <div class="input-field col s12">
-                <p>
-                  <p>Mot de passe (haché) : <?php echo $_smarty_tpl->tpl_vars['user']->value->getPassword();?>
+                <p>Mot de passe (haché) : <?php echo $_smarty_tpl->tpl_vars['user']->value->getPassword();?>
 </p>
-                </p>
               </div>
             </div>
             <div class="col offset-s1 s10">
               <div class="input-field col s12">
-                <p>
-                  <p>Date de naissance : <?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['user']->value->getBirthDate(),"%d/%m/%Y");?>
+                <p>Date de naissance : <?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['user']->value->getBirthDate(),"%d/%m/%Y");?>
 </p>
-                </p>
               </div>
             </div>
             <div class="col offset-s1 s10">

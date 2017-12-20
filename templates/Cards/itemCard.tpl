@@ -3,7 +3,7 @@
   <div class="card">
     <div class="card-image">
       <img src={$item->getImage()} alt="{$item->getName()}">
-      <button class="btn-floating button-floating-2 waves-effect waves-light deep-purple darken-3 addToCart" id="add-shopping-cart-{$item->getId()}" type="submit">
+      <button onclick="addToCart({$item->getId()})" class="btn-floating button-floating-2 waves-effect waves-light deep-purple darken-3 addToCart" id="add-shopping-cart-{$item->getId()}" type="submit">
             <i class="material-icons" >add_shopping_cart</i>
           </button>
     </div>

@@ -5,9 +5,22 @@
             if($this->request->action == 'transaction'){
                 if(CartController::isUserConnected()){
                     CartController::createOrderFromCart();
-                    CartController::removeItemsInUserCart();
+                    
                     $creditCard = $this->getUserCreditCardById($_POST["creditCard"]);
+                    $user = UserQuery::create()->findOneById($_SESSION['userId']);
                     $name = 'Payer';
+                    
+                    $itemsInCart = CartController::getItemsInUserConnectedCart();
+                    if($itemsInCart != NULL){
+                        $noTaxAmount = CartController::getNoTaxAmount($itemsInCart);
+                        $amountWithTax = CartController::getAmountWithTax($itemsInCart);
+                        $this->response->getContent()->assign('noTaxAmount', $noTaxAmount);
+                        $this->response->getContent()->assign('amountWithTax', $amountWithTax);
+                    }
+                    CartController::removeItemsInUserCart();
+                    $this->response->getContent()->assign('orderId', CartController::getUserConnectedCartId());
+                    $this->response->getContent()->assign('date', date("d/m/Y"));
+                    $this->response->getContent()->assign('userConnected', $user);
                     $this->response->getContent()->assign('creditCard', $creditCard);
                     $this->response->getContent()->assign('name', $name);
                     $this->response->setTemplate('pay.tpl');

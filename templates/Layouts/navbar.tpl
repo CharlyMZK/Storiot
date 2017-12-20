@@ -16,7 +16,7 @@
         </div>
       </li>
       <li><a href="home">Accueil</a></li>
-      <li><a class="dropdown-button" href="#" data-activates="dropdownCategories">Categories <i class="material-icons right">arrow_drop_down</i></a></li>
+      <li><a class="dropdown-button" href="catalogue" data-activates="dropdownCategories">Categories <i class="material-icons right">arrow_drop_down</i></a></li>
       <li><a href="catalogue">Voir articles</a></li>
       <li><a href="cart">Panier</a></li>
       <li><a href="contact">Contact</a></li>
@@ -43,7 +43,7 @@
         </div>
       </li>
       <li><a href="index.php">Accueil</a></li>
-      <li><a class="dropdown-button" href="#" data-activates="dropdownCategoriesMobile">Categories<i class="material-icons right">arrow_drop_down</i></a></li>
+      <li><a class="dropdown-button" href="catalogue" data-activates="dropdownCategoriesMobile">Categories<i class="material-icons right">arrow_drop_down</i></a></li>
       <li><a href="?module=catalogue">Voir articles</a></li>
       <li><a href="?module=cart">Panier</a></li>
       <li><a href="?module=contact">Contact</a></li>
@@ -52,7 +52,7 @@
       <li><a href="?module=signIn">Connexion</a></li>
       {else}
       <li><a href="index.php?module=order">Commandes</a></li>
-      <li><a id="manageAccount" href="?module=manageAccount">{$smarty.session.userFirstName}</a></li>
+      <li><a id="manageAccountMobile" href="?module=manageAccount">{$smarty.session.userFirstName}</a></li>
       <li><a href="?module=home&action=signOut">Deconnexion</a></li>
       {/if}
     </ul>

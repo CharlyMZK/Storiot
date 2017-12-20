@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-12-19 19:25:20
+/* Smarty version 3.1.31, created on 2017-12-20 14:35:08
   from "/home/ubuntu/workspace/templates/cart.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5a3967a0b040a7_62232985',
+  'unifunc' => 'content_5a3a751c506f96_96286315',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f02c0238916691175678e058dafde2add92ecacd' => 
     array (
       0 => '/home/ubuntu/workspace/templates/cart.tpl',
-      1 => 1513711518,
+      1 => 1513780455,
       2 => 'file',
     ),
   ),
@@ -20,23 +20,23 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a3967a0b040a7_62232985 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a3a751c506f96_96286315 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
  <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_17575238035a3967a0adbda2_73877763', "body");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_9056970415a3a751c4ca144_09235326', "body");
 ?>
 
 <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "Layouts/layout.tpl");
 }
 /* {block "body"} */
-class Block_17575238035a3967a0adbda2_73877763 extends Smarty_Internal_Block
+class Block_9056970415a3a751c4ca144_09235326 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_17575238035a3967a0adbda2_73877763',
+    0 => 'Block_9056970415a3a751c4ca144_09235326',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -55,7 +55,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
       <?php if ((count($_smarty_tpl->tpl_vars['itemsInCart']->value)) > 0) {?>
       <div class="card blue-grey darken-1">
         <div class="card-content black-text">
-          <form action="?module=pay&action=chooseCreditCard" method="POST">
+          <form action="/pay/chooseCreditCard" method="POST">
             <table class="striped highlight centered responsive-table">
               <thead>
                 <tr>
@@ -67,7 +67,6 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
                   <th>Supprimer</th>
                 </tr>
               </thead>
-              
               <tbody class="cart" id="paymentCardTable">
                 <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['itemsInCart']->value, 'item');
@@ -100,7 +99,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['item']->value) {
                   <td>
                     <a class="item-<?php echo $_smarty_tpl->tpl_vars['item']->value->getItem()->getId();?>
  remove-item btn-floating waves-effect waves-light red" id="remove-<?php echo $_smarty_tpl->tpl_vars['item']->value->getItem()->getId();?>
-" >
+">
                         <i class="material-icons">delete</i>
                       </a>
                   </td>
@@ -120,9 +119,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);
                   </td>
                 </tr>
               </tbody>
-             
             </table>
-
             <br/> <?php if ((count($_smarty_tpl->tpl_vars['itemsInCart']->value)) > 0) {?>
             <div class="center">
               <button class="btn waves-effect waves-light" type="submit">Commander</button>
@@ -131,8 +128,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);
             <?php }?>
           </form>
         </div>
-         <?php }?>
       </div>
+      <?php }?>
     </div>
   </div>
 </div>

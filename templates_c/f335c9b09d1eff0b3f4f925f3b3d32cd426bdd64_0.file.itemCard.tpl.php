@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-12-20 07:45:46
+/* Smarty version 3.1.31, created on 2017-12-20 15:15:04
   from "/home/ubuntu/workspace/templates/Cards/itemCard.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5a3a152abb5381_04895200',
+  'unifunc' => 'content_5a3a7e783287f6_91788123',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f335c9b09d1eff0b3f4f925f3b3d32cd426bdd64' => 
     array (
       0 => '/home/ubuntu/workspace/templates/Cards/itemCard.tpl',
-      1 => 1513755782,
+      1 => 1513782901,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a3a152abb5381_04895200 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a3a7e783287f6_91788123 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
  <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['itemToDisplay']->value, 'item');
@@ -34,7 +34,8 @@ break 1;?> <?php }?>
       <img src=<?php echo $_smarty_tpl->tpl_vars['item']->value->getImage();?>
  alt="<?php echo $_smarty_tpl->tpl_vars['item']->value->getName();?>
 ">
-      <button class="btn-floating button-floating-2 waves-effect waves-light deep-purple darken-3 addToCart" id="add-shopping-cart-<?php echo $_smarty_tpl->tpl_vars['item']->value->getId();?>
+      <button onclick="addToCart(<?php echo $_smarty_tpl->tpl_vars['item']->value->getId();?>
+)" class="btn-floating button-floating-2 waves-effect waves-light deep-purple darken-3 addToCart" id="add-shopping-cart-<?php echo $_smarty_tpl->tpl_vars['item']->value->getId();?>
 " type="submit">
             <i class="material-icons" >add_shopping_cart</i>
           </button>

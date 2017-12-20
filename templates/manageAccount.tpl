@@ -143,8 +143,8 @@
               </td>
               <td>
                 <a class="btn-floating waves-effect waves-light red deleteCreditCard" id="{$creditCard->getId()}">
-                <i class="material-icons">delete</i>
-              </a>
+                  <i class="material-icons">delete</i>
+                </a>
               </td>
             </tr>
             {/foreach}

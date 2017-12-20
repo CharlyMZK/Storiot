@@ -16,11 +16,11 @@
             $this->response->getContent()->assign('search', $search);
             
             // Filter search
-            if($typeString != 'none' && $typeString == 'filter' && $request) {
+            if($typeString == 'filter' && isset($request)) {
                 $type = TypeQuery::create()->findOneByName($request);
-                if($type) {
+                if(isset($type)) {
                     $itemTypes = ItemTypeQuery::create()->filterByTypeId($type->getId())->find();
-                    if($itemTypes) {
+                    if(isset($itemTypes)) {
                         $items = array();
                         foreach ($itemTypes as &$itemType) {
                             foreach(ItemQuery::create()->filterById($itemType->getItemId())->find() as &$item) {
@@ -29,7 +29,7 @@
                         }
                     }
                 }
-            } else if ($typeString != 'none' && $this->request->action == 'search' && $search) {
+            } else if ($this->request->action == 'search' && isset($search)) {
                 // Search by user
                 $search = '%'.$search.'%';
                 $items = ItemQuery::create()->where('Item.name LIKE ?', $search)->find();

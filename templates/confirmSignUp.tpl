@@ -41,16 +41,12 @@
             </div>
             <div class="col offset-s1 s10">
               <div class="input-field col s12">
-                <p>
-                  <p>Mot de passe (haché) : {$user->getPassword()}</p>
-                </p>
+                <p>Mot de passe (haché) : {$user->getPassword()}</p>
               </div>
             </div>
             <div class="col offset-s1 s10">
               <div class="input-field col s12">
-                <p>
-                  <p>Date de naissance : {$user->getBirthDate()|date_format:"%d/%m/%Y"}</p>
-                </p>
+                <p>Date de naissance : {$user->getBirthDate()|date_format:"%d/%m/%Y"}</p>
               </div>
             </div>
             <div class="col offset-s1 s10">

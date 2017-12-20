@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-12-19 19:39:34
+/* Smarty version 3.1.31, created on 2017-12-20 10:43:22
   from "/home/ubuntu/workspace/templates/signIn.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5a396af67e03b7_91879288',
+  'unifunc' => 'content_5a3a3ecaacebf3_84281730',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '51d46c7bd6152baa06345c87156e34fd48e87a10' => 
     array (
       0 => '/home/ubuntu/workspace/templates/signIn.tpl',
-      1 => 1513712255,
+      1 => 1513758322,
       2 => 'file',
     ),
   ),
@@ -20,21 +20,21 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a396af67e03b7_91879288 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a3a3ecaacebf3_84281730 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
  <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_14144964575a396af67d37a2_67022800', "body");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_581409455a3a3ecaabfb05_52207271', "body");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "Layouts/layout.tpl");
 }
 /* {block "body"} */
-class Block_14144964575a396af67d37a2_67022800 extends Smarty_Internal_Block
+class Block_581409455a3a3ecaabfb05_52207271 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_14144964575a396af67d37a2_67022800',
+    0 => 'Block_581409455a3a3ecaabfb05_52207271',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -53,7 +53,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
       <div class="col s11 m11">
         <div class="card blue-grey darken-1">
           <div class="card-content black-text">
-            <form id="signInForm" action="/index.php?module=signIn&action=sendForm" method="post">
+            <form id="signInForm" action="/signIn/send" method="post">
               <div class="row">
                 <div class="col offset-s1 s10">
                   <img class="profile-img" src="img/logo.png" alt="logo storiot">
@@ -71,7 +71,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
                 <div class="col offset-s1 s10">
                   <div class="input-field col s12">
                     <input class="validate" id="email" name="email" type="email" <?php if ($_smarty_tpl->tpl_vars['email']->value) {?>value="<?php echo $_smarty_tpl->tpl_vars['email']->value;?>
-"<?php }?>>
+" <?php }?>>
                     <label for="email" data-error="erreur" data-success="ok">Email</label>
                   </div>
                 </div>

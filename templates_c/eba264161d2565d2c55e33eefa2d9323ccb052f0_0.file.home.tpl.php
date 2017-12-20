@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-12-20 08:14:04
+/* Smarty version 3.1.31, created on 2017-12-20 10:11:00
   from "/home/ubuntu/workspace/templates/home.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5a3a1bcc7f50b8_10352857',
+  'unifunc' => 'content_5a3a37345e3512_58772852',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'eba264161d2565d2c55e33eefa2d9323ccb052f0' => 
     array (
       0 => '/home/ubuntu/workspace/templates/home.tpl',
-      1 => 1513757035,
+      1 => 1513758294,
       2 => 'file',
     ),
   ),
@@ -21,23 +21,23 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:Cards/itemCard.tpl' => 3,
   ),
 ),false)) {
-function content_5a3a1bcc7f50b8_10352857 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a3a37345e3512_58772852 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
  <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_5935262315a3a1bcc7e7ae0_11529923', "body");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_6012826225a3a37345d3f66_54536979', "body");
 ?>
 
 <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "Layouts/layout.tpl");
 }
 /* {block "body"} */
-class Block_5935262315a3a1bcc7e7ae0_11529923 extends Smarty_Internal_Block
+class Block_6012826225a3a37345d3f66_54536979 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_5935262315a3a1bcc7e7ae0_11529923',
+    0 => 'Block_6012826225a3a37345d3f66_54536979',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -77,7 +77,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 
   </div>
   <div class="more-row center">
-    <a href="/catalogue" class="btn waves-effect waves-light brown-background" data-type="submit">Voir plus</a>
+    <a href="catalogue" class="btn waves-effect waves-light brown-background" data-type="submit">Voir plus</a>
   </div>
 </div>
 <?php echo '<script'; ?>

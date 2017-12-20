@@ -52,7 +52,7 @@
             
             $user = UserQuery::create()->findOneByEmail($this->email);
             
-            if($user && password_verify($this->password, $user->getPassword())) {
+            if(isset($user) && password_verify($this->password, $user->getPassword())) {
                 $this->createSession($user);
                 $result = true;
             }

@@ -14,9 +14,11 @@ function getPaymentHashCode($ref,$expireMonth,$expireYear){
 $app->post('/payOrder/{id}',function ($resquest,$response,$args) {
     if(runPayment()){
         $hashcode = getPaymentHashCode($_POST["ref"],$_POST["expireMonth"],$_POST["expireYear"]);
-        return $response->write(JSONHandler::json_payment_response('Le paiement a bien eu lieu, merci !', $hashcode,200));     
+        $date = $_POST["date"];
+        $pricePaid = $_POST["amountWithTaxes"]." ".$_POST["devise"];
+        return $response->write(JSONHandler::json_payment_response('Le paiement a bien eu lieu, merci !', $hashcode, $pricePaid, $date ,200));     
     }else{
-        return $response->write(JSONHandler::json_payment_response('Oups ! Un problème est survenu ..', $hashcode,500));    
+        return $response->write(JSONHandler::json_payment_response('Oups ! Un problème est survenu ..', $hashcode,  $pricePaid, $date ,500));    
     }
     
 });

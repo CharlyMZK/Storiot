@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-12-20 08:15:23
+/* Smarty version 3.1.31, created on 2017-12-20 19:09:39
   from "/home/ubuntu/workspace/templates/Layouts/navbar.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5a3a1c1b611fb4_30638781',
+  'unifunc' => 'content_5a3ab573226705_56561362',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'fdb4e3a378d48f4f46de07b85d47f354a3bc2ae7' => 
     array (
       0 => '/home/ubuntu/workspace/templates/Layouts/navbar.tpl',
-      1 => 1513757713,
+      1 => 1513796975,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5a3a1c1b611fb4_30638781 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5a3ab573226705_56561362 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <nav>
   <div class="nav-wrapper">
@@ -41,7 +41,7 @@ function content_5a3a1c1b611fb4_30638781 (Smarty_Internal_Template $_smarty_tpl)
         </div>
       </li>
       <li><a href="home">Accueil</a></li>
-      <li><a class="dropdown-button" href="#" data-activates="dropdownCategories">Categories <i class="material-icons right">arrow_drop_down</i></a></li>
+      <li><a class="dropdown-button" href="catalogue" data-activates="dropdownCategories">Categories <i class="material-icons right">arrow_drop_down</i></a></li>
       <li><a href="catalogue">Voir articles</a></li>
       <li><a href="cart">Panier</a></li>
       <li><a href="contact">Contact</a></li>
@@ -70,7 +70,7 @@ function content_5a3a1c1b611fb4_30638781 (Smarty_Internal_Template $_smarty_tpl)
         </div>
       </li>
       <li><a href="index.php">Accueil</a></li>
-      <li><a class="dropdown-button" href="#" data-activates="dropdownCategoriesMobile">Categories<i class="material-icons right">arrow_drop_down</i></a></li>
+      <li><a class="dropdown-button" href="catalogue" data-activates="dropdownCategoriesMobile">Categories<i class="material-icons right">arrow_drop_down</i></a></li>
       <li><a href="?module=catalogue">Voir articles</a></li>
       <li><a href="?module=cart">Panier</a></li>
       <li><a href="?module=contact">Contact</a></li>
@@ -79,7 +79,7 @@ function content_5a3a1c1b611fb4_30638781 (Smarty_Internal_Template $_smarty_tpl)
       <li><a href="?module=signIn">Connexion</a></li>
       <?php } else { ?>
       <li><a href="index.php?module=order">Commandes</a></li>
-      <li><a id="manageAccount" href="?module=manageAccount"><?php echo $_SESSION['userFirstName'];?>
+      <li><a id="manageAccountMobile" href="?module=manageAccount"><?php echo $_SESSION['userFirstName'];?>
 </a></li>
       <li><a href="?module=home&action=signOut">Deconnexion</a></li>
       <?php }?>
@@ -99,5 +99,6 @@ function content_5a3a1c1b611fb4_30638781 (Smarty_Internal_Template $_smarty_tpl)
   <li><a href="catalogue/filter/it">It</a></li>
   <li><a href="catalogue/filter/robot">Robot</a></li>
   <li><a href="catalogue/filter/drone">Drone</a></li>
-</ul><?php }
+</ul>
+<?php }
 }

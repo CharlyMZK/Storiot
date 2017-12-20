@@ -3,7 +3,7 @@
   
         function launch(){
             $user = UserQuery::create()->findOneById($_SESSION['userId']);
-            if($user) {
+            if(isset($user)) {
                 $creditCards = CreditCardQuery::create()->filterByUserId($_SESSION['userId']);
                 if($this->request->action == 'updateInformation'){
                     $this->updateUserInformation($user);

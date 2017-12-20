@@ -7,6 +7,7 @@ $('#updateInformation').click(function() {
         birthDate: $('#birthDate').val()
     }).done(function(data) {
         $('#manageAccount').text($('#firstName').val());
+        $('#manageAccountMobile').text($('#firstName').val());
         Materialize.toast('Informations générales enregistrées', 2000, 'green');
     });
 });
@@ -46,7 +47,7 @@ $('#contact').click(function() {
 
 $('.deleteCreditCard').click(function() {
     $.post('/index.php?module=manageAccount&action=deleteCreditCard', {
-        idPayment: $(this).attr('value')
+        idPayment: $(this).attr('id')
     });
     $(this).parent().parent().remove();
 });

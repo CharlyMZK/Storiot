@@ -333,6 +333,26 @@ footer {
     font-size:1.4em;
 }
 
+.payment-informations{
+    text-align: center;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    color: #1d7d74 !important;
+    font-size:1.4em;
+}
+.after-pay-row{
+    display:none;
+}
+
+.payment-date{
+    text-align: center;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    color: #1d7d74 !important;
+    font-size:1.4em;
+}
+
+
 .payment h4 {
     text-align: center;
     margin-top: 1em;

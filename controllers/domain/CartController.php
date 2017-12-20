@@ -29,10 +29,11 @@
         }
         
         public function addItemInUserConnectedCart($cart,$item){
-            $itemInCart =  ItemInCartQuery::create()->findOneByItemId($item->getId());
+            $itemInCart =  ItemInCartQuery::create()->filterByItemId($item->getId())->filterByCartId($cart->getId())->findOne();
             if($itemInCart == null){
-                 $objectAddedInCart = $this->createItemInCartWithQuantity($cart,$item,1);
+                $objectAddedInCart = $this->createItemInCartWithQuantity($cart,$item,1);
                 $cart->addItemInCart($objectAddedInCart);
+                $cart->save();
                 $objectAddedInCart->save();
             }else{
                 $itemInCart->setQuantity($itemInCart->getQuantity() + 1);
@@ -120,6 +121,11 @@
             }
         }
         
+        public static function getUserConnectedCartId(){
+            $cart = CartQuery::create()->findOneByUserId($_SESSION['userId']);
+            return $cart->getId();
+        }
+        
         public static function getItemsInUserConnectedCart(){
             if(DomainController::isUserConnected()){
                 $cart = CartQuery::create()->findOneByUserId($_SESSION['userId']);
@@ -130,7 +136,7 @@
         
         public function getItemsInCart(){
             if(DomainController::isUserConnected()){
-                 $cart = CartQuery::create()->findOneByUserId($_SESSION['userId']);
+                $cart = CartQuery::create()->findOneByUserId($_SESSION['userId']);
                 $this->mergeSessionAndUserCarts($cart);
                 $itemsInCart =  ItemInCartQuery::create()->findByCartid($cart->getId()); // Refresh the items
             }else{
@@ -177,7 +183,7 @@
             return $isRequestOk;
         }
              
-        public function getNoTaxAmount($itemsInCart){
+        public static function getNoTaxAmount($itemsInCart){
             $total = 0;
             if($itemsInCart != NULL){
                 foreach ($itemsInCart  as &$objectInCart) {
@@ -187,7 +193,7 @@
             return $total;
         }
         
-        public function getAmountWithTax($itemsInCart){
+        public static function getAmountWithTax($itemsInCart){
             $total = 0;
             if($itemsInCart != NULL){
                 foreach ($itemsInCart  as &$objectInCart) {
@@ -241,8 +247,8 @@
             }else{
                 $itemsInCart = $this->getItemsInCart();
                 if($itemsInCart != NULL){
-                    $noTaxAmount = $this->getNoTaxAmount($itemsInCart);
-                    $amountWithTax = $this->getAmountWithTax($itemsInCart);
+                    $noTaxAmount = CartController::getNoTaxAmount($itemsInCart);
+                    $amountWithTax = CartController::getAmountWithTax($itemsInCart);
                     $this->response->getContent()->assign('noTaxAmount', $noTaxAmount);
                     $this->response->getContent()->assign('amountWithTax', $amountWithTax);
                     $this->response->getContent()->assign('itemsInCart', $itemsInCart);    

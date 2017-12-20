@@ -3,5 +3,5 @@ $('#ok').click(function() {
 });
 
 $(function() {
-  Materialize.toast('Vous êtes à présent inscrit !', 2000, 'green');
+  Materialize.toast('Vous êtes à présent inscrit !', 10000, 'green');
 });

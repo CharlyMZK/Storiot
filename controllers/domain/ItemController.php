@@ -7,7 +7,7 @@
             
             $item = ItemQuery::create()->findOneById($itemId);
             
-            if($item) {
+            if(isset($item)) {
                 $this->response->getContent()->assign('item', $item);
                 $this->response->setTemplate('item.tpl');
             } else {

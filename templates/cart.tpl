@@ -24,7 +24,6 @@
                   <th>Supprimer</th>
                 </tr>
               </thead>
-
               <tbody class="cart" id="paymentCardTable">
                 {foreach from=$itemsInCart item=item}
                 <tr>
@@ -57,9 +56,7 @@
                   </td>
                 </tr>
               </tbody>
-
             </table>
-
             <br/> {if ($itemsInCart|@count) > 0}
             <div class="center">
               <button class="btn waves-effect waves-light" type="submit">Commander</button>
@@ -68,8 +65,8 @@
             {/if}
           </form>
         </div>
-        {/if}
       </div>
+      {/if}
     </div>
   </div>
 </div>

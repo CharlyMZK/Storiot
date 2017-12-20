@@ -25,7 +25,7 @@
                     if(!$this->userExist()) {
                         if($this->passwordMatchs()) {
                             $user = $this->createUser();
-                            if($user){
+                            if(isset($user)){
                                 $this->response->getContent()->assign('user', $user);
                                 $this->response->setTemplate('confirmSignUp.tpl');
                             } else {
@@ -122,9 +122,9 @@
         function userExist() {
             $result = false;
             
-            if($this->email) {
+            if(isset($this->email)) {
                 $user = UserQuery::create()->findOneByEmail($this->email);
-                if($user) {
+                if(isset($user)) {
                     $result = true;
                 }
             }
@@ -135,7 +135,7 @@
         function passwordMatchs(){
             $result = false;
             
-            if($this->password && $this->confirmPassword) {
+            if(isset($this->password) && isset($this->confirmPassword)) {
                 if($this->password == $this->confirmPassword) {
             	    $result = true;
             	}
